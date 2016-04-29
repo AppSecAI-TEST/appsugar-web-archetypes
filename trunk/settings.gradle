@@ -1,0 +1,7 @@
+rootProject.name = "appsugar-web-archetypes";
+
+include("appsugar-archetypes-bean")
+include("appsugar-archetypes-data")
+include("appsugar-archetypes-service")
+include("appsugar-archetypes-security")
+include("appsugar-archetypes-web")

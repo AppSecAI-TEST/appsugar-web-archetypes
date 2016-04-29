@@ -1,0 +1,179 @@
+buildscript {	
+		repositories {
+			mavenCentral();
+			mavenLocal();
+		}
+		dependencies {
+			//https://github.com/divinespear/jpa-schema-gradle-plugin
+			classpath "io.github.divinespear:jpa-schema-gradle-plugin:0.2.0-1";
+			//https://github.com/ferigma/dbunit-gradle-plugin
+			classpath "com.ferigma:dbunit-gradle-plugin:0.1.0";
+			//this is for dbuit-gradle-plugin
+			classpath "com.h2database:h2:1.4.191";
+		}
+		
+}
+//load properties from config file
+def loadGroovyConfig(p){
+		if(p == null){
+			return new java.util.HashMap();
+		}
+		def configFile = file("environment.groovy")
+		def profileObject = new ConfigSlurper(p).parse(configFile.toURL()).toProperties()
+		if(profileObject.isEmpty()){
+			throw new InvalidUserDataException("profile not found name is"+p);
+		}
+		return profileObject
+		
+}
+def env = loadGroovyConfig("base")
+env.putAll(loadGroovyConfig(System.getProperty("profile")))
+env.putAll(System.properties)
+
+configure(subprojects) { project ->
+	apply plugin: "idea"
+	apply plugin: "java"
+	group = "org.appsugar.archetypes"
+	version = "1.0.0-SNAPSHOT"
+	repositories {
+		mavenCentral()
+		mavenLocal()
+	}
+	// put env to project ext
+	env.each{ k, v -> ext.set(k,v)}
+	
+	ext{
+		appsugarVersion = "1.0.0-SNAPSHOT"
+		hibernateValidatorVersion = "5.2.4.Final"
+		hibernateVersion = "5.1.0.Final"
+		springVersion = "4.2.5.RELEASE"
+		junitVersion = "4.12"
+		elApiVersion = "3.0.0"
+		mockitoVersion = "2.0.2-beta"
+		shiroVersion = "1.2.4"
+		ehcacheVersion = "2.10.2"
+		jstlVersion = "1.2"
+		jacksonVersion = "2.7.3"
+		wro4jVersion = "1.7.9"
+		sitemeshVersion = "3.0.1"
+		jqueryValidationVersion = "1.15.0"
+		jqueryVersion = "2.2.3"
+		bootstrapVersion = "3.3.6"
+		servletApiVersion = "3.1.0"
+	}
+	compileJava.options.encoding = ext["encoding"];
+	compileTestJava.options.encoding = ext["encoding"];
+	
+	dependencies{
+		testCompile ("junit:junit:${junitVersion}")
+	}
+	processTestResources {
+		from(sourceSets.test.resources.srcDirs) {
+			include '**/*.properties'
+			filter(org.apache.tools.ant.filters.ReplaceTokens,tokens: env)
+		}
+	}
+	processResources {
+		from(sourceSets.main.resources.srcDirs) {
+			include '**/*.properties'
+			filter(org.apache.tools.ant.filters.ReplaceTokens,tokens: env)
+		}
+	}
+}
+
+
+project(":appsugar-archetypes-bean"){
+	apply plugin: "jpa-schema-generate";
+	
+	dependencies{
+		compile ("org.appsugar:appsugar-bean:${appsugarVersion}")
+		compile ("org.hibernate:hibernate-validator:${hibernateValidatorVersion}")
+		compile ("javax.el:javax.el-api:${elApiVersion}")
+	}
+	generateSchema {
+		vendor = "hibernate";
+		databaseAction = "drop-and-create";
+		packageToScan = ["org.appsugar"];
+		jdbcDriver = env["test.jdbc.driverClassName"];
+		jdbcUrl = env["test.jdbc.url"];
+		jdbcUser = env["test.jdbc.username"];
+		jdbcPassword = env["test.jdbc.password"];
+		properties = ["hibernate.dialect":env["test.hibernate.dialect"]];
+	}
+	
+}
+
+project(":appsugar-archetypes-data"){
+	apply plugin: "dbunit";
+	dependencies{
+		compile project(":appsugar-archetypes-bean")
+		compile ("org.appsugar:appsugar-data:${appsugarVersion}")
+		compile ("org.hibernate:hibernate-entitymanager:${hibernateVersion}")
+		testCompile ("org.springframework:spring-test:${springVersion}")
+		testCompile ("${env['test.jdbc.groupId']}:${env['test.jdbc.artifactId']}:${env['test.jdbc.version']}")
+	}
+	
+	
+	dbunit {
+		username = env["test.jdbc.username"];
+		password = env["test.jdbc.password"];
+		url = env["test.jdbc.url"];
+		driver = env["test.jdbc.driverClassName"];
+		dataTypeFactoryName  = env["dbunit.dataTypeFactoryName"];
+	}
+
+	task populateTestDb(type: com.ferigma.gradle.dbunit.tasks.OperationTask) {
+		sources = [
+				new com.ferigma.gradle.dbunit.tasks.source.OperationSource(
+						transaction: true, type:env["dbunit.operationType"], format: "flat",
+						file: "$projectDir"+env["dbunit.sampleData"])
+		];
+	}
+	test.dependsOn populateTestDb
+}
+
+
+project(":appsugar-archetypes-service"){
+	dependencies{
+		compile project(":appsugar-archetypes-data")
+		compile ("org.appsugar:appsugar-service:${appsugarVersion}")
+		compile ("org.springframework:spring-aspects:${springVersion}")
+		testCompile ("org.springframework:spring-test:${springVersion}")
+		testCompile ("org.mockito:mockito-all:${mockitoVersion}")
+		testCompile ("${env['test.jdbc.groupId']}:${env['test.jdbc.artifactId']}:${env['test.jdbc.version']}")
+	}
+}
+
+project(":appsugar-archetypes-security"){
+	dependencies{
+		compile project(":appsugar-archetypes-service")
+		compile ("org.apache.shiro:shiro-spring:${shiroVersion}")
+		compile ("org.apache.shiro:shiro-web:${shiroVersion}")
+		compile ("org.apache.shiro:shiro-ehcache:${shiroVersion}")
+		compile ("net.sf.ehcache:ehcache:${ehcacheVersion}")
+		testCompile ("${env['test.jdbc.groupId']}:${env['test.jdbc.artifactId']}:${env['test.jdbc.version']}")
+		testCompile ("org.springframework:spring-test:${springVersion}")
+	}
+}
+
+
+project(":appsugar-archetypes-web"){
+	apply plugin: "war"
+	dependencies{
+		compile project(":appsugar-archetypes-security")
+		compile project(":appsugar-archetypes-service")
+		compile ("org.springframework:spring-webmvc:${springVersion}")
+		compile ("javax.servlet:jstl:${jstlVersion}")
+		compile ("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
+		compile ("org.webjars:bootstrap:${bootstrapVersion}")
+		compile ("org.webjars:jquery:${jqueryVersion}")
+		compile ("org.webjars:jquery-validation:${jqueryValidationVersion}")
+		compile ("org.sitemesh:sitemesh:${sitemeshVersion}")
+		compile ("ro.isdc.wro4j:wro4j-core:${wro4jVersion}")
+		compile ("${env['jdbc.groupId']}:${env['jdbc.artifactId']}:${env['jdbc.version']}")
+		providedCompile ("javax.servlet:javax.servlet-api:${servletApiVersion}")
+		testCompile ("org.springframework:spring-test:${springVersion}")
+		testCompile ("org.mockito:mockito-all:${mockitoVersion}")
+		testCompile ("${env['test.jdbc.groupId']}:${env['test.jdbc.artifactId']}:${env['test.jdbc.version']}")
+	}
+}
