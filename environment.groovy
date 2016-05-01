@@ -21,7 +21,7 @@
 		}
 		
 		jdbc = test.jdbc
-		
+		hibernate = test.hibernate
 		dbunit{
 			dataTypeFactoryName = "org.dbunit.ext.h2.H2DataTypeFactory";
 			operationType = "CLEAN_INSERT";

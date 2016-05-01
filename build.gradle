@@ -31,7 +31,6 @@ env.putAll(loadGroovyConfig(System.getProperty("profile")))
 env.putAll(System.properties)
 
 configure(subprojects) { project ->
-	apply plugin: "idea"
 	apply plugin: "java"
 	group = "org.appsugar.archetypes"
 	version = "1.0.0-SNAPSHOT"
@@ -73,12 +72,7 @@ configure(subprojects) { project ->
 			filter(org.apache.tools.ant.filters.ReplaceTokens,tokens: env)
 		}
 	}
-	processResources {
-		from(sourceSets.main.resources.srcDirs) {
-			include '**/*.properties'
-			filter(org.apache.tools.ant.filters.ReplaceTokens,tokens: env)
-		}
-	}
+
 }
 
 
@@ -159,6 +153,12 @@ project(":appsugar-archetypes-security"){
 
 project(":appsugar-archetypes-web"){
 	apply plugin: "war"
+	apply plugin: "jetty"
+	
+	jettyRun {
+    	httpPort = 8080
+    	contextPath = ""
+	}
 	dependencies{
 		compile project(":appsugar-archetypes-security")
 		compile project(":appsugar-archetypes-service")
@@ -175,5 +175,25 @@ project(":appsugar-archetypes-web"){
 		testCompile ("org.springframework:spring-test:${springVersion}")
 		testCompile ("org.mockito:mockito-all:${mockitoVersion}")
 		testCompile ("${env['test.jdbc.groupId']}:${env['test.jdbc.artifactId']}:${env['test.jdbc.version']}")
+	}
+	processResources {
+		from(sourceSets.main.resources.srcDirs) {
+			include '*.properties'
+			filter(org.apache.tools.ant.filters.ReplaceTokens,tokens: env)
+		}
+	}
+	
+	processResources{
+		doLast{
+			ant.delete() {
+		        fileset(dir: "${processResources.destinationDir}") {
+		            include(name: '**/ApplicationResources*.properties')
+		        }
+	    	}
+		    ant.native2ascii(src: 'src/main/resources',
+		            dest: "${processResources.destinationDir}",
+		            includes: '**/ApplicationResources*.properties',
+		            encoding: 'UTF-8')
+		}
 	}
 }

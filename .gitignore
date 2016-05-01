@@ -3,14 +3,15 @@
 *.class
 .classpath
 .project
+.settings/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 **/.settings
 **/build
 **/.gradle
-*/*/bin
-*/*/gen
+**/bin
+*/gen
 # Package Files #
 *.war
 *.ear
