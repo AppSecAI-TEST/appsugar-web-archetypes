@@ -99,6 +99,34 @@ project(":appsugar-archetypes-bean"){
 
 project(":appsugar-archetypes-data"){
 	apply plugin: "dbunit";
+	
+	configurations {
+        api
+		impl
+    }
+	task apiJar(type: Jar) {
+       baseName = project.name + '-api'
+        dependsOn classes
+        from sourceSets.main.output
+        include('**/*Repository.class')
+		include('**/*RepositoryCustom.class')
+    }
+	task implJar(type: Jar){
+		baseName = project.name + '-impl'
+        dependsOn classes
+        from sourceSets.main.output
+        exclude('**/*Repository.class')
+		exclude('**/*RepositoryCustom.class')
+	}
+	
+	
+    artifacts {
+        api apiJar
+		impl implJar
+    }
+	
+	jar.dependsOn apiJar,implJar
+	
 	dependencies{
 		compile project(":appsugar-archetypes-bean")
 		compile ("org.appsugar:appsugar-data:${appsugarVersion}")

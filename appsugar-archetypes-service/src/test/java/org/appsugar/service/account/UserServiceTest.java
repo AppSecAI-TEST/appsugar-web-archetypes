@@ -16,4 +16,5 @@ public class UserServiceTest extends BaseJpaServiceTestCase {
 		User user = userService.getByLoginName(loginName);
 		logger.debug("testGetByLoginName loginName {} result {}", loginName, user);
 	}
+
 }

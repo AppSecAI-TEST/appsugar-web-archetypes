@@ -9,11 +9,17 @@ import org.appsugar.condition.account.RoleCondition;
 import org.appsugar.entity.account.Role;
 import org.appsugar.extend.SpecificationQueryWrapper;
 import org.appsugar.specification.IdEntitySpecification;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RoleSpecification extends IdEntitySpecification<Role, RoleCondition> {
 
 	public RoleSpecification(RoleCondition condition) {
 		super(condition);
+	}
+
+	public RoleSpecification() {
+		this(new RoleCondition());
 	}
 
 	@Override

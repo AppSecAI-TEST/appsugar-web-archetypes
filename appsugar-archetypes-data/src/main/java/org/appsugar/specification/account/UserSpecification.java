@@ -9,6 +9,7 @@ import org.appsugar.condition.account.UserCondition;
 import org.appsugar.entity.account.User;
 import org.appsugar.extend.SpecificationQueryWrapper;
 import org.appsugar.specification.IdEntitySpecification;
+import org.springframework.stereotype.Component;
 
 /**
  * 用户查询
@@ -17,10 +18,15 @@ import org.appsugar.specification.IdEntitySpecification;
  * @author NewYoung
  * 2016年2月23日下午2:29:57
  */
+@Component
 public class UserSpecification extends IdEntitySpecification<User, UserCondition> {
 
 	public UserSpecification(UserCondition conditionObject) {
 		super(conditionObject);
+	}
+
+	public UserSpecification() {
+		this(new UserCondition());
 	}
 
 	@Override

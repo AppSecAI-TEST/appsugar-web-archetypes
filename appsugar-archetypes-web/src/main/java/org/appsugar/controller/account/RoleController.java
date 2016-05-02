@@ -25,7 +25,7 @@ public class RoleController {
 	private static final Logger logger = LoggerFactory.getLogger(RoleController.class);
 
 	@Autowired
-	private RoleService roleService;
+	RoleService roleService;
 
 	@ModelAttribute
 	public Role modelAttribute(Long id) {

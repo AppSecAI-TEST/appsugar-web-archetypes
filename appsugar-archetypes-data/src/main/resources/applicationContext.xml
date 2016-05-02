@@ -14,9 +14,14 @@
 	<context:annotation-config />
 	
 	<!-- 启动组件扫描，排除@Controller组件，该组件由SpringMVC配置文件扫描 -->
-	<context:component-scan base-package="org.appsugar.repository" />
+	<context:component-scan base-package="org.appsugar.repository,org.appsugar.specification" />
+	
 	
     <jpa:repositories base-package="org.appsugar.repository" base-class="org.appsugar.repository.IdEntityRepositoryImpl"/>
+	
+	<!-- make sure Repository enhance safety -->
+	<bean class="org.appsugar.repository.RepositoryPostProcessor"/>
+	
 	
 	<bean name="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 		<property name="showSql" value="false"/>
