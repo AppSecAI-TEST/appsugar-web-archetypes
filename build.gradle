@@ -1,15 +1,17 @@
 buildscript {	
 		repositories {
-			mavenCentral();
-			mavenLocal();
+			mavenCentral()
+			mavenLocal()
+			jcenter()
 		}
 		dependencies {
 			//https://github.com/divinespear/jpa-schema-gradle-plugin
-			classpath "io.github.divinespear:jpa-schema-gradle-plugin:0.2.0-1";
+			classpath "io.github.divinespear:jpa-schema-gradle-plugin:0.2.0-1"
 			//https://github.com/ferigma/dbunit-gradle-plugin
-			classpath "com.ferigma:dbunit-gradle-plugin:0.1.0";
+			classpath "com.ferigma:dbunit-gradle-plugin:0.1.0"
 			//this is for dbuit-gradle-plugin
-			classpath "com.h2database:h2:1.4.191";
+			classpath "com.h2database:h2:1.4.191"
+			classpath "org.akhikhl.gretty:gretty:+"
 		}
 		
 }
@@ -65,6 +67,7 @@ configure(subprojects) { project ->
 	
 	dependencies{
 		testCompile ("junit:junit:${junitVersion}")
+		testCompile ("javax.el:javax.el-api:${elApiVersion}")
 	}
 	processTestResources {
 		from(sourceSets.test.resources.srcDirs) {
@@ -82,7 +85,6 @@ project(":appsugar-archetypes-bean"){
 	dependencies{
 		compile ("org.appsugar:appsugar-bean:${appsugarVersion}")
 		compile ("org.hibernate:hibernate-validator:${hibernateValidatorVersion}")
-		compile ("javax.el:javax.el-api:${elApiVersion}")
 	}
 	generateSchema {
 		vendor = "hibernate";
@@ -125,7 +127,7 @@ project(":appsugar-archetypes-data"){
 		impl implJar
     }
 	
-	jar.dependsOn apiJar,implJar
+	jar.dependsOn (apiJar,implJar)
 	
 	dependencies{
 		compile project(":appsugar-archetypes-bean")
@@ -181,17 +183,12 @@ project(":appsugar-archetypes-security"){
 
 project(":appsugar-archetypes-web"){
 	apply plugin: "war"
-	apply plugin: "jetty"
+	apply plugin: 'org.akhikhl.gretty'
 	
-	jettyRun {
-    	httpPort = 8080
-    	contextPath = ""
-	}
 	dependencies{
 		compile project(":appsugar-archetypes-security")
 		compile project(":appsugar-archetypes-service")
 		compile ("org.springframework:spring-webmvc:${springVersion}")
-		compile ("javax.servlet:jstl:${jstlVersion}")
 		compile ("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
 		compile ("org.webjars:bootstrap:${bootstrapVersion}")
 		compile ("org.webjars:jquery:${jqueryVersion}")
@@ -199,6 +196,7 @@ project(":appsugar-archetypes-web"){
 		compile ("org.sitemesh:sitemesh:${sitemeshVersion}")
 		compile ("ro.isdc.wro4j:wro4j-core:${wro4jVersion}")
 		compile ("${env['jdbc.groupId']}:${env['jdbc.artifactId']}:${env['jdbc.version']}")
+		compile ("javax.servlet:jstl:${jstlVersion}")
 		providedCompile ("javax.servlet:javax.servlet-api:${servletApiVersion}")
 		testCompile ("org.springframework:spring-test:${springVersion}")
 		testCompile ("org.mockito:mockito-all:${mockitoVersion}")
@@ -209,9 +207,6 @@ project(":appsugar-archetypes-web"){
 			include '*.properties'
 			filter(org.apache.tools.ant.filters.ReplaceTokens,tokens: env)
 		}
-	}
-	
-	processResources{
 		doLast{
 			ant.delete() {
 		        fileset(dir: "${processResources.destinationDir}") {
@@ -223,5 +218,12 @@ project(":appsugar-archetypes-web"){
 		            includes: '**/ApplicationResources*.properties',
 		            encoding: 'UTF-8')
 		}
+	}
+	
+	//gradle jettyRun
+	gretty {
+	  	servletContainer = "jetty8"
+	  	port = 8080
+  		contextPath = "/"
 	}
 }
