@@ -10,7 +10,8 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
  * @author NewYoung
  * 2016年1月28日下午6:01:06
  */
-@ContextConfiguration({ "classpath*:/applicationContext.xml", "classpath:/applicationContext-resource.xml" })
+@ContextConfiguration({ "classpath*:/applicationContext.xml", "classpath:/applicationContext-shiro.xml",
+		"classpath:/applicationContext-resource.xml" })
 public abstract class BaseJpaServiceTestCase extends AbstractTransactionalJUnit4SpringContextTests {
 	protected final Logger logger = LoggerFactory.getLogger(BaseJpaServiceTestCase.class);
 

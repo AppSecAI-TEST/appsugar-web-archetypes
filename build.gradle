@@ -162,23 +162,16 @@ project(":appsugar-archetypes-service"){
 		compile project(":appsugar-archetypes-data")
 		compile ("org.appsugar:appsugar-service:${appsugarVersion}")
 		compile ("org.springframework:spring-aspects:${springVersion}")
+		compile ("org.apache.shiro:shiro-spring:${shiroVersion}")
+		compile ("org.apache.shiro:shiro-web:${shiroVersion}")
+		compile ("org.apache.shiro:shiro-ehcache:${shiroVersion}")
+		compile ("net.sf.ehcache:ehcache:${ehcacheVersion}")
 		testCompile ("org.springframework:spring-test:${springVersion}")
 		testCompile ("org.mockito:mockito-all:${mockitoVersion}")
 		testCompile ("${env['test.jdbc.groupId']}:${env['test.jdbc.artifactId']}:${env['test.jdbc.version']}")
 	}
 }
 
-project(":appsugar-archetypes-security"){
-	dependencies{
-		compile project(":appsugar-archetypes-service")
-		compile ("org.apache.shiro:shiro-spring:${shiroVersion}")
-		compile ("org.apache.shiro:shiro-web:${shiroVersion}")
-		compile ("org.apache.shiro:shiro-ehcache:${shiroVersion}")
-		compile ("net.sf.ehcache:ehcache:${ehcacheVersion}")
-		testCompile ("${env['test.jdbc.groupId']}:${env['test.jdbc.artifactId']}:${env['test.jdbc.version']}")
-		testCompile ("org.springframework:spring-test:${springVersion}")
-	}
-}
 
 
 project(":appsugar-archetypes-web"){
@@ -186,7 +179,6 @@ project(":appsugar-archetypes-web"){
 	apply plugin: 'org.akhikhl.gretty'
 	
 	dependencies{
-		compile project(":appsugar-archetypes-security")
 		compile project(":appsugar-archetypes-service")
 		compile ("org.springframework:spring-webmvc:${springVersion}")
 		compile ("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
