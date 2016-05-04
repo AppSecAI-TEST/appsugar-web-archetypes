@@ -48,6 +48,7 @@ configure(subprojects) { project ->
 		hibernateValidatorVersion = "5.2.4.Final"
 		hibernateVersion = "5.1.0.Final"
 		springVersion = "4.2.5.RELEASE"
+		slf4jVersion = "1.7.21"
 		junitVersion = "4.12"
 		elApiVersion = "3.0.0"
 		mockitoVersion = "2.0.2-beta"
@@ -75,7 +76,11 @@ configure(subprojects) { project ->
 			filter(org.apache.tools.ant.filters.ReplaceTokens,tokens: env)
 		}
 	}
-
+	test{
+		testLogging{
+			showStandardStreams  = true
+		}
+	}
 }
 
 
@@ -102,37 +107,11 @@ project(":appsugar-archetypes-bean"){
 project(":appsugar-archetypes-data"){
 	apply plugin: "dbunit";
 	
-	configurations {
-        api
-		impl
-    }
-	task apiJar(type: Jar) {
-       baseName = project.name + '-api'
-        dependsOn classes
-        from sourceSets.main.output
-        include('**/*Repository.class')
-		include('**/*RepositoryCustom.class')
-    }
-	task implJar(type: Jar){
-		baseName = project.name + '-impl'
-        dependsOn classes
-        from sourceSets.main.output
-        exclude('**/*Repository.class')
-		exclude('**/*RepositoryCustom.class')
-	}
-	
-	
-    artifacts {
-        api apiJar
-		impl implJar
-    }
-	
-	jar.dependsOn (apiJar,implJar)
-	
 	dependencies{
 		compile project(":appsugar-archetypes-bean")
 		compile ("org.appsugar:appsugar-data:${appsugarVersion}")
 		compile ("org.hibernate:hibernate-entitymanager:${hibernateVersion}")
+		compile ("org.slf4j:slf4j-log4j12:${slf4jVersion}")
 		testCompile ("org.springframework:spring-test:${springVersion}")
 		testCompile ("${env['test.jdbc.groupId']}:${env['test.jdbc.artifactId']}:${env['test.jdbc.version']}")
 	}
