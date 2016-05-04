@@ -1,18 +1,18 @@
 buildscript {	
-		repositories {
-			mavenCentral()
-			mavenLocal()
-			jcenter()
-		}
-		dependencies {
-			//https://github.com/divinespear/jpa-schema-gradle-plugin
-			classpath "io.github.divinespear:jpa-schema-gradle-plugin:0.2.0-1"
-			//https://github.com/ferigma/dbunit-gradle-plugin
-			classpath "com.ferigma:dbunit-gradle-plugin:0.1.0"
-			//this is for dbuit-gradle-plugin
-			classpath "com.h2database:h2:1.4.191"
-			classpath "org.akhikhl.gretty:gretty:+"
-		}
+	repositories {
+		mavenCentral()
+		mavenLocal()
+		jcenter()
+	}
+	dependencies {
+		//https://github.com/divinespear/jpa-schema-gradle-plugin
+		classpath "io.github.divinespear:jpa-schema-gradle-plugin:0.2.0-1"
+		//https://github.com/ferigma/dbunit-gradle-plugin
+		classpath "com.ferigma:dbunit-gradle-plugin:0.1.0"
+		//this is for dbuit-gradle-plugin
+		classpath "com.h2database:h2:1.4.191"
+		classpath "org.akhikhl.gretty:gretty:+"
+	}
 		
 }
 //load properties from config file
@@ -34,7 +34,6 @@ env.putAll(System.properties)
 
 configure(subprojects) { project ->
 	apply plugin: "java"
-	group = "org.appsugar.archetypes"
 
 	repositories {
 		mavenCentral()
