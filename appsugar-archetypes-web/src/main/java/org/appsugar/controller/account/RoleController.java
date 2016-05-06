@@ -4,9 +4,9 @@ import javax.validation.Valid;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.appsugar.condition.account.RoleCondition;
+import org.appsugar.dto.page.Pageable;
 import org.appsugar.entity.account.Permissions;
 import org.appsugar.entity.account.Role;
-import org.appsugar.repository.extend.PageAdapter;
 import org.appsugar.service.account.RoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,8 +38,8 @@ public class RoleController {
 
 	@RequestMapping
 	@RequiresPermissions("role:view")
-	public String list(Model model, RoleCondition condition, PageAdapter page) {
-		model.addAttribute("page", roleService.getByCondition(condition, page.toPageable()));
+	public String list(Model model, RoleCondition condition, Pageable pageable) {
+		model.addAttribute("page", roleService.getByCondition(condition, pageable));
 		return "/account/role/list";
 	}
 

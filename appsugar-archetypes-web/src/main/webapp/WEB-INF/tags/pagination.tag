@@ -1,16 +1,16 @@
 <%@tag pageEncoding="UTF-8"%>
-<%@ attribute name="page" type="org.springframework.data.domain.Page" required="true"%>
+<%@ attribute name="page" type="org.appsugar.dto.page.Page" required="true"%>
 <%@ attribute name="onclick" type="java.lang.String" required="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
-int current =  page.getNumber() + 1;
-int size = page.getSize();
+int current =  page.getPageNumber() + 1;
+int size = page.getPageSize();
 int begin = Math.max(1, current - size/2);
-int end = Math.min(begin + (size - 1), page.getTotalPages());
+int end = Math.min(begin + (size - 1), page.getTotalPage());
 
 request.setAttribute("current", current);
-request.setAttribute("size", page.getSize());
+request.setAttribute("size", page.getPageSize());
 request.setAttribute("begin", begin);
 request.setAttribute("end", end);
 %>
@@ -19,7 +19,7 @@ request.setAttribute("end", end);
 		var sortType = '${sortType}';
 		var originalForm = document.forms[0];
 		var form = $(originalForm);
-		addParameterToForm(form,"pageParam","pageNum",page - 1);
+		addParameterToForm(form,"pageParam","pageNumber",page - 1);
 		addParameterToForm(form,"pageSizeParam","pageSize",pageSize);
 		addParameterToForm(form,"sortParam","sortType",sortType);
 		form.submit();
@@ -27,7 +27,7 @@ request.setAttribute("end", end);
 </script>
 <nav style="float: right;padding-top: 0px;margin-top: 0px;">
 	<ul  class="pagination">
-		 <% if (page.hasPrevious()){%>
+		 <% if (page.getPageNumber()>0){%>
                	<li><a href="javascript:jumpToPage(1,${size})" >&lt;&lt;</a></li>
                 <li><a href="javascript:jumpToPage(${current - 1},${size})">&lt;</a></li>
          <%}else{%>
@@ -48,7 +48,7 @@ request.setAttribute("end", end);
 	  
 	  	 <% if (page.hasNext()){%>
                	<li><a href="javascript:jumpToPage(${current+1},${size})">&gt;</a></li>
-                <li><a href="javascript:jumpToPage(${page.totalPages},${size})">&gt;&gt;</a></li>
+                <li><a href="javascript:jumpToPage(${page.totalPage},${size})">&gt;&gt;</a></li>
          <%}else{%>
                 <li class="disabled"><a href="#">&gt;</a></li>
                 <li class="disabled"><a href="#">&gt;&gt;</a></li>

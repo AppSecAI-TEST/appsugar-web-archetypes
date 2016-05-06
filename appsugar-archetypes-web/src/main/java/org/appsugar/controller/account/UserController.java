@@ -2,8 +2,8 @@ package org.appsugar.controller.account;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.appsugar.condition.account.UserCondition;
+import org.appsugar.dto.page.Pageable;
 import org.appsugar.entity.account.User;
-import org.appsugar.repository.extend.PageAdapter;
 import org.appsugar.service.account.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,9 +29,9 @@ public class UserController {
 
 	@RequiresPermissions("user:view")
 	@RequestMapping
-	public String list(Model model, UserCondition condition, PageAdapter adapter) {
-		adapter.setPageSize(5);
-		model.addAttribute("page", userService.getByCondition(condition, adapter.toPageable()));
+	public String list(Model model, UserCondition condition, Pageable pageable) {
+		pageable.setPageSize(5);
+		model.addAttribute("page", userService.getByCondition(condition, pageable));
 		model.addAttribute("condition", condition);
 		return "/account/user/list";
 	}

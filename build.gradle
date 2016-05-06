@@ -109,6 +109,7 @@ project(":appsugar-archetypes-bean"){
 project(":appsugar-archetypes-data"){
 	apply plugin: "dbunit";
 	
+	
 	dependencies{
 		compile project(":appsugar-archetypes-bean")
 		compile ("org.appsugar:appsugar-data:${appsugarVersion}")
@@ -124,6 +125,8 @@ project(":appsugar-archetypes-data"){
 		driver = env["test.jdbc.driverClassName"];
 		dataTypeFactoryName  = env["dbunit.dataTypeFactoryName"];
 	}
+	
+	
 
 	task populateTestDb(type: com.ferigma.gradle.dbunit.tasks.OperationTask) {
 		sources = [
