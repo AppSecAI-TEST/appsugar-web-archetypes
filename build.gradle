@@ -43,7 +43,7 @@ configure(subprojects) { project ->
 	env.each{ k, v -> ext.set(k,v)}
 	
 	ext{
-		appsugarVersion = "1.0.0-release"
+		appsugarVersion = "1.1.0-SNAPSHOT"
 		hibernateValidatorVersion = "5.2.4.Final"
 		hibernateVersion = "5.1.0.Final"
 		springVersion = "4.2.5.RELEASE"
