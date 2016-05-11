@@ -1,5 +1,8 @@
 buildscript {	
 	repositories {
+		maven{
+			url = "http://nexus.ggxueche.cn/nexus/content/groups/public/"
+		}
 		mavenCentral()
 		mavenLocal()
 		jcenter()
@@ -36,6 +39,9 @@ configure(subprojects) { project ->
 	apply plugin: "java"
 
 	repositories {
+		maven{
+			url = "http://nexus.ggxueche.cn/nexus/content/groups/public/"
+		}
 		mavenCentral()
 		mavenLocal()
 	}
@@ -43,7 +49,7 @@ configure(subprojects) { project ->
 	env.each{ k, v -> ext.set(k,v)}
 	
 	ext{
-		appsugarVersion = "1.1.0-SNAPSHOT"
+		appsugarVersion = "2.0.0-SNAPSHOT"
 		hibernateValidatorVersion = "5.2.4.Final"
 		hibernateVersion = "5.1.0.Final"
 		springVersion = "4.2.5.RELEASE"
@@ -147,7 +153,6 @@ project(":appsugar-archetypes-service"){
 		compile ("org.apache.shiro:shiro-spring:${shiroVersion}")
 		compile ("org.apache.shiro:shiro-web:${shiroVersion}")
 		compile ("org.apache.shiro:shiro-ehcache:${shiroVersion}")
-		compile ("net.sf.ehcache:ehcache:${ehcacheVersion}")
 	}
 }
 
