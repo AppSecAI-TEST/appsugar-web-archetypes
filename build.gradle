@@ -1,11 +1,11 @@
 buildscript {	
 	repositories {
-		maven{
-			url = "http://nexus.ggxueche.cn/nexus/content/groups/public/"
-		}
 		mavenCentral()
 		mavenLocal()
 		jcenter()
+		maven{
+			url = "http://nexus.ggxueche.cn/nexus/content/groups/public/"
+		}
 	}
 	dependencies {
 		//https://github.com/divinespear/jpa-schema-gradle-plugin
@@ -39,11 +39,11 @@ configure(subprojects) { project ->
 	apply plugin: "java"
 
 	repositories {
+		mavenCentral()
+		mavenLocal()
 		maven{
 			url = "http://nexus.ggxueche.cn/nexus/content/groups/public/"
 		}
-		mavenCentral()
-		mavenLocal()
 	}
 	// put env to project ext
 	env.each{ k, v -> ext.set(k,v)}
