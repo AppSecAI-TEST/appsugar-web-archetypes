@@ -67,6 +67,7 @@ configure(subprojects) { project ->
 		jqueryVersion = "2.2.3"
 		bootstrapVersion = "3.3.6"
 		servletApiVersion = "3.1.0"
+		logbackVersion = "1.1.7"
 	}
 	compileJava.options.encoding = ext["encoding"];
 	compileTestJava.options.encoding = ext["encoding"];
@@ -120,7 +121,7 @@ project(":appsugar-archetypes-data"){
 		compile project(":appsugar-archetypes-bean")
 		compile ("org.appsugar:appsugar-data:${appsugarVersion}")
 		compile ("org.hibernate:hibernate-entitymanager:${hibernateVersion}")
-		compile ("org.slf4j:slf4j-log4j12:${slf4jVersion}")
+		compile ("ch.qos.logback:logback-classic:${logbackVersion}")
 	}
 	
 	
