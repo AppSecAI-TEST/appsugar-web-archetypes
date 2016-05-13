@@ -34,7 +34,7 @@
 			    		<div class="panel-body">
 			    			<c:forEach var="p" items="${group.value}">
 			    				 <label class="label label-info">${p.name}:</label>
-			    				 <input  type="checkbox" name="permissionList" value="${p.permission}" <c:if test="${role.permissionList.contains(p.permission)}">checked="checked"</c:if>/>
+			    				 <input  type="checkbox" name="permissionList" value="${p.permission}" <c:if test="${role !=null && role.permissionList.contains(p.permission)}">checked="checked"</c:if>/>
 			    			</c:forEach>
 			    		</div>
 			    	</div>
