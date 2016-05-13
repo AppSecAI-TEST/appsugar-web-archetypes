@@ -205,7 +205,7 @@ project(":appsugar-archetypes-web"){
 	
 	//gradle jettyRun
 	gretty {
-	  	servletContainer = "jetty8"
+	  	servletContainer = "jetty9"
 	  	port = 8080
   		contextPath = "/"
 	}

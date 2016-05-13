@@ -16,12 +16,12 @@ public class LoginController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String login() {
-		return "account/login";
+		return "/account/login";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String fail(Model model) {
 		model.addAttribute("login_error", true);
-		return "account/login";
+		return "/account/login";
 	}
 }

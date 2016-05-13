@@ -17,7 +17,7 @@
 			<h2 class="form-signin-heading">
 				<spring:message code="login"/>
 			</h2>
-			<c:if test="${login_error}">
+			<c:if test="${login_error != null}">
 				<div class="alert alert-danger fade in">
 					<button class="close" data-dismiss="alert">×</button>
 					<spring:message code="login.fail.message"/>
