@@ -1,4 +1,4 @@
-package org.appsugar.controller.menu;
+package org.appsugar.bean;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package org.appsugar.controller.menu;
+package org.appsugar.bean;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.subject.Subject;
