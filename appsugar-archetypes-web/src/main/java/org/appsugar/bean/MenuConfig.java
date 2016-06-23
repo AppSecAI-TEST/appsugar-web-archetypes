@@ -86,6 +86,9 @@ public class MenuConfig {
 	 */
 	public boolean isShow() {
 		Subject subject = ShiroUtils.getSubject();
+		if (StringUtils.isBlank(role) && StringUtils.isBlank(permission)) {
+			return true;
+		}
 		if (StringUtils.isNotBlank(permission) && subject.isPermitted(permission)) {
 			return true;
 		}

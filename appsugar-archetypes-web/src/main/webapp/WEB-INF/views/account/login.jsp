@@ -14,6 +14,8 @@
 <body>
 	<div class="center">
 		<form id="loginForm" action="${ctx}/login" method="post" class="form-signin" autocomplete="off">
+			<input type="hidden"
+				id="rememberMe" name="rememberMe" value="rememberMe" tabindex="3" />
 			<h2 class="form-signin-heading">
 				<spring:message code="login"/>
 			</h2>
@@ -27,8 +29,7 @@
 				tabindex="1" /> 
 			<input type="password" id="password" name="password" class="form-control" required placeholder="<spring:message code="password"/>"
 				tabindex="2" /> 
-			<label class="checkbox" for="rememberMe"> <input type="checkbox" class="checkbox"
-				id="rememberMe" name="rememberMe" tabindex="3" /> <spring:message code="rememberMe"/>
+			<label class="text" for="rememberMe">(admin/admin)
 			</label> <input id="submit_btn" class="btn btn-lg btn-primary btn-block" type="submit" value="<spring:message code="login"/>" tabindex="4" /> 
 		</form>
 	</div>

@@ -23,12 +23,12 @@ buildscript {
 //load properties from config file
 def loadGroovyConfig(p){
 		if(p == null){
-			return new java.util.HashMap();
+			return new java.util.HashMap()
 		}
 		def configFile = file("environment.groovy")
 		def profileObject = new ConfigSlurper(p).parse(configFile.toURL()).toProperties()
 		if(profileObject.isEmpty()){
-			throw new InvalidUserDataException("profile not found name is"+p);
+			throw new InvalidUserDataException("profile not found name is"+p)
 		}
 		return profileObject
 		
@@ -71,8 +71,8 @@ configure(subprojects) { project ->
 		servletApiVersion = "3.1.0"
 		logbackVersion = "1.1.7"
 	}
-	compileJava.options.encoding = ext["encoding"];
-	compileTestJava.options.encoding = ext["encoding"];
+	compileJava.options.encoding = ext["encoding"]
+	compileTestJava.options.encoding = ext["encoding"]
 	
 	dependencies{
 		testCompile ("junit:junit:${junitVersion}")
@@ -96,27 +96,28 @@ configure(subprojects) { project ->
 
 
 project(":appsugar-archetypes-bean"){
-	apply plugin: "jpa-schema-generate";
+	apply plugin: "jpa-schema-generate"
 	
 	dependencies{
 		compile ("org.appsugar:appsugar-bean:${appsugarVersion}")
 		compile ("org.hibernate:hibernate-validator:${hibernateValidatorVersion}")
 	}
 	generateSchema {
-		vendor = "hibernate";
-		databaseAction = "drop-and-create";
-		packageToScan = ["org.appsugar"];
-		jdbcDriver = env["test.jdbc.driverClassName"];
-		jdbcUrl = env["test.jdbc.url"];
-		jdbcUser = env["test.jdbc.username"];
-		jdbcPassword = env["test.jdbc.password"];
-		properties = ["hibernate.dialect":env["test.hibernate.dialect"]];
+		vendor = "hibernate"
+		databaseAction = "drop-and-create"
+		scriptAction = "drop-and-create"
+		packageToScan = ["org.appsugar"]
+		jdbcDriver = env["test.jdbc.driverClassName"]
+		jdbcUrl = env["test.jdbc.url"]
+		jdbcUser = env["test.jdbc.username"]
+		jdbcPassword = env["test.jdbc.password"]
+		properties = ["hibernate.dialect":env["test.hibernate.dialect"]]
 	}
 	
 }
 
 project(":appsugar-archetypes-data"){
-	apply plugin: "dbunit";
+	apply plugin: "dbunit"
 	
 	
 	dependencies{
@@ -128,11 +129,11 @@ project(":appsugar-archetypes-data"){
 	
 	
 	dbunit {
-		username = env["test.jdbc.username"];
-		password = env["test.jdbc.password"];
-		url = env["test.jdbc.url"];
-		driver = env["test.jdbc.driverClassName"];
-		dataTypeFactoryName  = env["dbunit.dataTypeFactoryName"];
+		username = env["test.jdbc.username"]
+		password = env["test.jdbc.password"]
+		url = env["test.jdbc.url"]
+		driver = env["test.jdbc.driverClassName"]
+		dataTypeFactoryName  = env["dbunit.dataTypeFactoryName"]
 	}
 	
 	
@@ -142,7 +143,7 @@ project(":appsugar-archetypes-data"){
 				new com.ferigma.gradle.dbunit.tasks.source.OperationSource(
 						transaction: true, type:env["dbunit.operationType"], format: "flat",
 						file: "$projectDir"+env["dbunit.sampleData"])
-		];
+		]
 	}
 	test.dependsOn populateTestDb
 }
