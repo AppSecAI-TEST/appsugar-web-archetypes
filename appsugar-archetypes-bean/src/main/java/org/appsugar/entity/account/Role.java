@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import org.appsugar.entity.IdEntity;
 import org.hibernate.validator.constraints.NotBlank;
@@ -18,7 +19,8 @@ import org.hibernate.validator.constraints.NotBlank;
  * @author NewYoung
  * 2016年2月23日下午5:50:59
  */
-@Entity(name = "as_role")
+@Entity
+@Table(name = "as_role")
 public class Role extends IdEntity {
 	private static final long serialVersionUID = 8151602082162251470L;
 	public static final String _name = "name";

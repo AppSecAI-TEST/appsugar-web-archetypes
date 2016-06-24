@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import org.appsugar.entity.IdEntity;
 import org.hibernate.validator.constraints.Email;
@@ -19,7 +20,8 @@ import org.hibernate.validator.constraints.Email;
  * @author NewYoung
  * 2016年2月23日下午6:08:56
  */
-@Entity(name = "as_user")
+@Entity
+@Table(name = "as_user")
 public class User extends IdEntity {
 
 	private static final long serialVersionUID = 1250833677334835146L;
