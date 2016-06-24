@@ -191,3 +191,143 @@ public class PersonRepositoryTest extends BaseJpaDaoTestCase {
 ### Execute  gradle --stop (fix file lock bug)
 ### Execute  gradle populateTestDb
 ### Execute  gradle appsugar-archetypes-data:test
+
+### Create PersonService (appsugar-archetypes-service)
+
+```java
+package org.appsugar.service;
+
+import java.util.List;
+
+import org.appsugar.condition.PersonCondition;
+import org.appsugar.entity.Person;
+
+public interface PersonService extends GenericService<Person, PersonCondition> {
+
+	public List<Person> getByNameStartingWith(String name);
+
+}
+```
+
+### Create PersonServiceImpl (appsugar-archetypes-service)
+
+```java
+package org.appsugar.service.impl;
+
+import java.util.List;
+
+import org.appsugar.condition.PersonCondition;
+import org.appsugar.entity.Person;
+import org.appsugar.repository.PersonRepository;
+import org.appsugar.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class PersonServiceImpl extends GenericServiceImpl<Person, PersonCondition> implements PersonService {
+
+	private PersonRepository personRepository;
+
+	@Override
+	public List<Person> getByNameStartingWith(String name) {
+		return personRepository.findByNameStartingWith(name);
+	}
+
+	@Autowired
+	public void setPersonRepository(PersonRepository personRepository) {
+		this.personRepository = personRepository;
+	}
+
+}
+
+```
+
+### Create PersonController (appsugar-archetypes-web)
+
+```java
+package org.appsugar.controller;
+
+import org.appsugar.condition.PersonCondition;
+import org.appsugar.dto.page.Pageable;
+import org.appsugar.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/person")
+public class PersonController {
+
+	@Autowired
+	private PersonService service;
+
+	@RequestMapping
+	public String list(Model model, PersonCondition condition, Pageable pageable) {
+		model.addAttribute("page", service.getByCondition(condition, pageable));
+		return "/person/list";
+	}
+}
+```
+
+### Create list.jsp (appsugar-archetypes-web/src/main/webapp/WEB-INF/views/person/list.jsp)
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
+
+<head>
+<title>Person List</title>
+</head>
+<body>
+	<div style="float: right">
+		<form action="#" method="POST" class="form-inline">
+			<input type="text" name="name" class="form-control input-sm"
+				value="${param.name}" placeholder="name">
+			<button type="submit" class="btn btn-primary btn-sm" id="search_btn">
+				<spring:message code="search" />
+			</button>
+		</form>
+	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>name</th>
+				<th>age</th>
+				<th>email</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<c:forEach var="bean" items="${page.content}">
+				<tr>
+					<td>${bean.id}</td>
+					<td>${bean.name}</td>
+					<td>${bean.age}</td>
+					<td>${bean.email}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<tags:pagination page="${page}" />
+</body>
+```
+
+### append menu.tag (appsugar-archetypes-web/src/main/webapp/WEB-INF/tags/menu.tag)
+
+```jsp
+menuGroup.addChild(new MenuConfig("/person","PersonManager","menu.person",null,null));
+```
+
+### Execute gradle appRun
+
+#### open browser  type http://localhost:8080    (google chrome are suggested)
