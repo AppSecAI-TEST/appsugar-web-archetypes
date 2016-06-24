@@ -1,7 +1,7 @@
-<%@tag import="org.appsugar.bean.MenuConfig"%>
+<%@tag import="org.appsugar.domain.MenuConfig"%>
 <%@tag import="java.util.ArrayList"%>
 <%@tag import="org.apache.commons.collections4.CollectionUtils"%>
-<%@tag import="org.appsugar.bean.MenuGroup"%>
+<%@tag import="org.appsugar.domain.MenuGroup"%>
 <%@tag import="java.util.List"%>
 <%@ tag body-content="empty" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

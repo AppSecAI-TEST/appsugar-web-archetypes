@@ -2,7 +2,7 @@ package org.appsugar.controller.account;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.appsugar.condition.account.UserCondition;
-import org.appsugar.dto.page.Pageable;
+import org.appsugar.domain.Pageable;
 import org.appsugar.entity.account.User;
 import org.appsugar.service.account.UserService;
 import org.slf4j.Logger;

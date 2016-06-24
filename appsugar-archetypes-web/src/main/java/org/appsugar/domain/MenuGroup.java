@@ -1,4 +1,4 @@
-package org.appsugar.bean;
+package org.appsugar.domain;
 
 import java.util.List;
 

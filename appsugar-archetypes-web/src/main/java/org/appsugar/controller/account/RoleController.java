@@ -4,7 +4,7 @@ import javax.validation.Valid;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.appsugar.condition.account.RoleCondition;
-import org.appsugar.dto.page.Pageable;
+import org.appsugar.domain.Pageable;
 import org.appsugar.entity.account.Permissions;
 import org.appsugar.entity.account.Role;
 import org.appsugar.service.account.RoleService;

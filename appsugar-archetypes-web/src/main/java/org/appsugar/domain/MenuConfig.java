@@ -1,4 +1,4 @@
-package org.appsugar.bean;
+package org.appsugar.domain;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.subject.Subject;

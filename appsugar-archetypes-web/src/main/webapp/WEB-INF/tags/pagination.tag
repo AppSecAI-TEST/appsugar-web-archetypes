@@ -1,5 +1,5 @@
 <%@tag pageEncoding="UTF-8"%>
-<%@ attribute name="page" type="org.appsugar.dto.page.Page" required="true"%>
+<%@ attribute name="page" type="org.appsugar.domain.Page" required="true"%>
 <%@ attribute name="onclick" type="java.lang.String" required="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
