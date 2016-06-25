@@ -17,7 +17,6 @@ buildscript {
 		classpath "com.ferigma:dbunit-gradle-plugin:0.1.0"
 		//this is for dbuit-gradle-plugin
 		classpath "com.h2database:h2:1.4.191"
-		classpath "org.akhikhl.gretty:gretty:+"
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
 	configurations.all {
@@ -172,6 +171,10 @@ project(":appsugar-archetypes-web"){
 	apply plugin: 'war'
 	apply plugin: "spring-boot"
 	
+	configurations {
+    	providedRuntime
+	}	
+	
 	sourceSets {
 	    test {
 	        resources {
@@ -186,8 +189,8 @@ project(":appsugar-archetypes-web"){
 		compile project(":appsugar-archetypes-service")
 		compile ("org.apache.shiro:shiro-web:${shiroVersion}")
 		compile ("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
-		compile ("org.apache.tomcat.embed:tomcat-embed-jasper")
-
+		providedRuntime("org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}")
+		providedRuntime ("org.apache.tomcat.embed:tomcat-embed-jasper")
 		compile ("org.webjars:bootstrap:${bootstrapVersion}")
 		compile ("org.webjars:jquery:${jqueryVersion}")
 		compile ("org.webjars:jquery-validation:${jqueryValidationVersion}")
@@ -216,4 +219,5 @@ project(":appsugar-archetypes-web"){
 	springBoot {
     	executable = true
 	}
+	
 }
