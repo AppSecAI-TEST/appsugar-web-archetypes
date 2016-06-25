@@ -2,7 +2,7 @@ package org.appsugar;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
 /**
@@ -10,8 +10,7 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
  * @author NewYoung
  * 2016年1月28日下午6:01:06
  */
-@ContextConfiguration({ "classpath*:/applicationContext.xml", "classpath:/applicationContext-shiro.xml",
-		"classpath:/applicationContext-resource.xml" })
+@SpringApplicationConfiguration({ ServiceConfiguration.class, RepositoryConfiguration.class, TestConfiguration.class })
 public abstract class BaseJpaServiceTestCase extends AbstractTransactionalJUnit4SpringContextTests {
 	protected final Logger logger = LoggerFactory.getLogger(BaseJpaServiceTestCase.class);
 
