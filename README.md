@@ -328,6 +328,6 @@ public class PersonController {
 menuGroup.addChild(new MenuConfig("/person","PersonManager","menu.person",null,null));
 ```
 
-### Execute gradle appRun
+### Execute gradle bootRun
 
 #### open browser  type http://localhost:8080    (google chrome are suggested)
