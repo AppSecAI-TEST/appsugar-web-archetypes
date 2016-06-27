@@ -2,7 +2,7 @@ package org.appsugar;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
 /**
@@ -10,8 +10,7 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
  * @author NewYoung
  * 2016年1月28日下午6:01:06
  */
-
-@SpringApplicationConfiguration(RepositoryConfiguration.class)
+@SpringBootTest(classes = RepositoryConfiguration.class)
 public abstract class BaseJpaDaoTestCase extends AbstractTransactionalJUnit4SpringContextTests {
 	protected final Logger logger = LoggerFactory.getLogger(BaseJpaDaoTestCase.class);
 
