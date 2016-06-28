@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 /**
  * 配置bean
@@ -27,11 +26,4 @@ public class RepositoryConfiguration {
 		return new RepositoryPostProcessor();
 	}
 
-	/**
-	 * 验证框架
-	 */
-	@Bean
-	public LocalValidatorFactoryBean validator() {
-		return new LocalValidatorFactoryBean();
-	}
 }

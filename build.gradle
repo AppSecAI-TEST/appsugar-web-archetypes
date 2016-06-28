@@ -65,7 +65,7 @@ configure(subprojects) { project ->
 	env.each{ k, v -> ext.set(k,v)}
 	
 	ext{
-		appsugarVersion = "2.0.5-SNAPSHOT"
+		appsugarVersion = "2.0.6-SNAPSHOT"
 		hibernateValidatorVersion = "5.2.4.Final"
 		hibernateVersion = "5.1.0.Final"
 		springVersion = "4.2.5.RELEASE"
@@ -107,34 +107,13 @@ configure(subprojects) { project ->
 }
 
 
-project(":appsugar-archetypes-bean"){
-	apply plugin: "jpa-schema-generate"
-	
-	dependencies{
-		compile ("org.appsugar:appsugar-bean:${appsugarVersion}")
-		compile ("org.hibernate:hibernate-validator:${hibernateValidatorVersion}")
-	}
-	generateSchema {
-		vendor = "hibernate"
-		databaseAction = "drop-and-create"
-		scriptAction = "drop-and-create"
-		packageToScan = ["org.appsugar"]
-		jdbcDriver = env["test.jdbc.driverClassName"]
-		jdbcUrl = env["test.jdbc.url"]
-		jdbcUser = env["test.jdbc.username"]
-		jdbcPassword = env["test.jdbc.password"]
-		properties = ["hibernate.dialect":env["test.hibernate.dialect"]]
-	}
-	
-}
-
-
 project(":appsugar-archetypes-core"){
+	apply plugin: "jpa-schema-generate"
 	apply plugin: "dbunit"
 	dependencies{
-		compile project(":appsugar-archetypes-bean")
 		compile ("org.appsugar:appsugar-data:${appsugarVersion}")
 		compile ("ch.qos.logback:logback-classic:${logbackVersion}")
+		compile ("org.hibernate:hibernate-validator:${hibernateValidatorVersion}")
 		compile ("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
 		compile ("org.appsugar:appsugar-service:${appsugarVersion}")
 		compile ("org.apache.shiro:shiro-spring:${shiroVersion}")
@@ -160,6 +139,18 @@ project(":appsugar-archetypes-core"){
 		]
 	}
 	test.dependsOn populateTestDb
+	
+	generateSchema {
+		vendor = "hibernate"
+		databaseAction = "drop-and-create"
+		scriptAction = "drop-and-create"
+		packageToScan = ["org.appsugar"]
+		jdbcDriver = env["test.jdbc.driverClassName"]
+		jdbcUrl = env["test.jdbc.url"]
+		jdbcUser = env["test.jdbc.username"]
+		jdbcPassword = env["test.jdbc.password"]
+		properties = ["hibernate.dialect":env["test.hibernate.dialect"]]
+	}
 }
 
 

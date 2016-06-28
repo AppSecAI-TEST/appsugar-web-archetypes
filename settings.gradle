@@ -1,5 +1,4 @@
 rootProject.name = "appsugar-web-archetypes";
 
-include("appsugar-archetypes-bean")
 include("appsugar-archetypes-core")
 include("appsugar-archetypes-web")
