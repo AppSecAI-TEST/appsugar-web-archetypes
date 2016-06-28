@@ -89,7 +89,7 @@ public class PersonCondition extends IdEntityCondition {
 }
 ```
 
-### Edit db data  (appsugar-archetypes-data/src/test/resources/data/sample-data.xml)
+### Edit db data  (appsugar-archetypes-core/src/test/resources/data/sample-data.xml)
 
 #### append
 
@@ -97,7 +97,7 @@ public class PersonCondition extends IdEntityCondition {
 <as_person id="-1" name="NewYoung" age="108" email="shenliuyang@gmail.com" created_at="2016-06-23" updated_at="2016-06-23"/>
 ```
 
-### Create PersonRepository (appsugar-archetypes-data)
+### Create PersonRepository (appsugar-archetypes-core)
 
 ```java
 package org.appsugar.repository;
@@ -115,7 +115,7 @@ public interface PersonRepository extends IdEntityRepository<Person, PersonCondi
 
 ```
 
-### Create Specification (appsugar-archetypes-data)
+### Create Specification (appsugar-archetypes-core)
 
 ```java
 package org.appsugar.specification;
@@ -157,7 +157,7 @@ public class PersonSpecification extends IdEntitySpecification<Person, PersonCon
 
 ```
 
-### Create PersonRepositoryTest (appsugar-archetypes-data)
+### Create PersonRepositoryTest (appsugar-archetypes-core)
 
 ```java
 package org.appsugar.repository;
@@ -190,9 +190,9 @@ public class PersonRepositoryTest extends BaseJpaDaoTestCase {
 ### Execute  gradle generateSchema 
 ### Execute  gradle --stop (fix file lock bug)
 ### Execute  gradle populateTestDb
-### Execute  gradle appsugar-archetypes-data:test
+### Execute  gradle appsugar-archetypes-core:test
 
-### Create PersonService (appsugar-archetypes-service)
+### Create PersonService (appsugar-archetypes-core)
 
 ```java
 package org.appsugar.service;
@@ -209,7 +209,7 @@ public interface PersonService extends GenericService<Person, PersonCondition> {
 }
 ```
 
-### Create PersonServiceImpl (appsugar-archetypes-service)
+### Create PersonServiceImpl (appsugar-archetypes-core)
 
 ```java
 package org.appsugar.service.impl;
