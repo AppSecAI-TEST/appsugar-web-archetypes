@@ -14,10 +14,12 @@ package org.appsugar.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Email;
 
-@Entity(name = "as_person")
+@Table(name="as_person")
+@Entity
 public class Person extends IdEntity {
 	private static final long serialVersionUID = 9088528084480261924L;
 	private String name;
