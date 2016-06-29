@@ -1,4 +1,4 @@
-package org.appsugar.repository.specification;
+package org.appsugar.specification;
 
 import org.appsugar.condition.IdEntityCondition;
 import org.appsugar.entity.IdEntity;

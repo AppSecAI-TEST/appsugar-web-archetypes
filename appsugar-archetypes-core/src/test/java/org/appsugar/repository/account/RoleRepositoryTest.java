@@ -6,7 +6,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.appsugar.BaseJpaDaoTestCase;
 import org.appsugar.condition.account.RoleCondition;
 import org.appsugar.entity.account.Role;
-import org.appsugar.repository.specification.account.RoleSpecification;
+import org.appsugar.specification.account.RoleSpecification;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

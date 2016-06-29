@@ -7,7 +7,7 @@ import org.appsugar.BaseJpaDaoTestCase;
 import org.appsugar.condition.account.UserCondition;
 import org.appsugar.entity.account.User;
 import org.appsugar.repository.HibernateContext;
-import org.appsugar.repository.specification.account.UserSpecification;
+import org.appsugar.specification.account.UserSpecification;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

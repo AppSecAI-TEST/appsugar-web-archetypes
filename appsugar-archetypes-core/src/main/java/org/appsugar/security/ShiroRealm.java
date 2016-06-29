@@ -1,4 +1,4 @@
-package org.appsugar.security.shiro;
+package org.appsugar.security;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;

@@ -22,14 +22,6 @@ buildscript {
 		classpath "com.h2database:h2:1.4.191"
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
-	configurations.all {
-        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-            if (details.requested.group == 'org.hibernate') {
-                details.useVersion '4.3.11.Final'
-            }
-        }
-    }
-		
 }
 //load properties from config file
 def loadGroovyConfig(p){
@@ -66,22 +58,16 @@ configure(subprojects) { project ->
 	
 	ext{
 		appsugarVersion = "2.0.6-SNAPSHOT"
-		hibernateValidatorVersion = "5.2.4.Final"
-		hibernateVersion = "5.1.0.Final"
-		springVersion = "4.2.5.RELEASE"
-		slf4jVersion = "1.7.21"
 		junitVersion = "4.12"
 		elApiVersion = "3.0.0"
 		shiroVersion = "1.2.4"
 		ehcacheVersion = "2.10.2"
 		jstlVersion = "1.2"
-		jacksonVersion = "2.7.3"
 		wro4jVersion = "1.7.9"
 		sitemeshVersion = "3.0.1"
 		jqueryValidationVersion = "1.15.0"
 		jqueryVersion = "2.2.3"
 		bootstrapVersion = "3.3.6"
-		servletApiVersion = "3.1.0"
 		logbackVersion = "1.1.7"
 	}
 	compileJava.options.encoding = ext["encoding"]
@@ -113,8 +99,8 @@ project(":appsugar-archetypes-core"){
 	dependencies{
 		compile ("org.appsugar:appsugar-data:${appsugarVersion}")
 		compile ("ch.qos.logback:logback-classic:${logbackVersion}")
-		compile ("org.hibernate:hibernate-validator:${hibernateValidatorVersion}")
 		compile ("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
+		compile ("org.springframework.boot:spring-boot-starter-validation:${springBootVersion}")
 		compile ("org.appsugar:appsugar-service:${appsugarVersion}")
 		compile ("org.apache.shiro:shiro-spring:${shiroVersion}")
 		compile ("org.apache.shiro:shiro-ehcache:${shiroVersion}")
