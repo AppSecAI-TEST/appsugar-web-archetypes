@@ -1,12 +1,12 @@
-package org.appsugar.specification.account;
+package org.appsugar.account.specification;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 
 import org.apache.commons.lang3.StringUtils;
-import org.appsugar.condition.account.RoleCondition;
-import org.appsugar.entity.account.Role;
+import org.appsugar.account.condition.RoleCondition;
+import org.appsugar.account.entity.Role;
 import org.appsugar.extend.SpecificationQueryWrapper;
 import org.appsugar.specification.IdEntitySpecification;
 import org.springframework.stereotype.Component;

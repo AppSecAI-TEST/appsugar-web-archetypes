@@ -1,10 +1,10 @@
 package org.appsugar.controller.account;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.appsugar.condition.account.UserCondition;
+import org.appsugar.account.condition.UserCondition;
+import org.appsugar.account.entity.User;
+import org.appsugar.account.service.UserService;
 import org.appsugar.domain.Pageable;
-import org.appsugar.entity.account.User;
-import org.appsugar.service.account.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

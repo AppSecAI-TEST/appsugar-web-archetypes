@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.appsugar.BaseJpaDaoTestCase;
-import org.appsugar.condition.account.RoleCondition;
-import org.appsugar.entity.account.Role;
-import org.appsugar.specification.account.RoleSpecification;
+import org.appsugar.account.condition.RoleCondition;
+import org.appsugar.account.entity.Role;
+import org.appsugar.account.repository.RoleRepository;
+import org.appsugar.account.specification.RoleSpecification;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

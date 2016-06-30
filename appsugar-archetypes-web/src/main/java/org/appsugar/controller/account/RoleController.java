@@ -3,11 +3,11 @@ package org.appsugar.controller.account;
 import javax.validation.Valid;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.appsugar.condition.account.RoleCondition;
+import org.appsugar.account.condition.RoleCondition;
+import org.appsugar.account.entity.Permissions;
+import org.appsugar.account.entity.Role;
+import org.appsugar.account.service.RoleService;
 import org.appsugar.domain.Pageable;
-import org.appsugar.entity.account.Permissions;
-import org.appsugar.entity.account.Role;
-import org.appsugar.service.account.RoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

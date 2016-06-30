@@ -1,4 +1,4 @@
-package org.appsugar.entity.account;
+package org.appsugar.account.entity;
 
 import java.util.List;
 
@@ -105,5 +105,4 @@ public class Role extends IdEntity {
 		builder.append("]");
 		return builder.toString();
 	}
-
 }

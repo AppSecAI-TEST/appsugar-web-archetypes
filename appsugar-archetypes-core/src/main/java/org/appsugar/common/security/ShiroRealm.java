@@ -1,4 +1,4 @@
-package org.appsugar.security;
+package org.appsugar.common.security;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -9,9 +9,9 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.appsugar.entity.account.Role;
-import org.appsugar.entity.account.User;
-import org.appsugar.service.account.UserService;
+import org.appsugar.account.entity.Role;
+import org.appsugar.account.entity.User;
+import org.appsugar.account.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

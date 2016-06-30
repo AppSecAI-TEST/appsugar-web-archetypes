@@ -1,4 +1,4 @@
-package org.appsugar.entity.account;
+package org.appsugar.account.entity;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package org.appsugar.condition.account;
+package org.appsugar.account.condition;
 
 import java.util.Date;
 

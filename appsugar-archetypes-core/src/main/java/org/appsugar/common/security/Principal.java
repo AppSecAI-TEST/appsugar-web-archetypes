@@ -1,4 +1,4 @@
-package org.appsugar.security;
+package org.appsugar.common.security;
 
 import java.util.Map;
 

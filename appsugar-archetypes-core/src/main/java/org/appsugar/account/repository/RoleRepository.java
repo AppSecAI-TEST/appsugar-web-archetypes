@@ -1,7 +1,7 @@
-package org.appsugar.repository.account;
+package org.appsugar.account.repository;
 
-import org.appsugar.condition.account.RoleCondition;
-import org.appsugar.entity.account.Role;
+import org.appsugar.account.condition.RoleCondition;
+import org.appsugar.account.entity.Role;
 import org.appsugar.repository.IdEntityRepository;
 
 /**
@@ -10,5 +10,4 @@ import org.appsugar.repository.IdEntityRepository;
  * 2016年2月23日下午6:39:45
  */
 public interface RoleRepository extends IdEntityRepository<Role, RoleCondition> {
-
 }

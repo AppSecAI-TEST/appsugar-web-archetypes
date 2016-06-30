@@ -1,4 +1,4 @@
-package org.appsugar.security;
+package org.appsugar.common.security;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;

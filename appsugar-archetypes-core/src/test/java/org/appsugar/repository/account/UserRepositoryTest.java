@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.appsugar.BaseJpaDaoTestCase;
-import org.appsugar.condition.account.UserCondition;
-import org.appsugar.entity.account.User;
-import org.appsugar.repository.HibernateContext;
-import org.appsugar.specification.account.UserSpecification;
+import org.appsugar.account.condition.UserCondition;
+import org.appsugar.account.entity.User;
+import org.appsugar.account.repository.UserRepository;
+import org.appsugar.account.specification.UserSpecification;
+import org.appsugar.common.repository.HibernateContext;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

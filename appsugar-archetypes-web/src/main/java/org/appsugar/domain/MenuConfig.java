@@ -2,7 +2,7 @@ package org.appsugar.domain;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.subject.Subject;
-import org.appsugar.security.ShiroUtils;
+import org.appsugar.common.security.ShiroUtils;
 
 /**
  * 菜单配置

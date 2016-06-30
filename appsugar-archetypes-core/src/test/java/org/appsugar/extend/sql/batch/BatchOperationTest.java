@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.appsugar.BaseJpaDaoTestCase;
-import org.appsugar.repository.HibernateContext;
+import org.appsugar.common.repository.HibernateContext;
 import org.hibernate.jdbc.Work;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

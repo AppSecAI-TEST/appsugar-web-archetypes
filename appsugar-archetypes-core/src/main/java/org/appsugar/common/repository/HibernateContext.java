@@ -1,4 +1,4 @@
-package org.appsugar.repository;
+package org.appsugar.common.repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
