@@ -1,24 +1,24 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
 	<!-- role -->
-	<as_role id="-1" name="SUPER_ADMIN" title="超级管理员" createdat="2016-02-23"/>
-	<as_role id="-2" name="DELTE_ROLE" title="删除测试角色" createdat="2016-02-23"/>
+	<as_role id="-1" name="SUPER_ADMIN" title="超级管理员" created_at="2016-02-23"/>
+	<as_role id="-2" name="DELTE_ROLE" title="删除测试角色" created_at="2016-02-23"/>
 	<!-- role permission -->
 	<as_role_permission role_id="-1" permission="*"/>
 	
 	<!-- user -->
-	<as_user id="-1" role_id="-1" name="管理员" login_name="admin" password="admin" createdat="2016-02-23" updatedat="2016-02-23"/>
-	<as_user id="-2" name="维护员" login_name="maintain" password="maintain" createdat="2016-02-23" updatedat="2016-02-23"/>
-	<as_user id="-3" name="维护员" login_name="maintain1" password="maintain" createdat="2016-02-23" updatedat="2016-02-23"/>
-	<as_user id="-4" name="维护员" login_name="maintain2" password="maintain" createdat="2016-02-23" updatedat="2016-02-23"/>
-	<as_user id="-5" name="维护员" login_name="maintain3" password="maintain" createdat="2016-02-23" updatedat="2016-02-23"/>
-	<as_user id="-6" name="维护员" login_name="maintain4" password="maintain" createdat="2016-02-23" updatedat="2016-02-23"/>
-	<as_user id="-7" name="维护员" login_name="maintain5" password="maintain" createdat="2016-02-23" updatedat="2016-02-23"/>
-	<as_user id="-8" name="维护员" login_name="maintain6" password="maintain" createdat="2016-02-23" updatedat="2016-02-23"/>
-	<as_user id="-9" name="维护员" login_name="maintain7" password="maintain" createdat="2016-02-23" updatedat="2016-02-23"/>
-	<as_user id="-10" name="维护员" login_name="maintain8" password="maintain" createdat="2016-02-23" updatedat="2016-02-23"/>
-	<as_user id="-11" name="维护员" login_name="maintain9" password="maintain" createdat="2016-02-23" updatedat="2016-02-23"/>
-	<as_user id="-12" name="维护员" login_name="maintain10" password="maintain" createdat="2016-02-23" updatedat="2016-02-23"/>
+	<as_user id="-1" role_id="-1" name="管理员" login_name="admin" password="admin" created_at="2016-02-23" updated_at="2016-02-23"/>
+	<as_user id="-2" name="维护员" login_name="maintain" password="maintain" created_at="2016-02-23" updated_at="2016-02-23"/>
+	<as_user id="-3" name="维护员" login_name="maintain1" password="maintain" created_at="2016-02-23" updated_at="2016-02-23"/>
+	<as_user id="-4" name="维护员" login_name="maintain2" password="maintain" created_at="2016-02-23" updated_at="2016-02-23"/>
+	<as_user id="-5" name="维护员" login_name="maintain3" password="maintain" created_at="2016-02-23" updated_at="2016-02-23"/>
+	<as_user id="-6" name="维护员" login_name="maintain4" password="maintain" created_at="2016-02-23" updated_at="2016-02-23"/>
+	<as_user id="-7" name="维护员" login_name="maintain5" password="maintain" created_at="2016-02-23" updated_at="2016-02-23"/>
+	<as_user id="-8" name="维护员" login_name="maintain6" password="maintain" created_at="2016-02-23" updated_at="2016-02-23"/>
+	<as_user id="-9" name="维护员" login_name="maintain7" password="maintain" created_at="2016-02-23" updated_at="2016-02-23"/>
+	<as_user id="-10" name="维护员" login_name="maintain8" password="maintain" created_at="2016-02-23" updated_at="2016-02-23"/>
+	<as_user id="-11" name="维护员" login_name="maintain9" password="maintain" created_at="2016-02-23" updated_at="2016-02-23"/>
+	<as_user id="-12" name="维护员" login_name="maintain10" password="maintain" created_at="2016-02-23" updated_at="2016-02-23"/>
 	
 	<!-- user role -->
 	<as_user_role user_id="-1" role_id="-1"/>

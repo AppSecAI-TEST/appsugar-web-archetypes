@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -22,6 +23,7 @@ import org.springframework.web.context.WebApplicationContext;
 @SpringBootTest(classes = { ControllerConfiguration.class, SecurityConfiguration.class, ResourceConfiguration.class,
 		ServiceConfiguration.class, RepositoryConfiguration.class })
 @WebAppConfiguration
+@TestPropertySource(locations = "classpath:test.properties")
 public abstract class BaseControllerTestCase extends AbstractTransactionalJUnit4SpringContextTests {
 
 	protected final String MEDIA_TYPE_APPLICATION_JSON_UTF8 = "application/json;charset=UTF-8";

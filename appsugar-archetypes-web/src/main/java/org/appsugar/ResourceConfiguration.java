@@ -1,13 +1,8 @@
 package org.appsugar;
 
-import java.util.Properties;
-
-import org.springframework.beans.factory.config.PropertiesFactoryBean;
-import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.core.io.FileSystemResource;
 
 /**
  * 资源配置
@@ -16,29 +11,6 @@ import org.springframework.core.io.FileSystemResource;
  */
 @Configuration
 public class ResourceConfiguration {
-	public static final String environmentLocation = "/etc/appsugar-archetypes/environment.properties";
-
-	/**
-	 * 系统环境
-	 */
-	@Bean
-	public PropertiesFactoryBean environmentProperties() {
-		PropertiesFactoryBean bean = new PropertiesFactoryBean();
-		bean.setIgnoreResourceNotFound(true);
-		bean.setLocations(new FileSystemResource(environmentLocation));
-		return bean;
-	}
-
-	/**
-	 * 占位符解析
-	 */
-	@Bean
-	public PropertyPlaceholderConfigurer propertyConfigurer(Properties environmentProperties) {
-		PropertyPlaceholderConfigurer configurer = new PropertyPlaceholderConfigurer();
-		configurer.setSystemPropertiesMode(PropertyPlaceholderConfigurer.SYSTEM_PROPERTIES_MODE_OVERRIDE);
-		configurer.setProperties(environmentProperties);
-		return configurer;
-	}
 
 	/**
 	 * 国际化消息
