@@ -22,6 +22,13 @@ buildscript {
 		classpath "com.h2database:h2:1.4.191"
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
+	configurations.all {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            if (details.requested.group == 'org.hibernate') {
+                details.useVersion '4.3.11.Final'
+            }
+        }
+    }
 }
 //load properties from config file
 def loadGroovyConfig(p){
@@ -57,7 +64,7 @@ configure(subprojects) { project ->
 	env.each{ k, v -> ext.set(k,v)}
 	
 	ext{
-		appsugarVersion = "2.0.6-SNAPSHOT"
+		appsugarVersion = "2.0.7-SNAPSHOT"
 		junitVersion = "4.12"
 		elApiVersion = "3.0.0"
 		shiroVersion = "1.2.4"
@@ -97,7 +104,7 @@ project(":appsugar-archetypes-core"){
 	apply plugin: "jpa-schema-generate"
 	apply plugin: "dbunit"
 	dependencies{
-		compile ("org.appsugar:appsugar-data:${appsugarVersion}")
+		compile ("org.appsugar:appsugar-data-jpa:${appsugarVersion}")
 		compile ("ch.qos.logback:logback-classic:${logbackVersion}")
 		compile ("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
 		compile ("org.springframework.boot:spring-boot-starter-validation:${springBootVersion}")

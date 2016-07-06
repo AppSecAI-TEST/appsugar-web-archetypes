@@ -54,6 +54,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<a class="btn btn-primary" href="${ctx}/account/role/form">新建</a>
 	<c:if test="${not empty message}">
 		<div id="message" class="alert alert-success">
 			<button data-dismiss="alert" class="close">×</button>

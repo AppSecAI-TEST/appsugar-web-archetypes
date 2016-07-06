@@ -1,15 +1,13 @@
 package org.appsugar.account.condition;
 
-import java.util.Date;
-
-import org.appsugar.condition.IdEntityCondition;
+import org.appsugar.bean.condition.LongIdEntityCondition;
 
 /**
  * 
  * @author NewYoung
  * 2016年2月23日下午2:27:30
  */
-public class UserCondition extends IdEntityCondition {
+public class UserCondition extends LongIdEntityCondition {
 
 	//名称 start like
 	private String name;
@@ -18,12 +16,6 @@ public class UserCondition extends IdEntityCondition {
 
 	public UserCondition() {
 		super();
-	}
-
-	public UserCondition(Long id, Date createdStart, Date createdEnd, String name, String loginName) {
-		super(id, createdStart, createdEnd);
-		this.name = name;
-		this.loginName = loginName;
 	}
 
 	public String getName() {
@@ -46,8 +38,7 @@ public class UserCondition extends IdEntityCondition {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("UserCondition [name=").append(name).append(", loginName=").append(loginName).append(", id=")
-				.append(id).append(", createdStart=").append(createdStart).append(", createdEnd=").append(createdEnd)
-				.append("]");
+				.append(id).append(", startAt=").append(startAt).append(", endAt=").append(endAt).append("]");
 		return builder.toString();
 	}
 

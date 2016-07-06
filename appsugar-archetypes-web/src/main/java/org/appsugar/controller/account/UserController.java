@@ -4,7 +4,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.appsugar.account.condition.UserCondition;
 import org.appsugar.account.entity.User;
 import org.appsugar.account.service.UserService;
-import org.appsugar.domain.Pageable;
+import org.appsugar.bean.domain.Pageable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

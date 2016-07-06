@@ -8,7 +8,6 @@ import org.appsugar.account.condition.UserCondition;
 import org.appsugar.account.entity.User;
 import org.appsugar.account.repository.UserRepository;
 import org.appsugar.account.specification.UserSpecification;
-import org.appsugar.common.repository.HibernateContext;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +21,6 @@ public class UserRepositoryTest extends BaseJpaDaoTestCase {
 
 	@Autowired
 	private UserRepository repository;
-
-	@Autowired
-	private HibernateContext context;
 
 	@Test
 	public void testFindByName() throws Exception {

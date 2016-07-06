@@ -2,7 +2,7 @@ package org.appsugar.account.repository;
 
 import org.appsugar.account.condition.UserCondition;
 import org.appsugar.account.entity.User;
-import org.appsugar.repository.IdEntityRepository;
+import org.appsugar.data.jpa.repository.IdEntityRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 

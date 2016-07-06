@@ -7,7 +7,7 @@ import org.appsugar.account.condition.RoleCondition;
 import org.appsugar.account.entity.Permissions;
 import org.appsugar.account.entity.Role;
 import org.appsugar.account.service.RoleService;
-import org.appsugar.domain.Pageable;
+import org.appsugar.bean.domain.Pageable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

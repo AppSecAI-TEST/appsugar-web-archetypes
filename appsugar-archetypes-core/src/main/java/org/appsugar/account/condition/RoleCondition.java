@@ -1,10 +1,8 @@
 package org.appsugar.account.condition;
 
-import java.util.Date;
+import org.appsugar.bean.condition.LongIdEntityCondition;
 
-import org.appsugar.condition.IdEntityCondition;
-
-public class RoleCondition extends IdEntityCondition {
+public class RoleCondition extends LongIdEntityCondition {
 	//角色名 start like
 	private String name;
 	//角色标题 start like
@@ -12,12 +10,6 @@ public class RoleCondition extends IdEntityCondition {
 
 	public RoleCondition() {
 		super();
-	}
-
-	public RoleCondition(Long id, Date createdStart, Date createdEnd, String name, String title) {
-		super(id, createdStart, createdEnd);
-		this.name = name;
-		this.title = title;
 	}
 
 	public String getName() {
@@ -40,7 +32,7 @@ public class RoleCondition extends IdEntityCondition {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("RoleCondition [name=").append(name).append(", title=").append(title).append(", id=").append(id)
-				.append(", createdStart=").append(createdStart).append(", createdEnd=").append(createdEnd).append("]");
+				.append(", startAt=").append(startAt).append(", endAt=").append(endAt).append("]");
 		return builder.toString();
 	}
 

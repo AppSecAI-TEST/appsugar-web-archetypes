@@ -1,7 +1,7 @@
 package org.appsugar;
 
-import org.appsugar.repository.IdEntityRepositoryImpl;
-import org.appsugar.repository.RepositoryPostProcessor;
+import org.appsugar.data.jpa.repository.IdEntityRepositoryImpl;
+import org.appsugar.data.jpa.repository.RepositoryPostProcessor;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;

@@ -13,7 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.appsugar.entity.IdEntity;
+import org.appsugar.bean.entity.LongIdEntity;
 import org.hibernate.validator.constraints.Email;
 
 /**
@@ -23,7 +23,7 @@ import org.hibernate.validator.constraints.Email;
  */
 @Entity
 @Table(name = "as_user")
-public class User extends IdEntity {
+public class User extends LongIdEntity {
 
 	private static final long serialVersionUID = 1250833677334835146L;
 	public static final String _name = "name";

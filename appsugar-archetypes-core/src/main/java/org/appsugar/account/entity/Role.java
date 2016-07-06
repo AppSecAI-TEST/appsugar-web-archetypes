@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.appsugar.entity.IdEntity;
+import org.appsugar.bean.entity.LongIdEntity;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
@@ -21,7 +21,7 @@ import org.hibernate.validator.constraints.NotBlank;
  */
 @Entity
 @Table(name = "as_role")
-public class Role extends IdEntity {
+public class Role extends LongIdEntity {
 	private static final long serialVersionUID = 8151602082162251470L;
 	public static final String _name = "name";
 	public static final String _title = "title";
