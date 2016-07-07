@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.appsugar.bean.entity.LongIdEntity;
@@ -45,7 +44,6 @@ public class User extends LongIdEntity {
 	//邮箱
 	private String email;
 
-	private Role testRole;
 	//角色
 	private List<Role> roleList;
 	//权限
@@ -116,16 +114,6 @@ public class User extends LongIdEntity {
 
 	public void setPermissionList(List<String> permissionList) {
 		this.permissionList = permissionList;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "role_id")
-	public Role getTestRole() {
-		return testRole;
-	}
-
-	public void setTestRole(Role testRole) {
-		this.testRole = testRole;
 	}
 
 	@Override

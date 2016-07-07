@@ -21,7 +21,7 @@ public interface UserRepository extends IdEntityRepository<User, UserCondition> 
 	 * 删除所有用户与这个角色的关系
 	 */
 	@Modifying
-	@Query(value = "delete as_user_role where role_id = ?1", nativeQuery = true)
+	@Query(value = "delete  from as_user_role where role_id = ?1", nativeQuery = true)
 	public void deleteRoleRelationship(Long roleId);
 
 }

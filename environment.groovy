@@ -13,7 +13,7 @@
 				url = "jdbc:h2:~/tmp/${db.name}"
 				driverClassName = "org.h2.Driver"
 				username = "sa"
-				password = "";
+				password = ""
 			}
 			hibernate{
 				dialect = "org.hibernate.dialect.H2Dialect"
@@ -28,5 +28,29 @@
 			sampleData =  "/src/test/resources/data/sample-data.xml";
 		}
 	}
-	//other properties
+	mysql{
+		db{
+			name = "appsugar"
+		}
+		jdbc {
+			groupId = "mysql"
+			artifactId = "mysql-connector-java"
+			version = "5.1.39"
+			url = "jdbc:mysql://localhost:3306/${db.name}?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8"
+			driverClassName = "com.mysql.jdbc.Driver"
+			username = "root"
+			password = "123456"
+		}
+		hibernate{
+			dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
+		}
+		test{
+			jdbc = jdbc
+			hibernate = hibernate
+		}
+		dbunit{
+			dataTypeFactoryName = "org.dbunit.ext.mysql.MySqlDataTypeFactory";
+		}
+	}
+	
 }
