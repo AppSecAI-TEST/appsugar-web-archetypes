@@ -114,7 +114,7 @@ project(":appsugar-archetypes-core"){
 		password = env["test.jdbc.password"]
 		url = env["test.jdbc.url"]
 		driver = env["test.jdbc.driverClassName"]
-		dataTypeFactoryName  = env["dbunit.dataTypeFactoryName"]
+		dataTypeFactoryName  = env["test.dbunit.dataTypeFactoryName"]
 	}
 	
 	
@@ -122,8 +122,8 @@ project(":appsugar-archetypes-core"){
 	task populateTestDb(type: com.ferigma.gradle.dbunit.tasks.OperationTask) {
 		sources = [
 				new com.ferigma.gradle.dbunit.tasks.source.OperationSource(
-						transaction: true, type:env["dbunit.operationType"], format: "flat",
-						file: "$projectDir"+env["dbunit.sampleData"])
+						transaction: true, type:env["test.dbunit.operationType"], format: "flat",
+						file: "$projectDir"+env["test.dbunit.sampleData"])
 		]
 	}
 	test.dependsOn populateTestDb
