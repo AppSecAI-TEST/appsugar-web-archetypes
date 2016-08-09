@@ -11,7 +11,7 @@ buildscript {
 		return profileObject
 	}
 	ext{
-		springBootVersion = "1.4.0.M3"
+		springBootVersion = "1.4.0.RELEASE"
 		env = loadGroovyConfig("base")
 		env.putAll(loadGroovyConfig(System.getProperty("profile")))
 		env.putAll(System.properties)
@@ -24,9 +24,6 @@ buildscript {
 		maven{
 			url "http://nexus.ggxueche.cn/nexus/content/groups/public/"
 		}
-        maven{
-        	url "http://repo.spring.io/milestone"
-        }
 	}
 	dependencies {
 		classpath ("io.github.divinespear:jpa-schema-gradle-plugin:0.2.0-1")
@@ -43,6 +40,12 @@ buildscript {
     }
 }
 
+plugins {
+	//gradle release -Prelease.useAutomaticVersion=true -Prelease.releaseVersion=1.0.0-release -Prelease.newVersion=1.0.1-SNAPSHOT
+    id 'net.researchgate.release' version '2.3.5'
+}
+apply plugin: 'java'
+
 configure(subprojects) { project ->
 	apply plugin: "java"
 	
@@ -52,9 +55,6 @@ configure(subprojects) { project ->
 		maven{
 			url = "http://nexus.ggxueche.cn/nexus/content/groups/public/"
 		}
-		maven{
-        	url "http://repo.spring.io/milestone"
-        }
 	}
 
 	
