@@ -59,7 +59,7 @@ configure(subprojects) { project ->
 
 	
 	ext{
-		appsugarVersion = "2.0.7-SNAPSHOT"
+		appsugarVersion = "2.0.7.RELEASE"
 		junitVersion = "4.12"
 		elApiVersion = "3.0.0"
 		shiroVersion = "1.2.4"
