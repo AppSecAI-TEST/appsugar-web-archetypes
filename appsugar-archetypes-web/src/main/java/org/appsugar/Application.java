@@ -3,7 +3,7 @@ package org.appsugar;
 import org.appsugar.controller.ControllerConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 /**
  * 程序启动入口
