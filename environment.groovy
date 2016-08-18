@@ -46,13 +46,6 @@
 		hibernate{
 			dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
 		}
-		test{
-			jdbc = jdbc
-			hibernate = hibernate
-			dbunit{
-				dataTypeFactoryName = "org.dbunit.ext.mysql.MySqlDataTypeFactory";
-			}
-		}
 	}
 	
 	//正式环境
