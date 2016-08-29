@@ -12,7 +12,7 @@
 
 ## Tutorial
 
-### Create Entity bean appsugar-archetypes-bean
+### Create Entity bean appsugar-archetypes-core
 
 ```java
 package org.appsugar.entity;
@@ -69,7 +69,7 @@ public class Person extends IdEntity {
 
 }
 ```
-### Create condition appsugar-archetypes-bean
+### Create condition appsugar-archetypes-core
 
 ```java
 package org.appsugar.condition;
