@@ -1,6 +1,11 @@
+# Install Base Dependency
+
+* checkout https://github.com/shenliuyang/appsugar-web.git
+* gradle clean install
+
 # appsugar-web-archetypes
 
-* gradle generateSchema  
+* gradle generateSchema  (execute only Persistence Bean was changed)
 * gradle populateTestDb  (after every gradle generateSchema )
 * gradle clean build
 * gradle appRun
