@@ -12,6 +12,7 @@ buildscript {
 	}
 	ext{
 		springBootVersion = "1.4.0.RELEASE"
+		springLoadedVersion = "1.2.6.RELEASE"
 		env = loadGroovyConfig("base")
 		env.putAll(loadGroovyConfig(System.getProperty("profile")))
 		env.putAll(System.properties)
@@ -29,7 +30,10 @@ buildscript {
 		classpath ("io.github.divinespear:jpa-schema-gradle-plugin:0.2.0-1")
 		classpath ("com.ferigma:dbunit-gradle-plugin:0.1.0")
 		classpath ("${env['test.jdbc.groupId']}:${env['test.jdbc.artifactId']}:${env['test.jdbc.version']}")
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath ("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		//hot reload:  gradle -t classes
+		classpath ("org.springframework:springloaded:${springLoadedVersion}")
+		
 	}
 	configurations.all {
         resolutionStrategy.eachDependency { DependencyResolveDetails details ->
