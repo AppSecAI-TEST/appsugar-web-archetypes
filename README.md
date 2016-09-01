@@ -340,3 +340,5 @@ menuGroup.addChild(new MenuConfig("/person","PersonManager","menu.person",null,n
 ### Execute gradle bootRun
 
 #### open browser  type http://localhost:8080    (google chrome are suggested)
+
+*本地热更新:修改完代码后,开启另外一个终端窗口执行  gradle -t classes
