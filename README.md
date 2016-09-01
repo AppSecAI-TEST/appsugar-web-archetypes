@@ -2,6 +2,8 @@
 
 * checkout https://github.com/shenliuyang/appsugar-web.git
 * gradle clean install
+* checkout https://github.com/ferigma/dbunit-gradle-plugin.git
+* gradle publishToMavenLocal
 
 # appsugar-web-archetypes
 
