@@ -1,13 +1,20 @@
+# Install Base Dependency
+
+* checkout https://github.com/shenliuyang/appsugar-web.git
+* gradle clean install
+* checkout https://github.com/ferigma/dbunit-gradle-plugin.git
+* gradle publishToMavenLocal
+
 # appsugar-web-archetypes
 
-* gradle generateSchema  
+* gradle generateSchema  (execute only Persistence Bean was changed)
 * gradle populateTestDb  (after every gradle generateSchema )
 * gradle clean build
 * gradle appRun
 
 ## Tutorial
 
-### Create Entity bean appsugar-archetypes-bean
+### Create Entity bean appsugar-archetypes-core
 
 ```java
 package org.appsugar.entity;
@@ -64,7 +71,7 @@ public class Person extends IdEntity {
 
 }
 ```
-### Create condition appsugar-archetypes-bean
+### Create condition appsugar-archetypes-core
 
 ```java
 package org.appsugar.condition;
@@ -333,3 +340,5 @@ menuGroup.addChild(new MenuConfig("/person","PersonManager","menu.person",null,n
 ### Execute gradle bootRun
 
 #### open browser  type http://localhost:8080    (google chrome are suggested)
+
+*本地热更新:修改完代码后,开启另外一个终端窗口执行  gradle -t classes
