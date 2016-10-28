@@ -46,7 +46,7 @@ buildscript {
 
 plugins {
 	//gradle release -Prelease.useAutomaticVersion=true -Prelease.releaseVersion=1.0.0-release -Prelease.newVersion=1.0.1-SNAPSHOT
-    id 'net.researchgate.release' version '2.3.5'
+    id 'net.researchgate.release' version '2.4.0'
 }
 apply plugin: 'java'
 
