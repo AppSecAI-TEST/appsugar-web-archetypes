@@ -11,7 +11,7 @@ buildscript {
 		return profileObject
 	}
 	ext{
-		springBootVersion = "1.4.1.RELEASE"
+		springBootVersion = "1.4.0.RELEASE"
 		springLoadedVersion = "1.2.6.RELEASE"
 		env = loadGroovyConfig("base")
 		env.putAll(loadGroovyConfig(System.getProperty("profile")))
@@ -63,7 +63,7 @@ configure(subprojects) { project ->
 
 	
 	ext{
-		appsugarVersion = "2.0.7.RELEASE"
+		appsugarVersion = "2.1.0-SNAPSHOT"
 		junitVersion = "4.12"
 		elApiVersion = "3.0.0"
 		shiroVersion = "1.2.4"
