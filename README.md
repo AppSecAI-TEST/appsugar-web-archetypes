@@ -191,7 +191,7 @@ public class PersonRepositoryTest extends BaseJpaDaoTestCase {
 	@Test
 	public void testFindByNameStartLike() {
 		String name = "New";
-		List<Person> personList = repository.findByNameStartLike(name);
+		List<Person> personList = repository.findByNameStartingWith(name);
 		logger.debug("testFindByNameStartLike name is {} result is {}", name, personList);
 		Assert.assertTrue(CollectionUtils.isNotEmpty(personList));
 	}
