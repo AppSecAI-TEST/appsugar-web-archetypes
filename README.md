@@ -29,6 +29,9 @@ import org.hibernate.validator.constraints.Email;
 @Entity
 public class Person extends LongIdEntity {
 	private static final long serialVersionUID = 9088528084480261924L;
+	public static final String _name = "name";
+        public static final String _age = "age";
+        public static final String _email = "email";
 	private String name;
 	private Integer age;
 	private String email;
@@ -157,7 +160,7 @@ public class PersonSpecification extends IdEntitySpecification<Person, PersonCon
 		super.addCondition(query, root, cb, condition);
 		String name = condition.getName();
 		if (StringUtils.isNotBlank(name)) {
-			Expression<String> nameExpression = root.get(Role._name);
+			Expression<String> nameExpression = root.get(Person._name);
 			query.add(cb.like(nameExpression, name + "%"));
 		}
 	}
