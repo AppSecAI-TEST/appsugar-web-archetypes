@@ -27,7 +27,7 @@ import org.hibernate.validator.constraints.Email;
 
 @Table(name="as_person")
 @Entity
-public class Person extends IdEntity {
+public class Person extends LongIdEntity {
 	private static final long serialVersionUID = 9088528084480261924L;
 	private String name;
 	private Integer age;
@@ -76,7 +76,7 @@ public class Person extends IdEntity {
 ```java
 package org.appsugar.condition;
 
-public class PersonCondition extends IdEntityCondition {
+public class PersonCondition extends LongIdEntityCondition {
 	//start like
 	private String name;
 
