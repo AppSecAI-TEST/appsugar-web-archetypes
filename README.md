@@ -119,7 +119,7 @@ import java.util.List;
 import org.appsugar.condition.PersonCondition;
 import org.appsugar.entity.Person;
 
-public interface PersonRepository extends IdEntityRepository<Person, PersonCondition> {
+public interface PersonRepository extends JpaIdEntityRepository<Person, PersonCondition> {
 
 	public List<Person> findByNameStartingWith(String name);
 
