@@ -1,6 +1,6 @@
 package org.appsugar;
 
-import org.appsugar.data.jpa.repository.IdEntityRepositoryImpl;
+import org.appsugar.data.jpa.repository.JpaIdEntityRepositoryImpl;
 import org.appsugar.data.jpa.repository.RepositoryPostProcessor;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +14,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  */
 @EnableAsync
 @SpringBootApplication
-@EnableJpaRepositories(repositoryBaseClass = IdEntityRepositoryImpl.class)
+@EnableJpaRepositories(repositoryBaseClass = JpaIdEntityRepositoryImpl.class)
 public class RepositoryConfiguration {
 
 	/**

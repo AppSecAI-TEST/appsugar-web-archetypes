@@ -27,7 +27,7 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-	@RequiresPermissions("user:view")
+	@RequiresPermissions(User.permission_view)
 	@RequestMapping
 	public String list(Model model, UserCondition condition, Pageable pageable) {
 		pageable.setPageSize(5);

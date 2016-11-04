@@ -2,7 +2,7 @@ package org.appsugar.account.repository;
 
 import org.appsugar.account.condition.UserCondition;
 import org.appsugar.account.entity.User;
-import org.appsugar.data.jpa.repository.IdEntityRepository;
+import org.appsugar.data.jpa.repository.JpaIdEntityRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
  * @author NewYoung
  * 2016年2月22日下午1:00:51
  */
-public interface UserRepository extends IdEntityRepository<User, UserCondition> {
+public interface UserRepository extends JpaIdEntityRepository<User, UserCondition> {
 	/**
 	 * 根据名称查询用户
 	 */

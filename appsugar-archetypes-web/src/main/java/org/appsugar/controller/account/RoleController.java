@@ -37,13 +37,13 @@ public class RoleController {
 	}
 
 	@RequestMapping
-	@RequiresPermissions("role:view")
+	@RequiresPermissions(Role.permission_view)
 	public String list(Model model, RoleCondition condition, Pageable pageable) {
 		model.addAttribute("page", roleService.getByCondition(condition, pageable));
 		return "/account/role/list";
 	}
 
-	@RequiresPermissions("role:view")
+	@RequiresPermissions(Role.permission_view)
 	@RequestMapping("form")
 	public String form(Model model, @ModelAttribute Role role) {
 		model.addAttribute("role", role);
@@ -51,7 +51,7 @@ public class RoleController {
 		return "/account/role/form";
 	}
 
-	@RequiresPermissions("edit")
+	@RequiresPermissions(Role.permission_edit)
 	@RequestMapping("save")
 	public String save(@Valid Role role, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
 		logger.debug("role {} {}", role.hashCode(), role.getPermissionList());
