@@ -8,7 +8,6 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.appsugar.bean.entity.LongIdEntity;
@@ -36,8 +35,6 @@ public class Role extends LongIdEntity {
 	private String title;
 	//角色权限
 	private List<String> permissionList;
-	//角色下所有用户
-	private List<User> userList;
 
 	public Role() {
 		super();
@@ -76,15 +73,6 @@ public class Role extends LongIdEntity {
 
 	public void setPermissionList(List<String> permissionList) {
 		this.permissionList = permissionList;
-	}
-
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = User._roleList)
-	public List<User> getUserList() {
-		return userList;
-	}
-
-	public void setUserList(List<User> userList) {
-		this.userList = userList;
 	}
 
 	@Override
