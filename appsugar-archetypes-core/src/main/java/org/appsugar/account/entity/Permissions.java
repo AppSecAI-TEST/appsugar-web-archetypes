@@ -16,10 +16,10 @@ import org.appsugar.bean.domain.KeyValue;
 public enum Permissions {
 	ALL("所有权限", "*", "admin")//超级管理员
 	//用户权限
-	, USER_ALL("用户所有权限", "user:*", "user"), USER_VIEW("查看用户", "user:view", "user"), USER_EDIT("修改用户", "user:edit", "user"), USER_REMOVE("删除用户", "user:remove", "user")//
+	//用户权限
+	, USER_ALL("用户所有权限", User.permission_all, "user"), USER_VIEW("查看用户", User.permission_view, "user"), USER_EDIT("用户修改", User.permission_edit, "user"), USER_REMOVE("用户删除", User.permission_remove, "user")//
 	//角色权限
-	, ROLE_ALL("角色所有权限", "role:*", "role"), ROLE_VIEW("角色查看", "role:view", "role"), ROLE_EDIT("角色修改", "role:edit", "role"), ROLE_REMOVE("角色删除", "role:remove", "role")//
-	;
+	, ROLE_ALL("角色所有权限", Role.permission_all, "role"), ROLE_VIEW("角色查看", Role.permission_view, "role"), ROLE_EDIT("角色修改", Role.permission_edit, "role"), ROLE_REMOVE("角色删除", Role.permission_remove, "role");//;
 	//权限显示名称
 	public final String name;
 	//权限值

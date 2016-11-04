@@ -22,6 +22,12 @@ import org.hibernate.validator.constraints.NotBlank;
 @Table(name = "as_role")
 public class Role extends LongIdEntity {
 	private static final long serialVersionUID = 8151602082162251470L;
+	//permission
+	public static final String permission_all = "role:*";
+	public static final String permission_view = "role:view";
+	public static final String permission_edit = "role:edit";
+	public static final String permission_remove = "role:remove";
+	//type safe
 	public static final String _name = "name";
 	public static final String _title = "title";
 	public static final String _permissionList = "permissionList";

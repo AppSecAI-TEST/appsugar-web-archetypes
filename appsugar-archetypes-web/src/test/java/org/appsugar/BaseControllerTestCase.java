@@ -28,7 +28,8 @@ public abstract class BaseControllerTestCase extends AbstractTransactionalJUnit4
 
 	protected final String MEDIA_TYPE_APPLICATION_JSON_UTF8 = "application/json;charset=UTF-8";
 
-	protected final Logger logger = LoggerFactory.getLogger(BaseControllerTestCase.class);
+	@SuppressWarnings("hiding")
+	protected Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
 	protected WebApplicationContext wac;

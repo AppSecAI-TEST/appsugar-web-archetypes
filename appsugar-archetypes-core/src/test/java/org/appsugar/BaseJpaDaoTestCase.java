@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
  */
 @SpringBootTest(classes = { ServiceConfiguration.class, RepositoryConfiguration.class, TestConfiguration.class })
 public abstract class BaseJpaDaoTestCase extends AbstractTransactionalJUnit4SpringContextTests {
-	protected final Logger logger = LoggerFactory.getLogger(BaseJpaDaoTestCase.class);
 
+	@SuppressWarnings("hiding")
+	protected Logger logger = LoggerFactory.getLogger(getClass());
 }
