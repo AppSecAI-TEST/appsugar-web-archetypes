@@ -27,8 +27,11 @@ import org.hibernate.validator.constraints.Email;
 
 @Table(name="as_person")
 @Entity
-public class Person extends IdEntity {
+public class Person extends LongIdEntity {
 	private static final long serialVersionUID = 9088528084480261924L;
+	public static final String _name = "name";
+        public static final String _age = "age";
+        public static final String _email = "email";
 	private String name;
 	private Integer age;
 	private String email;
@@ -76,7 +79,7 @@ public class Person extends IdEntity {
 ```java
 package org.appsugar.condition;
 
-public class PersonCondition extends IdEntityCondition {
+public class PersonCondition extends LongIdEntityCondition {
 	//start like
 	private String name;
 
@@ -116,7 +119,7 @@ import java.util.List;
 import org.appsugar.condition.PersonCondition;
 import org.appsugar.entity.Person;
 
-public interface PersonRepository extends IdEntityRepository<Person, PersonCondition> {
+public interface PersonRepository extends JpaIdEntityRepository<Person, PersonCondition> {
 
 	public List<Person> findByNameStartingWith(String name);
 
@@ -157,7 +160,7 @@ public class PersonSpecification extends IdEntitySpecification<Person, PersonCon
 		super.addCondition(query, root, cb, condition);
 		String name = condition.getName();
 		if (StringUtils.isNotBlank(name)) {
-			Expression<String> nameExpression = root.get(Role._name);
+			Expression<String> nameExpression = root.get(Person._name);
 			query.add(cb.like(nameExpression, name + "%"));
 		}
 	}
@@ -188,7 +191,7 @@ public class PersonRepositoryTest extends BaseJpaDaoTestCase {
 	@Test
 	public void testFindByNameStartLike() {
 		String name = "New";
-		List<Person> personList = repository.findByNameStartLike(name);
+		List<Person> personList = repository.findByNameStartingWith(name);
 		logger.debug("testFindByNameStartLike name is {} result is {}", name, personList);
 		Assert.assertTrue(CollectionUtils.isNotEmpty(personList));
 	}
