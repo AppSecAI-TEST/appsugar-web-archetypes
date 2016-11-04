@@ -90,6 +90,7 @@ configure(subprojects) { project ->
 		testCompile ("javax.el:javax.el-api:${elApiVersion}")
 		testCompile ("${env['test.jdbc.groupId']}:${env['test.jdbc.artifactId']}:${env['test.jdbc.version']}")
 		testCompile ("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+		testCompile ("org.appsugar:appsugar-test:${appsugarVersion}")
 	}
 	processTestResources {
 		from(sourceSets.test.resources.srcDirs) {
