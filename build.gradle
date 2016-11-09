@@ -210,3 +210,53 @@ project(":appsugar-archetypes-web"){
 	}
 	
 }
+
+project(":appsugar-archetypes-api"){
+	apply plugin: 'war'
+	apply plugin: "spring-boot"
+	
+	configurations {
+		//spring repackager will pack it in executable jar or war but original not.
+    	providedRuntime
+	}	
+	
+	sourceSets {
+	    test {
+	        resources {
+	        	srcDir  "src/main/webapp"
+	            exclude "WEB-INF"
+	            exclude "static"
+	        }
+	    }
+	}
+	
+	dependencies{
+		compile project(":appsugar-archetypes-core")
+		compile ("org.apache.shiro:shiro-web:${shiroVersion}")
+		compile ("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+		providedRuntime("org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}")
+		compile ("${env['jdbc.groupId']}:${env['jdbc.artifactId']}:${env['jdbc.version']}")
+		compile ("org.hibernate:hibernate-ehcache")
+	}
+	processResources {
+		from(sourceSets.main.resources.srcDirs) {
+			include '*.properties'
+			filter(org.apache.tools.ant.filters.ReplaceTokens,tokens: env)
+		}
+		doLast{
+			ant.delete() {
+		        fileset(dir: "${processResources.destinationDir}") {
+		            include(name: '**/ApplicationResources*.properties')
+		        }
+	    	}
+		    ant.native2ascii(src: 'src/main/resources',
+		            dest: "${processResources.destinationDir}",
+		            includes: '**/ApplicationResources*.properties',
+		            encoding: 'UTF-8')
+		}
+	}
+	springBoot {
+    	executable = true
+	}
+	
+}
