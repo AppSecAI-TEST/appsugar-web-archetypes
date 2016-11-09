@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.common.base.Throwables;
+
 /**
  * 登录控制器
  * @author NewYoung
@@ -30,7 +32,7 @@ public class MainController {
 	 */
 	@RequestMapping(value = "login")
 	@ResponseBody
-	public Response login(String username, String password,
+	public Response login(@RequestParam("username") String username, @RequestParam("password") String password,
 			@RequestParam(defaultValue = "false", required = false) Boolean rememberMe) throws AuthenticationException {
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);
@@ -78,6 +80,6 @@ public class MainController {
 	@ResponseBody
 	public Response onException(Exception ex) {
 		logger.debug("internal exceptioin ", ex);
-		return Response.ERROR;
+		return Response.error(Throwables.getRootCause(ex).getMessage());
 	}
 }

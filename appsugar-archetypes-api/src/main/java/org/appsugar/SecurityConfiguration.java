@@ -33,7 +33,6 @@ public class SecurityConfiguration {
 	public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
 		ShiroFilterFactoryBean filter = new ShiroFilterFactoryBean();
 		filter.setSecurityManager(securityManager);
-		filter.setUnauthorizedUrl("/login");
 		filter.setFilterChainDefinitionMap(filterChainDefinitionMap());
 		return filter;
 	}
