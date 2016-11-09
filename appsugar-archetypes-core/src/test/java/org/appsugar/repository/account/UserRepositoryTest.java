@@ -6,7 +6,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.appsugar.BaseJpaDaoTestCase;
 import org.appsugar.account.condition.UserCondition;
 import org.appsugar.account.entity.User;
-import org.appsugar.account.repository.UserRepository;
+import org.appsugar.account.repository.jpa.UserJpaRepository;
 import org.appsugar.account.specification.UserSpecification;
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,7 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class UserRepositoryTest extends BaseJpaDaoTestCase {
 
 	@Autowired
-	private UserRepository repository;
+	private UserJpaRepository repository;
 
 	@Test
 	public void testFindByName() throws Exception {

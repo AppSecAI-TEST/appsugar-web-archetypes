@@ -1,4 +1,4 @@
-package org.appsugar.account.repository;
+package org.appsugar.account.repository.jpa;
 
 import org.appsugar.account.condition.UserCondition;
 import org.appsugar.account.entity.User;
@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
  * @author NewYoung
  * 2016年2月22日下午1:00:51
  */
-public interface UserRepository extends JpaIdEntityRepository<User, UserCondition> {
+public interface UserJpaRepository extends JpaIdEntityRepository<User, UserCondition> {
 	/**
 	 * 根据名称查询用户
 	 */

@@ -6,7 +6,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.appsugar.BaseJpaDaoTestCase;
 import org.appsugar.account.condition.RoleCondition;
 import org.appsugar.account.entity.Role;
-import org.appsugar.account.repository.RoleRepository;
+import org.appsugar.account.repository.jpa.RoleJpaRepository;
 import org.appsugar.account.specification.RoleSpecification;
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,7 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class RoleRepositoryTest extends BaseJpaDaoTestCase {
 
 	@Autowired
-	private RoleRepository repository;
+	private RoleJpaRepository repository;
 
 	@Test
 	public void testSave() {

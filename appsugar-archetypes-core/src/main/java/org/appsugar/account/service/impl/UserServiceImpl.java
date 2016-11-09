@@ -2,7 +2,7 @@ package org.appsugar.account.service.impl;
 
 import org.appsugar.account.condition.UserCondition;
 import org.appsugar.account.entity.User;
-import org.appsugar.account.repository.UserRepository;
+import org.appsugar.account.repository.jpa.UserJpaRepository;
 import org.appsugar.account.service.UserService;
 import org.appsugar.service.impl.GenericServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl extends GenericServiceImpl<User, UserCondition> implements UserService {
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserJpaRepository userRepository;
 
 	public UserServiceImpl() {
 		super();

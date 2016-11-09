@@ -8,5 +8,4 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RoleServiceImpl extends GenericServiceImpl<Role, RoleCondition> implements RoleService {
-
 }
