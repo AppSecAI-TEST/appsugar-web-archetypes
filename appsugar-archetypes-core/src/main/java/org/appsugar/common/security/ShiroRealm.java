@@ -9,9 +9,9 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.appsugar.account.entity.Role;
-import org.appsugar.account.entity.User;
-import org.appsugar.account.service.UserService;
+import org.appsugar.entity.account.Role;
+import org.appsugar.entity.account.User;
+import org.appsugar.service.account.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

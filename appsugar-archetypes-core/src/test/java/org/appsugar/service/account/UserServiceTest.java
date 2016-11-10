@@ -1,8 +1,7 @@
 package org.appsugar.service.account;
 
 import org.appsugar.BaseJpaDaoTestCase;
-import org.appsugar.account.entity.User;
-import org.appsugar.account.service.UserService;
+import org.appsugar.entity.account.User;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

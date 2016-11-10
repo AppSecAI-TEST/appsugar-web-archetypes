@@ -1,9 +1,9 @@
-package org.appsugar.account.service.impl;
+package org.appsugar.service.account.impl;
 
-import org.appsugar.account.condition.UserCondition;
-import org.appsugar.account.entity.User;
-import org.appsugar.account.repository.jpa.UserJpaRepository;
-import org.appsugar.account.service.UserService;
+import org.appsugar.entity.account.User;
+import org.appsugar.entity.account.UserCondition;
+import org.appsugar.repository.account.jpa.UserJpaRepository;
+import org.appsugar.service.account.UserService;
 import org.appsugar.service.impl.GenericServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

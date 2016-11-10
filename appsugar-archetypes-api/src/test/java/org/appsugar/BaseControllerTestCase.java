@@ -1,7 +1,7 @@
 package org.appsugar;
 
-import org.appsugar.account.entity.User;
 import org.appsugar.controller.ControllerConfiguration;
+import org.appsugar.entity.account.User;
 import org.junit.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

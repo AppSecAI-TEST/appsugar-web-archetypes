@@ -1,4 +1,4 @@
-package org.appsugar.account.condition;
+package org.appsugar.entity.account;
 
 import org.appsugar.bean.condition.LongIdEntityCondition;
 

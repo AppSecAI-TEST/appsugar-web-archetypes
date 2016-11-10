@@ -1,8 +1,8 @@
-package org.appsugar.account.service.impl;
+package org.appsugar.service.account.impl;
 
-import org.appsugar.account.condition.RoleCondition;
-import org.appsugar.account.entity.Role;
-import org.appsugar.account.service.RoleService;
+import org.appsugar.entity.account.Role;
+import org.appsugar.entity.account.RoleCondition;
+import org.appsugar.service.account.RoleService;
 import org.appsugar.service.impl.GenericServiceImpl;
 import org.springframework.stereotype.Service;
 
