@@ -2,7 +2,7 @@ package org.appsugar.repository.account.jpa;
 
 import org.appsugar.data.jpa.repository.JpaIdEntityRepository;
 import org.appsugar.entity.account.Role;
-import org.appsugar.entity.account.RoleCondition;
+import org.appsugar.entity.account.condition.RoleCondition;
 
 /**
  * 

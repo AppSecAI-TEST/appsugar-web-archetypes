@@ -1,7 +1,7 @@
 package org.appsugar.service.account;
 
 import org.appsugar.entity.account.User;
-import org.appsugar.entity.account.UserCondition;
+import org.appsugar.entity.account.condition.UserCondition;
 import org.appsugar.service.GenericService;
 
 /**

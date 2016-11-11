@@ -1,7 +1,7 @@
 package org.appsugar.service.account;
 
 import org.appsugar.entity.account.Role;
-import org.appsugar.entity.account.RoleCondition;
+import org.appsugar.entity.account.condition.RoleCondition;
 import org.appsugar.service.GenericService;
 
 /**

@@ -6,7 +6,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.appsugar.bean.domain.Pageable;
 import org.appsugar.entity.account.Permissions;
 import org.appsugar.entity.account.Role;
-import org.appsugar.entity.account.RoleCondition;
+import org.appsugar.entity.account.condition.RoleCondition;
 import org.appsugar.service.account.RoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -3,7 +3,7 @@ package org.appsugar.controller.account;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.appsugar.bean.domain.Pageable;
 import org.appsugar.entity.account.User;
-import org.appsugar.entity.account.UserCondition;
+import org.appsugar.entity.account.condition.UserCondition;
 import org.appsugar.service.account.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
