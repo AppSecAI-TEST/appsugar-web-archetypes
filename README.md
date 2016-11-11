@@ -77,7 +77,7 @@ public class Person extends LongIdEntity {
 ### Create condition appsugar-archetypes-core
 
 ```java
-package org.appsugar.condition;
+package org.appsugar.entity;
 
 public class PersonCondition extends LongIdEntityCondition {
 	//start like
@@ -130,14 +130,14 @@ public interface PersonRepository extends JpaIdEntityRepository<Person, PersonCo
 ### Create Specification (appsugar-archetypes-core)
 
 ```java
-package org.appsugar.specification;
+package org.appsugar.repository;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 
 import org.apache.commons.lang3.StringUtils;
-import org.appsugar.condition.PersonCondition;
+import org.appsugar.entity.PersonCondition;
 import org.appsugar.entity.Person;
 import org.appsugar.entity.account.Role;
 import org.appsugar.extend.SpecificationQueryWrapper;
@@ -211,7 +211,7 @@ package org.appsugar.service;
 
 import java.util.List;
 
-import org.appsugar.condition.PersonCondition;
+import org.appsugar.entity.PersonCondition;
 import org.appsugar.entity.Person;
 
 public interface PersonService extends GenericService<Person, PersonCondition> {
@@ -228,7 +228,7 @@ package org.appsugar.service.impl;
 
 import java.util.List;
 
-import org.appsugar.condition.PersonCondition;
+import org.appsugar.entity.PersonCondition;
 import org.appsugar.entity.Person;
 import org.appsugar.repository.PersonRepository;
 import org.appsugar.service.PersonService;
@@ -259,8 +259,8 @@ public class PersonServiceImpl extends GenericServiceImpl<Person, PersonConditio
 ```java
 package org.appsugar.controller;
 
-import org.appsugar.condition.PersonCondition;
-import org.appsugar.dto.page.Pageable;
+import org.appsugar.entity.PersonCondition;
+import org.appsugar.domain.page.Pageable;
 import org.appsugar.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
