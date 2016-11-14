@@ -27,7 +27,7 @@ public class RoleRepositoryTest extends BaseJpaDaoTestCase {
 		Role role = new Role("testSave", "title");
 		repository.saveAndFlush(role);
 		Assert.assertNotNull(role.getId());
-		logger.debug("test save role id is {}", role.getId());
+		logger.debug("test save role  is {}", role);
 	}
 
 	@Test

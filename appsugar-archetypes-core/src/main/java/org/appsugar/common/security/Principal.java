@@ -25,12 +25,13 @@ public class Principal {
 		return attributes;
 	}
 
-	public void setAttribute(String name, Object value) {
-		attributes.put(name, value);
+	public void setAttribute(String key, Object value) {
+		attributes.put(key, value);
 	}
 
-	public <T> T getAttribute(String name) {
-		return (T) attributes.get(name);
+	@SuppressWarnings("unchecked")
+	public <T> T getAttribute(String key) {
+		return (T) attributes.get(key);
 
 	}
 
