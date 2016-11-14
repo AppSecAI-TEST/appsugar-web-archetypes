@@ -131,5 +131,4 @@ public class User extends LongIdEntity {
 				.append("]");
 		return builder.toString();
 	}
-
 }

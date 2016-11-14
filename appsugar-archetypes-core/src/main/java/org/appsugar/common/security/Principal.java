@@ -32,7 +32,6 @@ public class Principal {
 	@SuppressWarnings("unchecked")
 	public <T> T getAttribute(String key) {
 		return (T) attributes.get(key);
-
 	}
 
 	public Long getId() {

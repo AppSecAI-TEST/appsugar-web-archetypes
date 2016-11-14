@@ -7,7 +7,6 @@ import org.appsugar.BaseJpaDaoTestCase;
 import org.appsugar.entity.account.User;
 import org.appsugar.entity.account.condition.UserCondition;
 import org.appsugar.repository.account.jpa.UserJpaRepository;
-import org.appsugar.repository.account.jpa.specification.UserSpecification;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +22,11 @@ public class UserRepositoryTest extends BaseJpaDaoTestCase {
 	private UserJpaRepository repository;
 
 	@Test
-	public void testFindByName() throws Exception {
-		String name = "admin";
-		User user = repository.findByLoginName(name);
-		logger.debug("testFindByName  result is : {}", user);
-		Assert.assertNotNull(user);
+	public void testFindByLoginName() {
+		String loginName = "admin";
+		User user = repository.findByLoginName(loginName);
+		logger.debug("testFindByLoginName login name is {}  result is : {}", loginName, user);
+		Assert.assertNotNull("User not exist by login name " + loginName, user);
 	}
 
 	@Test
@@ -35,7 +34,7 @@ public class UserRepositoryTest extends BaseJpaDaoTestCase {
 		UserCondition condition = new UserCondition();
 		String name = "管理员";
 		condition.setName(name);
-		List<User> userList = repository.findAll(new UserSpecification(condition));
+		List<User> userList = repository.findByCondition(condition);
 		logger.debug("testFindByCondition  name {}  result {}", name, userList);
 		Assert.assertTrue(CollectionUtils.isNotEmpty(userList));
 	}

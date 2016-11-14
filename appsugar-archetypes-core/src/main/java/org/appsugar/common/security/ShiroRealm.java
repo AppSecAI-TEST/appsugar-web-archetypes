@@ -1,5 +1,7 @@
 package org.appsugar.common.security;
 
+import java.util.Objects;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -32,10 +34,7 @@ public class ShiroRealm extends AuthorizingRealm {
 		String loginName = userToken.getUsername();
 		String password = new String(userToken.getPassword());
 		User user = userService.getByLoginName(loginName);
-		if (user == null) {
-			return null;
-		}
-		if (!user.getPassword().equals(password)) {
+		if (Objects.isNull(user) || !Objects.equals(user.getPassword(), password)) {
 			return null;
 		}
 		return new SimpleAuthenticationInfo(getUserPrincipal(user), password, getName());

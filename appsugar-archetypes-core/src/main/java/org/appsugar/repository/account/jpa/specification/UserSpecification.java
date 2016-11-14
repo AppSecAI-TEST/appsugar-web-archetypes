@@ -1,7 +1,6 @@
 package org.appsugar.repository.account.jpa.specification;
 
 import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 
 import org.apache.commons.lang3.StringUtils;
@@ -34,12 +33,11 @@ public class UserSpecification extends IdEntitySpecification<User, UserCondition
 			UserCondition condition) {
 		super.addCondition(query, root, cb, condition);
 		String name = condition.getName();
-		if (StringUtils.isNoneBlank(name)) {
-			Expression<String> nameExpression = root.get(User._name);
-			query.add(cb.like(nameExpression, name + "%"));
+		if (StringUtils.isNotBlank(name)) {
+			query.add(cb.like(root.get(User._name), name + "%"));
 		}
 		String loginName = condition.getLoginName();
-		if (StringUtils.isNoneBlank(loginName)) {
+		if (StringUtils.isNotBlank(loginName)) {
 			query.add(cb.equal(root.get(User._loginName), loginName));
 		}
 	}
