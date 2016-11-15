@@ -11,7 +11,7 @@ buildscript {
 		return profileObject
 	}
 	ext{
-		springBootVersion = "1.4.0.RELEASE"
+		springBootVersion = "1.4.2.RELEASE"
 		springLoadedVersion = "1.2.6.RELEASE"
 		env = loadGroovyConfig("base")
 		env.putAll(loadGroovyConfig(System.getProperty("profile")))
@@ -156,7 +156,7 @@ project(":appsugar-archetypes-core"){
 
 project(":appsugar-archetypes-web"){
 	apply plugin: 'war'
-	apply plugin: "spring-boot"
+	apply plugin: "org.springframework.boot"
 	
 	configurations {
 		//spring repackager will pack it in executable jar or war but original not.
@@ -213,7 +213,7 @@ project(":appsugar-archetypes-web"){
 
 project(":appsugar-archetypes-api"){
 	apply plugin: 'war'
-	apply plugin: "spring-boot"
+	apply plugin: "org.springframework.boot"
 	
 	configurations {
 		//spring repackager will pack it in executable jar or war but original not.

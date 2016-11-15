@@ -41,6 +41,7 @@ public class SecurityConfiguration {
 
 	public Map<String, String> filterChainDefinitionMap() {
 		Map<String, String> map = new HashMap<>();
+		map.put("/favicon.ico", "anon");
 		map.put("/static/**", "anon");
 		map.put("/assets/**", "anon");
 		map.put("/webjars/**", "anon");
