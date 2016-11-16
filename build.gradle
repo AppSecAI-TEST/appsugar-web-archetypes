@@ -30,7 +30,7 @@ buildscript {
 		}
 	}
 	dependencies {
-		classpath ("io.github.divinespear:jpa-schema-gradle-plugin:0.2.0-1")
+		classpath ("io.github.divinespear:jpa-schema-gradle-plugin:0.2.2-ext")
 		classpath ("com.ferigma:dbunit-gradle-plugin:0.1.0")
 		classpath ("${env['test.jdbc.groupId']}:${env['test.jdbc.artifactId']}:${env['test.jdbc.version']}")
 		classpath ("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -119,25 +119,6 @@ project(":appsugar-archetypes-core"){
 		compile ("org.apache.shiro:shiro-ehcache:${shiroVersion}")
 		compile ("org.springframework.boot:spring-boot-starter-aop:${springBootVersion}")
 	}
-		
-	dbunit {
-		username = env["test.jdbc.username"]
-		password = env["test.jdbc.password"]
-		url = env["test.jdbc.url"]
-		driver = env["test.jdbc.driverClassName"]
-		dataTypeFactoryName  = env["test.dbunit.dataTypeFactoryName"]
-	}
-	
-	
-
-	task populateTestDb(type: com.ferigma.gradle.dbunit.tasks.OperationTask) {
-		sources = [
-				new com.ferigma.gradle.dbunit.tasks.source.OperationSource(
-						transaction: true, type:env["test.dbunit.operationType"], format: "flat",
-						file: "$projectDir"+env["test.dbunit.sampleData"])
-		]
-	}
-	test.dependsOn populateTestDb
 	
 	generateSchema {
 		vendor = "hibernate"
@@ -150,6 +131,24 @@ project(":appsugar-archetypes-core"){
 		jdbcPassword = env["test.jdbc.password"]
 		properties = ["hibernate.dialect":env["test.hibernate.dialect"]]
 	}
+		
+	dbunit {
+		username = env["test.jdbc.username"]
+		password = env["test.jdbc.password"]
+		url = env["test.jdbc.url"]
+		driver = env["test.jdbc.driverClassName"]
+		dataTypeFactoryName  = env["test.dbunit.dataTypeFactoryName"]
+	}
+	
+	task populateTestDb(type: com.ferigma.gradle.dbunit.tasks.OperationTask,dependsOn : 'generateSchema') {
+		sources = [
+				new com.ferigma.gradle.dbunit.tasks.source.OperationSource(
+						transaction: true, type:env["test.dbunit.operationType"], format: "flat",
+						file: "$projectDir"+env["test.dbunit.sampleData"])
+		]
+	}
+	
+	test.dependsOn populateTestDb
 }
 
 
