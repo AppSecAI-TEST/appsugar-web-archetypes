@@ -254,6 +254,7 @@ project(":appsugar-archetypes-api"){
 		            encoding: 'UTF-8')
 		}
 	}
+	test.dependsOn  ':appsugar-archetypes-core:test'
 	springBoot {
     	executable = true
 	}
