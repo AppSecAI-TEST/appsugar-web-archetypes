@@ -199,9 +199,6 @@ public class PersonRepositoryTest extends BaseJpaDaoTestCase {
 
 ```
 
-### Execute  gradle generateSchema 
-### Execute  gradle --stop (fix file lock bug)
-### Execute  gradle populateTestDb
 ### Execute  gradle appsugar-archetypes-core:test
 
 ### Create PersonService (appsugar-archetypes-core)
