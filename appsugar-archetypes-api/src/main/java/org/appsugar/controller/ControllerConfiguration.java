@@ -47,17 +47,6 @@ public class ControllerConfiguration extends WebMvcConfigurerAdapter {
 		return creator;
 	}
 
-	@Bean
-	public FilterRegistrationBean openEntityManagerInViewFilter() {
-		FilterRegistrationBean bean = new FilterRegistrationBean();
-		bean.setFilter(new OpenEntityManagerInViewFilter());
-		bean.setUrlPatterns(Arrays.asList("/*"));
-		bean.setAsyncSupported(true);
-		bean.setName("openEntityManagerInViewFilter");
-		bean.setOrder(1);
-		return bean;
-	}
-
 	/**
 	 * security filter
 	 * @return
@@ -70,6 +59,17 @@ public class ControllerConfiguration extends WebMvcConfigurerAdapter {
 		bean.setName("shiroFilter");
 		bean.addInitParameter("targetFilterLifecycle", "true");
 		bean.setAsyncSupported(true);
+		bean.setOrder(1);
+		return bean;
+	}
+
+	@Bean
+	public FilterRegistrationBean openEntityManagerInViewFilter() {
+		FilterRegistrationBean bean = new FilterRegistrationBean();
+		bean.setFilter(new OpenEntityManagerInViewFilter());
+		bean.setUrlPatterns(Arrays.asList("/*"));
+		bean.setAsyncSupported(true);
+		bean.setName("openEntityManagerInViewFilter");
 		bean.setOrder(2);
 		return bean;
 	}
@@ -83,6 +83,7 @@ public class ControllerConfiguration extends WebMvcConfigurerAdapter {
 		bean.setFilter(new CharacterEncodingFilter());
 		bean.setUrlPatterns(Arrays.asList("/*"));
 		bean.addInitParameter("encoding", "UTF-8");
+		bean.addInitParameter("forceEncoding", "true");
 		bean.setAsyncSupported(true);
 		bean.setName("characterEncodingFilter");
 		bean.setOrder(3);
