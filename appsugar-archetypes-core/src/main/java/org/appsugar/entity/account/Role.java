@@ -27,11 +27,6 @@ public class Role extends LongIdEntity {
 	public static final String permission_view = "role:view";
 	public static final String permission_edit = "role:edit";
 	public static final String permission_remove = "role:remove";
-	//type safe
-	public static final String _name = "name";
-	public static final String _title = "title";
-	public static final String _permissionList = "permissionList";
-	public static final String _userList = "userList";
 
 	//角色名
 	@NotBlank

@@ -30,15 +30,6 @@ public class User extends LongIdEntity {
 	public static final String permission_view = "user:view";
 	public static final String permission_edit = "user:edit";
 	public static final String permission_remove = "user:remove";
-	//type safe
-	public static final String _name = "name";
-	public static final String _loginName = "loginName";
-	public static final String _password = "password";
-	public static final String _phone = "phone";
-	public static final String _email = "email";
-	public static final String _roleList = "roleList";
-	public static final String _permissionList = "permissionList";
-
 	//名称
 	private String name;
 	//登录名

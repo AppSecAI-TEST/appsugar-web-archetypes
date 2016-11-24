@@ -50,6 +50,7 @@ buildscript {
 plugins {
 	//gradle release -Prelease.useAutomaticVersion=true -Prelease.releaseVersion=1.0.0-release -Prelease.newVersion=1.0.1-SNAPSHOT
     id 'net.researchgate.release' version '2.4.0'
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.7" apply  false
 }
 apply plugin: 'java'
 
@@ -69,7 +70,7 @@ configure(subprojects) { project ->
 
 	
 	ext{
-		appsugarVersion = "2.1.1-SNAPSHOT"
+		appsugarVersion = "2.2.0-SNAPSHOT"
 		junitVersion = "4.12"
 		elApiVersion = "3.0.0"
 		shiroVersion = "1.3.2"
@@ -81,6 +82,7 @@ configure(subprojects) { project ->
 		jqueryVersion = "2.2.3"
 		bootstrapVersion = "3.3.6"
 		logbackVersion = "1.1.7"
+		queryDslVersion = '4.1.4'
 	}
 	compileJava.options.encoding = env["encoding"]
 	compileTestJava.options.encoding = env["encoding"]
@@ -109,6 +111,17 @@ configure(subprojects) { project ->
 project(":appsugar-archetypes-core"){
 	apply plugin: "jpa-schema-generate"
 	apply plugin: "dbunit"
+	apply plugin: "com.ewerk.gradle.plugins.querydsl" 
+	sourceSets {
+	    generated {
+	        java {
+	            srcDirs = ['src/main/generated']
+	        }
+	    }
+	}
+	
+
+
 	dependencies{
 		compile ("org.appsugar:appsugar-data-jpa:${appsugarVersion}")
 		compile ("ch.qos.logback:logback-classic:${logbackVersion}")
@@ -118,6 +131,8 @@ project(":appsugar-archetypes-core"){
 		compile ("org.apache.shiro:shiro-spring:${shiroVersion}")
 		compile ("org.apache.shiro:shiro-ehcache:${shiroVersion}")
 		compile ("org.springframework.boot:spring-boot-starter-aop:${springBootVersion}")
+		compile ("com.querydsl:querydsl-jpa:${queryDslVersion}")
+		compileOnly ("com.querydsl:querydsl-apt:${queryDslVersion}")
 	}
 	
 	generateSchema {
@@ -149,6 +164,11 @@ project(":appsugar-archetypes-core"){
 	}
 	
 	test.dependsOn populateTestDb
+	querydsl {
+	  jpa = true
+	  querydslSourcesDir = sourceSets.generated.java.srcDirs.iterator().next()
+	}
+	compileQuerydsl.options.encoding = env["encoding"]
 }
 
 

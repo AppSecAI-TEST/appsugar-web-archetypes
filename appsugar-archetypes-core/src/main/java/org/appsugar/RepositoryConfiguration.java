@@ -1,7 +1,7 @@
 package org.appsugar;
 
 import org.appsugar.data.jpa.repository.JpaIdEntityRepositoryImpl;
-import org.appsugar.data.jpa.repository.RepositoryPostProcessor;
+import org.appsugar.data.jpa.repository.querdsl.JpaQueryDslSpecificationPostProcessor;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -19,11 +19,10 @@ public class RepositoryConfiguration {
 
 	/**
 	 * repository 增强
-	 * @return
 	 */
 	@Bean
-	public RepositoryPostProcessor reposiotryAdvance() {
-		return new RepositoryPostProcessor();
+	public JpaQueryDslSpecificationPostProcessor reposiotryAdvance() {
+		return new JpaQueryDslSpecificationPostProcessor();
 	}
 
 }

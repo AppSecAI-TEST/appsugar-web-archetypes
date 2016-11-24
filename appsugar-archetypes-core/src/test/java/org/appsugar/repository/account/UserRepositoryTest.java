@@ -33,6 +33,7 @@ public class UserRepositoryTest extends BaseJpaDaoTestCase {
 	public void testFindByCondition() {
 		UserCondition condition = new UserCondition();
 		String name = "管理员";
+		condition.setId(-1l);
 		condition.setName(name);
 		List<User> userList = repository.findByCondition(condition);
 		logger.debug("testFindByCondition  name {}  result {}", name, userList);

@@ -7,7 +7,6 @@ import org.appsugar.BaseJpaDaoTestCase;
 import org.appsugar.entity.account.Role;
 import org.appsugar.entity.account.condition.RoleCondition;
 import org.appsugar.repository.account.jpa.RoleJpaRepository;
-import org.appsugar.repository.account.jpa.specification.RoleSpecification;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +32,10 @@ public class RoleRepositoryTest extends BaseJpaDaoTestCase {
 	@Test
 	public void testFindBySpecification() {
 		RoleCondition condition = new RoleCondition();
-		List<Role> roleList = repository.findAll(new RoleSpecification(condition));
+		condition.setName("SUPER_ADMIN");
+		List<Role> roleList = repository.findByCondition(condition);
 		logger.debug("testFindBySpecification {}", roleList);
 		Assert.assertTrue(CollectionUtils.isNotEmpty(roleList));
 	}
+
 }
