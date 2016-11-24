@@ -74,6 +74,9 @@ public class Person extends LongIdEntity {
 
 }
 ```
+
+#### gradle compileJava
+
 ### Create condition appsugar-archetypes-core
 
 ```java
@@ -144,24 +147,14 @@ import org.appsugar.extend.SpecificationQueryWrapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PersonSpecification extends IdEntitySpecification<Person, PersonCondition> {
-
-	public PersonSpecification() {
-		super();
-	}
-
-	public PersonSpecification(PersonCondition conditionObject) {
-		super(conditionObject);
-	}
+public class PersonSpecification extends JpaQuerDslSpecification<PersonCondition,QPerson> {
 
 	@Override
-	protected void addCondition(SpecificationQueryWrapper<Person> query, Root<Person> root, CriteriaBuilder cb,
-			PersonCondition condition) {
-		super.addCondition(query, root, cb, condition);
+	public void toPredicate(PredicateCollection pc, PersonCondition condition, QPerson root) {
+		super.toPredicate(pc, condition, root);
 		String name = condition.getName();
 		if (StringUtils.isNotBlank(name)) {
-			Expression<String> nameExpression = root.get(Person._name);
-			query.add(cb.like(nameExpression, name + "%"));
+			pc.add(root.name.eq(name));
 		}
 	}
 
