@@ -12,6 +12,7 @@
 **/.gradle
 **/bin
 */gen
+**/src/main/generated
 # Package Files #
 *.war
 *.ear

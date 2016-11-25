@@ -132,7 +132,6 @@ project(":appsugar-archetypes-core"){
 		compile ("org.apache.shiro:shiro-ehcache:${shiroVersion}")
 		compile ("org.springframework.boot:spring-boot-starter-aop:${springBootVersion}")
 		compile ("com.querydsl:querydsl-jpa:${queryDslVersion}")
-		compileOnly ("com.querydsl:querydsl-apt:${queryDslVersion}")
 	}
 	
 	generateSchema {
