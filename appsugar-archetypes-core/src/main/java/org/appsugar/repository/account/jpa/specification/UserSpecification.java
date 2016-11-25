@@ -2,7 +2,7 @@ package org.appsugar.repository.account.jpa.specification;
 
 import org.apache.commons.lang3.StringUtils;
 import org.appsugar.data.common.repository.querydsl.PredicateCollection;
-import org.appsugar.data.jpa.repository.querdsl.JpaQuerDslSpecification;
+import org.appsugar.data.jpa.repository.querdsl.JpaQueryDslSpecification;
 import org.appsugar.entity.account.QUser;
 import org.appsugar.entity.account.condition.UserCondition;
 import org.springframework.stereotype.Component;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  * 2016年2月23日下午2:29:57
  */
 @Component
-public class UserSpecification extends JpaQuerDslSpecification<UserCondition, QUser> {
+public class UserSpecification extends JpaQueryDslSpecification<UserCondition, QUser> {
 
 	@Override
 	public void toPredicate(PredicateCollection pc, UserCondition condition, QUser root) {
