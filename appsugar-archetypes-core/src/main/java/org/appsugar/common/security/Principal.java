@@ -1,5 +1,6 @@
 package org.appsugar.common.security;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import com.google.common.collect.Maps;
@@ -9,8 +10,9 @@ import com.google.common.collect.Maps;
  * @author NewYoung
  * 2016年3月2日上午10:30:09
  */
-public class Principal {
+public class Principal implements Serializable {
 
+	private static final long serialVersionUID = 882451104834391880L;
 	public final Long id;
 	public final String name;
 
