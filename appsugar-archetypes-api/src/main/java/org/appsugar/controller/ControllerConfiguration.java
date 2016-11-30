@@ -2,6 +2,7 @@ package org.appsugar.controller;
 
 import java.util.Arrays;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -25,6 +26,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableWebMvc
 public class ControllerConfiguration extends WebMvcConfigurerAdapter {
+
+	/**
+	 * 数据拷贝
+	 * @author NewYoung
+	 * 2016年11月30日下午4:01:41
+	 */
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
+	}
 
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {

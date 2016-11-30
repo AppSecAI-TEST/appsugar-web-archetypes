@@ -83,6 +83,7 @@ configure(subprojects) { project ->
 		bootstrapVersion = "3.3.6"
 		logbackVersion = "1.1.7"
 		queryDslVersion = '4.1.4'
+		modelMapperVersion = "0.7.7"
 	}
 	compileJava.options.encoding = env["encoding"]
 	compileTestJava.options.encoding = env["encoding"]
@@ -255,6 +256,8 @@ project(":appsugar-archetypes-api"){
 		providedRuntime("org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}")
 		compile ("${env['jdbc.groupId']}:${env['jdbc.artifactId']}:${env['jdbc.version']}")
 		compile ("org.hibernate:hibernate-ehcache")
+		compile ("org.modelmapper:modelmapper:${modelMapperVersion}")
+		
 	}
 	processResources {
 		from(sourceSets.main.resources.srcDirs) {

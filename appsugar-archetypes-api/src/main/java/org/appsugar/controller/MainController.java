@@ -56,15 +56,6 @@ public class MainController {
 	}
 
 	/**
-	 * 用户未认证 
-	 */
-	@ExceptionHandler(AuthenticationException.class)
-	@ResponseBody
-	public Response onAuthenticationException() {
-		return Response.UN_AUTHENTICATION;
-	}
-
-	/**
 	 * 用户未授权
 	 */
 	@ExceptionHandler(AuthorizationException.class)
@@ -79,7 +70,7 @@ public class MainController {
 	@ExceptionHandler(Exception.class)
 	@ResponseBody
 	public Response onException(Exception ex) {
-		logger.debug("internal exceptioin ", ex);
+		logger.error("internal exceptioin ", ex);
 		return Response.error(Throwables.getRootCause(ex).getMessage());
 	}
 }
