@@ -30,7 +30,7 @@ buildscript {
 		}
 	}
 	dependencies {
-		classpath ("io.github.divinespear:jpa-schema-gradle-plugin:0.2.2-ext")
+		classpath ("io.github.divinespear:jpa-schema-gradle-plugin:0.2.3-ext")
 		classpath ("com.ferigma:dbunit-gradle-plugin:0.1.0")
 		classpath ("${env['test.jdbc.groupId']}:${env['test.jdbc.artifactId']}:${env['test.jdbc.version']}")
 		classpath ("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
