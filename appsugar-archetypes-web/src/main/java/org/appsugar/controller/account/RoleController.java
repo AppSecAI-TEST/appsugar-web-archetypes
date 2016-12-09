@@ -1,5 +1,7 @@
 package org.appsugar.controller.account;
 
+import java.util.Objects;
+
 import javax.validation.Valid;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -29,11 +31,10 @@ public class RoleController {
 
 	@ModelAttribute
 	public Role modelAttribute(Long id) {
-		if (id == null) {
+		if (Objects.isNull(id)) {
 			return new Role();
 		}
-		Role role = roleService.get(id);
-		return role != null ? role : new Role();
+		return roleService.get(id);
 	}
 
 	@RequestMapping

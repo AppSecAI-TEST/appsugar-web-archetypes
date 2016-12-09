@@ -1,5 +1,7 @@
 package org.appsugar.controller.account;
 
+import java.util.Objects;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.appsugar.bean.domain.Pageable;
 import org.appsugar.entity.account.User;
@@ -38,11 +40,10 @@ public class UserController {
 
 	@ModelAttribute
 	public User modelAttribute(Long id) {
-		if (id == null) {
+		if (Objects.isNull(id)) {
 			return new User();
 		}
-		User user = userService.get(id);
-		return user == null ? new User() : user;
+		return userService.get(id);
 	}
 
 }
