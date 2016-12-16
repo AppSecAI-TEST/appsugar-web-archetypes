@@ -1,6 +1,8 @@
 package org.appsugar;
 
 import org.appsugar.controller.ControllerConfiguration;
+import org.appsugar.controller.ResourceConfiguration;
+import org.appsugar.controller.SecurityConfiguration;
 import org.appsugar.entity.account.User;
 import org.junit.Before;
 import org.slf4j.Logger;

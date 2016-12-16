@@ -1,4 +1,4 @@
-package org.appsugar;
+package org.appsugar.controller;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

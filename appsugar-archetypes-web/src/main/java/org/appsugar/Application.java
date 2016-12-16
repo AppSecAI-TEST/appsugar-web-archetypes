@@ -1,6 +1,8 @@
 package org.appsugar;
 
 import org.appsugar.controller.ControllerConfiguration;
+import org.appsugar.controller.ResourceConfiguration;
+import org.appsugar.controller.SecurityConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
