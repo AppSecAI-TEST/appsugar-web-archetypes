@@ -19,18 +19,12 @@ buildscript {
 	}
 	
 	repositories {
-		maven{
-			url "http://maven.aliyun.com/nexus/content/groups/public"
-		}
+		maven{url "http://maven.aliyun.com/nexus/content/groups/public"}
 		mavenCentral()
 		mavenLocal()
 		jcenter()
-		maven{
-			url "http://nexus.ggxueche.cn/nexus/content/groups/public/"
-		}
-	    maven {
-	        url "https://repo.spring.io/libs-snapshot"
-	    }
+		maven{url "http://nexus.ggxueche.cn/nexus/content/groups/public/"}
+	    maven {url "https://repo.spring.io/libs-snapshot"}
 	}
 	dependencies {
 		classpath ("io.github.divinespear:jpa-schema-gradle-plugin:0.2.3-ext")
@@ -61,17 +55,11 @@ configure(subprojects) { project ->
 	apply plugin: "java"
 	
 	repositories {
-		maven{
-			url "http://maven.aliyun.com/nexus/content/groups/public"
-		}
+		maven{url "http://maven.aliyun.com/nexus/content/groups/public"}
 		mavenCentral()
 		mavenLocal()
-		maven{
-			url = "http://nexus.ggxueche.cn/nexus/content/groups/public/"
-		}
-		maven {
-	        url "https://repo.spring.io/libs-snapshot"
-	    }
+		maven{url "http://nexus.ggxueche.cn/nexus/content/groups/public/"}
+		maven {url "https://repo.spring.io/libs-snapshot"}
 	}
 
 	
@@ -212,6 +200,9 @@ project(":appsugar-archetypes-web"){
 		compile ("javax.servlet:jstl:${jstlVersion}")
 		compile ("${env['jdbc.groupId']}:${env['jdbc.artifactId']}:${env['jdbc.version']}")
 		compile ("org.hibernate:hibernate-ehcache")
+		compile ("io.buji:buji-pac4j:2.0.3")
+		compile ("org.pac4j:pac4j-cas:1.9.4")
+		
 	}
 	processResources {
 		from(sourceSets.main.resources.srcDirs) {
@@ -286,5 +277,4 @@ project(":appsugar-archetypes-api"){
 	springBoot {
     	executable = true
 	}
-	
 }

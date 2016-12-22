@@ -1,6 +1,6 @@
 package org.appsugar.entity.account;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -42,9 +42,9 @@ public class User extends LongIdEntity {
 	private String email;
 
 	//角色
-	private List<Role> roleList;
+	private Set<Role> roleList;
 	//权限
-	private List<String> permissionList;
+	private Set<String> permissionList;
 
 	@Column(name = "name")
 	public String getName() {
@@ -94,22 +94,22 @@ public class User extends LongIdEntity {
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "as_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	public List<Role> getRoleList() {
+	public Set<Role> getRoleList() {
 		return roleList;
 	}
 
-	public void setRoleList(List<Role> roleList) {
+	public void setRoleList(Set<Role> roleList) {
 		this.roleList = roleList;
 	}
 
 	@ElementCollection(fetch = FetchType.LAZY)
 	@CollectionTable(name = "as_user_permission", joinColumns = @JoinColumn(name = "user_id"))
 	@Column(name = "permission")
-	public List<String> getPermissionList() {
+	public Set<String> getPermissionList() {
 		return permissionList;
 	}
 
-	public void setPermissionList(List<String> permissionList) {
+	public void setPermissionList(Set<String> permissionList) {
 		this.permissionList = permissionList;
 	}
 

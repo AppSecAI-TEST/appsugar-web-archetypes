@@ -1,6 +1,6 @@
 package org.appsugar.entity.account;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -35,7 +35,7 @@ public class Role extends LongIdEntity {
 	@NotBlank
 	private String title;
 	//角色权限
-	private List<String> permissionList;
+	private Set<String> permissionList;
 
 	public Role() {
 		super();
@@ -68,11 +68,11 @@ public class Role extends LongIdEntity {
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "as_role_permission", joinColumns = @JoinColumn(name = "role_id"))
 	@Column(name = "permission")
-	public List<String> getPermissionList() {
+	public Set<String> getPermissionList() {
 		return permissionList;
 	}
 
-	public void setPermissionList(List<String> permissionList) {
+	public void setPermissionList(Set<String> permissionList) {
 		this.permissionList = permissionList;
 	}
 
