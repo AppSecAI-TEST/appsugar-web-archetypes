@@ -1,5 +1,6 @@
 package org.appsugar.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +36,7 @@ public class SecurityConfiguration {
 	@Bean
 	public DefaultWebSecurityManager securityManager(ShiroRealm shiroRealm, CacheManager shiroCacheManager) {
 		DefaultWebSecurityManager stm = new DefaultWebSecurityManager();
-		stm.setRealm(shiroRealm);
+		stm.setRealms(Arrays.asList(shiroRealm, new org.appsugar.controller.shiro.Pac4jRealm()));
 		stm.setCacheManager(shiroCacheManager);
 		return stm;
 	}
@@ -68,7 +69,6 @@ public class SecurityConfiguration {
 	@Bean
 	public Config pac4jConfig() {
 		Config config = new Config();
-		//config.setAuthorizers(authorizers);
 		config.setClients(pac4jClients());
 		return config;
 	}
@@ -76,7 +76,7 @@ public class SecurityConfiguration {
 	@Bean
 	public Clients pac4jClients() {
 		Clients clients = new Clients();
-		clients.setCallbackUrl("http:/127.0.0.1:8081/login_callback");
+		clients.setCallbackUrl("http://127.0.0.1:8081/login_callback");
 		clients.setClients(casClient());
 		return clients;
 	}
@@ -85,7 +85,7 @@ public class SecurityConfiguration {
 	public CasClient casClient() {
 		CasClient result = new CasClient();
 		CasConfiguration config = new CasConfiguration();
-		config.setLoginUrl("https://127.0.0.1:8443/cas/login");
+		config.setLoginUrl("https://cas.server.name:8443/cas/");
 		result.setConfiguration(config);
 		return result;
 	}
