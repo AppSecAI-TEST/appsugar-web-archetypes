@@ -11,9 +11,4 @@ import org.appsugar.service.GenericService;
  */
 public interface UserService extends GenericService<User, UserCondition> {
 
-	/**
-	 * 根据登录名查找用户
-	 */
-	public User getByLoginName(String loginName);
-
 }

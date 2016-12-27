@@ -1,6 +1,7 @@
-package org.appsugar.common.security;
+package org.appsugar.controller.security;
 
-import java.util.Objects;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -11,19 +12,31 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.appsugar.entity.account.Account;
+import org.appsugar.entity.account.AccountType;
 import org.appsugar.entity.account.Role;
 import org.appsugar.entity.account.User;
+import org.appsugar.service.account.AccountService;
 import org.appsugar.service.account.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.google.common.base.Objects;
+import com.google.common.collect.Lists;
 
 /**
  * 領域認證
  * @author NewYoung
  * 2016年3月2日上午10:40:57
  */
+@Component
 public class ShiroRealm extends AuthorizingRealm {
 
+	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private AccountService accountService;
 
 	/**
 	 * 认证
@@ -33,11 +46,11 @@ public class ShiroRealm extends AuthorizingRealm {
 		UsernamePasswordToken userToken = (UsernamePasswordToken) token;
 		String loginName = userToken.getUsername();
 		String password = new String(userToken.getPassword());
-		User user = userService.getByLoginName(loginName);
-		if (Objects.isNull(user) || !Objects.equals(user.getPassword(), password)) {
+		Account account = accountService.getByTypeAndKey(AccountType.FORM, loginName);
+		if (account == null || !Objects.equal(account.getSecret(), password)) {
 			return null;
 		}
-		return new SimpleAuthenticationInfo(getUserPrincipal(user), password, getName());
+		return new SimpleAuthenticationInfo(getUserPrincipal(account.getUser()), password, getName());
 	}
 
 	/**
@@ -51,15 +64,18 @@ public class ShiroRealm extends AuthorizingRealm {
 		Principal principal = (Principal) principals.fromRealm(getName()).iterator().next();
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		User user = userService.get(principal.id);
-		for (String permission : user.getPermissionList()) {
-			info.addStringPermission(permission);
-		}
+		List<String> permissionList = Lists.newArrayList();
+		List<String> roleList = Lists.newArrayList();
+		permissionList.addAll(user.getPermissionList());
 		for (Role role : user.getRoleList()) {
-			info.addRole(role.getName());
-			for (String permission : role.getPermissionList()) {
-				info.addStringPermission(permission);
-			}
+			roleList.add(role.getName());
+			permissionList.addAll(role.getPermissionList());
 		}
+		info.addRoles(roleList);
+		info.addStringPermissions(permissionList);
+		principal.setAttribute(Principal.PERMISSION_ATTRIBUTE_KEY,
+				permissionList.stream().distinct().collect(Collectors.toList()));
+		principal.setAttribute(Principal.ROLE_ATTRIBUTE_KEY, roleList);
 		return info;
 	}
 
@@ -67,11 +83,6 @@ public class ShiroRealm extends AuthorizingRealm {
 		Principal prin = new Principal(user.getId(), user.getName());
 		prin.setAttribute("name", user.getName());
 		return prin;
-	}
-
-	@Autowired
-	public void setUserService(UserService userService) {
-		this.userService = userService;
 	}
 
 }

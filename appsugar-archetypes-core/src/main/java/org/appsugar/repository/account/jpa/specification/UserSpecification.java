@@ -1,8 +1,11 @@
 package org.appsugar.repository.account.jpa.specification;
 
+import java.util.Objects;
+
 import org.apache.commons.lang3.StringUtils;
 import org.appsugar.data.common.repository.querydsl.PredicateCollection;
 import org.appsugar.data.jpa.repository.querdsl.JpaQueryDslSpecification;
+import org.appsugar.entity.account.Gender;
 import org.appsugar.entity.account.QUser;
 import org.appsugar.entity.account.condition.UserCondition;
 import org.springframework.stereotype.Component;
@@ -20,13 +23,17 @@ public class UserSpecification extends JpaQueryDslSpecification<UserCondition, Q
 	@Override
 	public void toPredicate(PredicateCollection pc, UserCondition condition, QUser root) {
 		super.toPredicate(pc, condition, root);
-		String name = condition.getName();
-		if (StringUtils.isNotBlank(name)) {
-			pc.add(root.name.startsWith(name));
+		String phone = condition.getPhone();
+		if (StringUtils.isNotBlank(phone)) {
+			pc.add(root.phone.startsWith(phone));
 		}
-		String loginName = condition.getLoginName();
-		if (StringUtils.isNotBlank(loginName)) {
-			pc.add(root.loginName.eq(loginName));
+		String email = condition.getEmail();
+		if (StringUtils.isNotBlank(email)) {
+			pc.add(root.email.startsWith(email));
+		}
+		Gender gender = condition.getGender();
+		if (Objects.nonNull(gender)) {
+			pc.add(root.gender.eq(gender));
 		}
 	}
 

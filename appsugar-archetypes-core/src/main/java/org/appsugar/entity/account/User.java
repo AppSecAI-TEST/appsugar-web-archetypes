@@ -6,14 +6,17 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.appsugar.bean.entity.LongIdEntity;
-import org.hibernate.validator.constraints.Email;
 
 /**
  * 用户
@@ -21,7 +24,7 @@ import org.hibernate.validator.constraints.Email;
  * 2016年2月23日下午6:08:56
  */
 @Entity
-@Table(name = "as_user")
+@Table(name = "as_user", indexes = { @Index(columnList = "phone"), @Index(columnList = "email") })
 public class User extends LongIdEntity {
 
 	private static final long serialVersionUID = 1250833677334835146L;
@@ -30,23 +33,22 @@ public class User extends LongIdEntity {
 	public static final String permission_view = "user:view";
 	public static final String permission_edit = "user:edit";
 	public static final String permission_remove = "user:remove";
-	//名称
-	private String name;
-	//登录名
-	private String loginName;
-	//密码
-	private String password;
-	//电话
-	private String phone;
-	//邮箱
-	private String email;
 
-	//角色
+	/**名称**/
+	private String name;
+	/**安全手机号**/
+	private String phone;
+	/**安全邮箱地址**/
+	private String email;
+	/**性别**/
+	private Gender gender = Gender.UNSPECIFIED;
+	/**账户登录信息**/
+	private List<Account> accountList;
+	/**角色**/
 	private List<Role> roleList;
-	//权限
+	/**权限**/
 	private List<String> permissionList;
 
-	@Column(name = "name")
 	public String getName() {
 		return name;
 	}
@@ -55,25 +57,6 @@ public class User extends LongIdEntity {
 		this.name = name;
 	}
 
-	@Column(name = "login_name", unique = true)
-	public String getLoginName() {
-		return loginName;
-	}
-
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
-	}
-
-	@Column(name = "password")
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	@Column(name = "phone")
 	public String getPhone() {
 		return phone;
 	}
@@ -82,14 +65,21 @@ public class User extends LongIdEntity {
 		this.phone = phone;
 	}
 
-	@Column(name = "email")
-	@Email
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Enumerated(EnumType.STRING)
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
@@ -113,13 +103,21 @@ public class User extends LongIdEntity {
 		this.permissionList = permissionList;
 	}
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = Account._user)
+	public List<Account> getAccountList() {
+		return accountList;
+	}
+
+	public void setAccountList(List<Account> accountList) {
+		this.accountList = accountList;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("User [name=").append(name).append(", loginName=").append(loginName).append(", password=")
-				.append(password).append(", phone=").append(phone).append(", email=").append(email).append(", id=")
-				.append(id).append(", createdAt=").append(createdAt).append(", updatedAt=").append(updatedAt)
-				.append("]");
+		builder.append("User [id=").append(id).append(", createdAt=").append(createdAt).append(", updatedAt=")
+				.append(updatedAt).append("]");
 		return builder.toString();
 	}
+
 }

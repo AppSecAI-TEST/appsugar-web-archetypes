@@ -5,6 +5,13 @@ import java.util.Properties;
 
 import javax.servlet.DispatcherType;
 
+import org.apache.shiro.cache.CacheManager;
+import org.apache.shiro.cache.ehcache.EhCacheManager;
+import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.appsugar.controller.shiro.Pac4jRealm;
 import org.sitemesh.config.ConfigurableSiteMeshFilter;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -167,4 +174,42 @@ public class ControllerConfiguration extends WebMvcConfigurerAdapter {
 		return bean;
 	}
 
+	/**
+	 * shiro缓存
+	 */
+	@Bean
+	public EhCacheManager shiroCacheManager() {
+		EhCacheManager cache = new EhCacheManager();
+		cache.setCacheManagerConfigFile("classpath:ehcache/ehcache-shiro.xml");
+		return cache;
+	}
+
+	/**
+	 * 保证shiro内部bean执行
+	 */
+	@Bean
+	public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+		return new LifecycleBeanPostProcessor();
+	}
+
+	/**
+	 * shiro 授权
+	 */
+	@Bean
+	public AuthorizationAttributeSourceAdvisor shiroAdvisor(SecurityManager securityManager) {
+		AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
+		advisor.setSecurityManager(securityManager);
+		return advisor;
+	}
+
+	/**
+	 * shiro 安全管理
+	 */
+	@Bean
+	public DefaultWebSecurityManager securityManager(Pac4jRealm shiroRealm, CacheManager shiroCacheManager) {
+		DefaultWebSecurityManager stm = new DefaultWebSecurityManager();
+		stm.setRealms(Arrays.asList(shiroRealm));
+		stm.setCacheManager(shiroCacheManager);
+		return stm;
+	}
 }

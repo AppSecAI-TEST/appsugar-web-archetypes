@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
  * @author NewYoung
  * 2016年1月28日下午6:01:06
  */
-@SpringBootTest(classes = { ServiceConfiguration.class, RepositoryConfiguration.class, TestConfiguration.class })
+@SpringBootTest(classes = { ServiceConfiguration.class, RepositoryConfiguration.class })
 public abstract class BaseJpaDaoTestCase extends AbstractTransactionalJUnit4SpringContextTests {
 
 	@SuppressWarnings("hiding")

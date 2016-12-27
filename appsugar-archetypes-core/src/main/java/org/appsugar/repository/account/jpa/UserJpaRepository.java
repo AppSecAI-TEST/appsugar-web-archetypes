@@ -12,10 +12,6 @@ import org.springframework.data.jpa.repository.Query;
  * 2016年2月22日下午1:00:51
  */
 public interface UserJpaRepository extends JpaIdEntityRepository<User, UserCondition> {
-	/**
-	 * 根据名称查询用户
-	 */
-	public User findByLoginName(String name);
 
 	/**
 	 * 删除所有用户与这个角色的关系

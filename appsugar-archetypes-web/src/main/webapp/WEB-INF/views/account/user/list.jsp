@@ -28,7 +28,7 @@
 				<th><spring:message code="id" /></th>
 				<th><spring:message code="createdAt" /></th>
 				<th><spring:message code="name" /></th>
-				<th><spring:message code="loginName" /></th>
+				<th><spring:message code="phone" /></th>
 			</tr>
 		</thead>
 
@@ -38,7 +38,7 @@
 					<td>${user.id}</td>
 					<td><fmt:formatDate value="${user.createdAt}" pattern="yyyy-MM-dd HH:mm"/></td>
 					<td>${user.name}</td>
-					<td>${user.loginName}</td>
+					<td>${user.phone}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

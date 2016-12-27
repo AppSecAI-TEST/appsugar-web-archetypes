@@ -1,4 +1,4 @@
-package org.appsugar.common.security;
+package org.appsugar.controller.security;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -11,8 +11,10 @@ import com.google.common.collect.Maps;
  * 2016年3月2日上午10:30:09
  */
 public class Principal implements Serializable {
+	private static final long serialVersionUID = -5345180187912530107L;
+	public static final String PERMISSION_ATTRIBUTE_KEY = "permissions";
+	public static final String ROLE_ATTRIBUTE_KEY = "roles";
 
-	private static final long serialVersionUID = 882451104834391880L;
 	public final Long id;
 	public final String name;
 
@@ -27,13 +29,13 @@ public class Principal implements Serializable {
 		return attributes;
 	}
 
-	public void setAttribute(String key, Object value) {
-		attributes.put(key, value);
+	public void setAttribute(String name, Object value) {
+		attributes.put(name, value);
 	}
 
-	@SuppressWarnings("unchecked")
-	public <T> T getAttribute(String key) {
-		return (T) attributes.get(key);
+	public <T> T getAttribute(String name) {
+		return (T) attributes.get(name);
+
 	}
 
 	public Long getId() {

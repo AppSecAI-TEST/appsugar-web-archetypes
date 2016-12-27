@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
-
 <html>
 <head>
 <title><spring:message code="login"/></title>
@@ -13,7 +12,8 @@
 
 <body>
 	<div class="center">
-		<form id="loginForm" action="${ctx}/login" method="post" class="form-signin" autocomplete="off">
+		<form id="loginForm" action="${ctx}/login_callback" method="post" class="form-signin" autocomplete="off">
+			<input type="hidden" name="client_name" value="FormClient"/>
 			<input type="hidden"
 				id="rememberMe" name="rememberMe" value="rememberMe" tabindex="3" />
 			<h2 class="form-signin-heading">

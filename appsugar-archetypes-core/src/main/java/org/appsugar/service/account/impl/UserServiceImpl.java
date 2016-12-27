@@ -23,9 +23,4 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserCondition> imp
 		super();
 	}
 
-	@Override
-	public User getByLoginName(String loginName) {
-		return userRepository.findByLoginName(loginName);
-	}
-
 }

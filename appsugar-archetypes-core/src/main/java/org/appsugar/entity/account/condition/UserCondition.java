@@ -1,6 +1,7 @@
 package org.appsugar.entity.account.condition;
 
 import org.appsugar.bean.condition.LongIdEntityCondition;
+import org.appsugar.entity.account.Gender;
 
 /**
  * 
@@ -8,37 +9,42 @@ import org.appsugar.bean.condition.LongIdEntityCondition;
  * 2016年2月23日下午2:27:30
  */
 public class UserCondition extends LongIdEntityCondition {
+	/**手机号 start like**/
+	private String phone;
+	/**邮件 start like**/
+	private String email;
+	/**性别 eq**/
+	private Gender gender;
 
-	//名称 start like
-	private String name;
-	//登陆名称 eq
-	private String loginName;
-
-	public UserCondition() {
-		super();
+	public String getPhone() {
+		return phone;
 	}
 
-	public String getName() {
-		return name;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getEmail() {
+		return email;
 	}
 
-	public String getLoginName() {
-		return loginName;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("UserCondition [name=").append(name).append(", loginName=").append(loginName).append(", id=")
-				.append(id).append(", startAt=").append(startAt).append(", endAt=").append(endAt).append("]");
+		builder.append("UserCondition [phone=").append(phone).append(", email=").append(email).append(", gender=")
+				.append(gender).append("]");
 		return builder.toString();
 	}
 

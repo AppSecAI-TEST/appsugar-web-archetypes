@@ -5,8 +5,7 @@
 <br/><br/><br/>
 <div id="footer" class="container navbar-fixed-bottom">
 	<span class="col-sm-6 text-left">
-		App.Version | 你好， 
-		<shiro:principal property="name"/>
+		App.Version | 你好
 	</span>
 	<span class="col-sm-6 text-right">
 		Copyright &copy; 2016-2018 <a href="http://www.appsugar.org">appsugar.org</a>

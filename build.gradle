@@ -11,7 +11,8 @@ buildscript {
 		return profileObject
 	}
 	ext{
-		springBootVersion = "2.0.0.BUILD-SNAPSHOT"
+		//2.0.0.BUILD-SNAPSHOT
+		springBootVersion = "1.4.2.RELEASE"
 		springLoadedVersion = "1.2.6.RELEASE"
 		env = loadGroovyConfig("base")
 		env.putAll(loadGroovyConfig(System.getProperty("profile")))
@@ -175,7 +176,6 @@ project(":appsugar-archetypes-web"){
 		//spring repackager will pack it in executable jar or war but original not.
     	providedRuntime
 	}	
-	
 	sourceSets {
 	    test {
 	        resources {
@@ -201,7 +201,9 @@ project(":appsugar-archetypes-web"){
 		compile ("${env['jdbc.groupId']}:${env['jdbc.artifactId']}:${env['jdbc.version']}")
 		compile ("org.hibernate:hibernate-ehcache")
 		compile ("io.buji:buji-pac4j:2.0.3")
+		compile ("org.pac4j:pac4j-http:1.9.4")
 		compile ("org.pac4j:pac4j-cas:1.9.4")
+		compile ("org.pac4j:pac4j-oauth:1.9.4")
 		
 	}
 	processResources {

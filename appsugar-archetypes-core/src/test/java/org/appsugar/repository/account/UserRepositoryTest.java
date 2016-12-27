@@ -22,21 +22,11 @@ public class UserRepositoryTest extends BaseJpaDaoTestCase {
 	private UserJpaRepository repository;
 
 	@Test
-	public void testFindByLoginName() {
-		String loginName = "admin";
-		User user = repository.findByLoginName(loginName);
-		logger.debug("testFindByLoginName login name is {}  result is : {}", loginName, user);
-		Assert.assertNotNull("User not exist by login name " + loginName, user);
-	}
-
-	@Test
 	public void testFindByCondition() {
 		UserCondition condition = new UserCondition();
-		String name = "管理员";
 		condition.setId(-1l);
-		condition.setName(name);
 		List<User> userList = repository.findByCondition(condition);
-		logger.debug("testFindByCondition  name {}  result {}", name, userList);
+		logger.debug("testFindByCondition  result {}", userList);
 		Assert.assertTrue(CollectionUtils.isNotEmpty(userList));
 	}
 

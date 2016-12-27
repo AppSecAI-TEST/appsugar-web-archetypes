@@ -1,8 +1,8 @@
 package org.appsugar.domain;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
-import org.appsugar.common.security.ShiroUtils;
 
 /**
  * 菜单配置
@@ -85,7 +85,7 @@ public class MenuConfig {
 	 * 判断当前用户是否拥有权限查看该菜单
 	 */
 	public boolean isShow() {
-		Subject subject = ShiroUtils.getSubject();
+		Subject subject = SecurityUtils.getSubject();
 		if (StringUtils.isBlank(role) && StringUtils.isBlank(permission)) {
 			return true;
 		}

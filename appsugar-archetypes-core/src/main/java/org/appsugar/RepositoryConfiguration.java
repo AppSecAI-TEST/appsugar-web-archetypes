@@ -4,6 +4,7 @@ import org.appsugar.data.jpa.repository.JpaIdEntityRepositoryImpl;
 import org.appsugar.data.jpa.repository.querdsl.JpaQueryDslSpecificationPostProcessor;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableAsync;
 
@@ -14,6 +15,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  */
 @EnableAsync
 @SpringBootApplication
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableJpaRepositories(repositoryBaseClass = JpaIdEntityRepositoryImpl.class)
 public class RepositoryConfiguration {
 
