@@ -101,6 +101,7 @@ public class Pac4jRealm extends AuthorizingRealm {
 		p.setEmail(profile.getEmail());
 		p.setName(profile.getDisplayName());
 		p.setPictureUrl(profile.getPictureUrl());
+		account.setProfile(p);
 		return accountService.saveAccountIfNecessary(account);
 	}
 }

@@ -66,6 +66,7 @@ configure(subprojects) { project ->
 	
 	ext{
 		appsugarVersion = "2.2.3-SNAPSHOT"
+		appsugarSecurityVersion = "1.0.0-SNAPSHOT"
 		junitVersion = "4.12"
 		elApiVersion = "3.0.0"
 		shiroVersion = "1.3.2"
@@ -200,10 +201,9 @@ project(":appsugar-archetypes-web"){
 		compile ("javax.servlet:jstl:${jstlVersion}")
 		compile ("${env['jdbc.groupId']}:${env['jdbc.artifactId']}:${env['jdbc.version']}")
 		compile ("org.hibernate:hibernate-ehcache")
-		compile ("io.buji:buji-pac4j:2.0.3")
-		compile ("org.pac4j:pac4j-http:1.9.4")
-		compile ("org.pac4j:pac4j-cas:1.9.4")
-		compile ("org.pac4j:pac4j-oauth:1.9.4")
+		compile ("org.appsugar.security:appsugar-security-form:${appsugarSecurityVersion}")
+		compile ("org.appsugar.security:appsugar-security-cas:${appsugarSecurityVersion}")
+		compile ("org.appsugar.security:appsugar-security-cas-oauth2:${appsugarSecurityVersion}")
 		
 	}
 	processResources {

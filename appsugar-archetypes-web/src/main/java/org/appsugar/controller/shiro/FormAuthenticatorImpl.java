@@ -7,11 +7,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.appsugar.entity.account.Account;
 import org.appsugar.entity.account.AccountProfile;
 import org.appsugar.entity.account.AccountType;
+import org.appsugar.security.form.FormAuthenticator;
 import org.appsugar.service.account.AccountService;
 import org.pac4j.core.context.Pac4jConstants;
 import org.pac4j.core.context.WebContext;
 import org.pac4j.core.credentials.UsernamePasswordCredentials;
-import org.pac4j.core.credentials.authenticator.AbstractUsernamePasswordAuthenticator;
 import org.pac4j.core.exception.CredentialsException;
 import org.pac4j.core.exception.HttpAction;
 import org.pac4j.core.profile.CommonProfile;
@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 import com.google.common.collect.Maps;
 
 @Component
-public class FormAuthenticator extends AbstractUsernamePasswordAuthenticator {
+public class FormAuthenticatorImpl extends FormAuthenticator {
 
 	public static final String rememberMeKeyName = "rememberMe";
 
