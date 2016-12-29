@@ -29,8 +29,10 @@
 				tabindex="1" /> 
 			<input type="password" id="password" name="password" class="form-control" required placeholder="<spring:message code="password"/>"
 				tabindex="2" /> 
-			<label class="text" for="rememberMe">(admin/admin)
-			</label> <input id="submit_btn" class="btn btn-lg btn-primary btn-block" type="submit" value="<spring:message code="login"/>" tabindex="4" /> 
+			<label class="text">
+				<a href="${ctx}/login/cas">CAS</a>----<a href="${ctx}/login/oauth2">OAUTH2</a>
+			</label> 
+			<input id="submit_btn" class="btn btn-lg btn-primary btn-block" type="submit" value="<spring:message code="login"/>" tabindex="4" /> 
 		</form>
 	</div>
 </body>

@@ -11,5 +11,5 @@ public enum AccountType {
 	//表单
 	FORM,
 	//自定义cas oauth2
-	CASOAUTHWRAPPER;
+	CASOAUTH2;
 }

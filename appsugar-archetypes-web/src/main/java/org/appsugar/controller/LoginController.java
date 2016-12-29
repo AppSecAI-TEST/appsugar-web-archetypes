@@ -1,7 +1,7 @@
 package org.appsugar.controller;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,12 +16,15 @@ public class LoginController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String login() {
+		if (SecurityUtils.getSubject().isAuthenticated()) {
+			return loginAny();
+		}
 		return "/account/login";
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
-	public String fail(Model model) {
-		model.addAttribute("login_error", true);
-		return "/account/login";
+	@RequestMapping("/*")
+	public String loginAny() {
+		return "redirect:/main";
 	}
+
 }
