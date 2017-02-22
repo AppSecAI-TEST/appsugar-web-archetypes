@@ -9,7 +9,7 @@
 			jdbc{
 				groupId = "com.h2database"
 				artifactId = "h2"
-				version = "1.4.191"
+				version = "1.4.193"
 				url = "jdbc:h2:~/tmp/${db.name}"
 				driverClassName = "org.h2.Driver"
 				username = "sa"

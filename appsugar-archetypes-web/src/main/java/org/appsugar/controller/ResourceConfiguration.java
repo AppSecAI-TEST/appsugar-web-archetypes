@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  * 资源配置
  * @author NewYoung

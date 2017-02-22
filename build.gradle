@@ -36,19 +36,12 @@ buildscript {
 		classpath ("org.springframework:springloaded:${springLoadedVersion}")
 		
 	}
-	configurations.all {
-        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-            if (details.requested.group == 'org.hibernate') {
-                details.useVersion '4.3.11.Final'
-            }
-        }
-    }
 }
 
 plugins {
 	//gradle release -Prelease.useAutomaticVersion=true -Prelease.releaseVersion=1.0.0-release -Prelease.newVersion=1.0.1-SNAPSHOT
     id 'net.researchgate.release' version '2.4.0'
-    id "com.ewerk.gradle.plugins.querydsl" version "1.0.7" apply  false
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.8" apply  false
 }
 apply plugin: 'java'
 
