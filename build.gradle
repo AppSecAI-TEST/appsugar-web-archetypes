@@ -12,7 +12,7 @@ buildscript {
 	}
 	ext{
 		//2.0.0.BUILD-SNAPSHOT
-		springBootVersion = "1.5.1.RELEASE"
+		springBootVersion = "1.5.2.RELEASE"
 		springLoadedVersion = "1.2.6.RELEASE"
 		env = loadGroovyConfig("base")
 		env.putAll(loadGroovyConfig(System.getProperty("profile")))
@@ -40,7 +40,7 @@ buildscript {
 
 plugins {
 	//gradle release -Prelease.useAutomaticVersion=true -Prelease.releaseVersion=1.0.0-release -Prelease.newVersion=1.0.1-SNAPSHOT
-    id 'net.researchgate.release' version '2.4.0'
+    id 'net.researchgate.release' version '2.5.0'
     id "com.ewerk.gradle.plugins.querydsl" version "1.0.8" apply  false
 }
 apply plugin: 'java'
