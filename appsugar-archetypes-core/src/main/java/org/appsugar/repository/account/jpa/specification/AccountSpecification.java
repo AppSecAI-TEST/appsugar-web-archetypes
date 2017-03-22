@@ -31,7 +31,7 @@ public class AccountSpecification extends JpaQueryDslSpecification<AccountCondit
 		}
 		AccountType accountType = condition.getAccountType();
 		if (Objects.nonNull(accountType)) {
-			root.type.eq(accountType);
+			pc.add(root.type.eq(accountType));
 		}
 	}
 
