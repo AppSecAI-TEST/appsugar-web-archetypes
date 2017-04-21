@@ -35,7 +35,7 @@ buildscript {
 
 plugins {
 	//gradle release -Prelease.useAutomaticVersion=true -Prelease.releaseVersion=1.0.0-release -Prelease.newVersion=1.0.1-SNAPSHOT
-    id "net.researchgate.release" version "2.5.0"
+    id "net.researchgate.release" version "2.6.0"
     id "org.springframework.boot" version "1.5.2.RELEASE" apply  false
     id "com.ewerk.gradle.plugins.querydsl" version "1.0.8" apply  false
 }
@@ -66,7 +66,7 @@ configure(subprojects) { project ->
 		jqueryVersion = "2.2.3"
 		bootstrapVersion = "3.3.6"
 		logbackVersion = "1.1.7"
-		queryDslVersion = '4.1.4'
+		queryDslVersion = "4.1.4"
 		modelMapperVersion = "0.7.7"
 	}
 	compileJava.options.encoding = env["encoding"]
@@ -81,7 +81,7 @@ configure(subprojects) { project ->
 	}
 	processTestResources {
 		from(sourceSets.test.resources.srcDirs) {
-			include '**/*.properties'
+			include "**/*.properties"
 			filter(org.apache.tools.ant.filters.ReplaceTokens,tokens: env)
 		}
 	}
@@ -102,13 +102,11 @@ project(":appsugar-archetypes-core"){
 	sourceSets {
 	    generated {
 	        java {
-	            srcDirs = ['src/main/generated']
+	            srcDirs = ["src/main/generated"]
 	        }
 	    }
 	}
 	
-
-
 	dependencies{
 		compile ("org.appsugar:appsugar-data-jpa:${appsugarVersion}")
 		compile ("ch.qos.logback:logback-classic:${logbackVersion}")
@@ -141,7 +139,7 @@ project(":appsugar-archetypes-core"){
 		dataTypeFactoryName  = env["test.dbunit.dataTypeFactoryName"]
 	}
 	
-	task populateTestDb(type: com.ferigma.gradle.dbunit.tasks.OperationTask,dependsOn : 'generateSchema') {
+	task populateTestDb(type: com.ferigma.gradle.dbunit.tasks.OperationTask,dependsOn : "generateSchema") {
 		sources = [
 				new com.ferigma.gradle.dbunit.tasks.source.OperationSource(
 						transaction: true, type:env["test.dbunit.operationType"], format: "flat",
@@ -160,7 +158,7 @@ project(":appsugar-archetypes-core"){
 
 
 project(":appsugar-archetypes-web"){
-	apply plugin: 'war'
+	apply plugin: "war"
 	apply plugin: "org.springframework.boot"
 	
 	configurations {
@@ -204,13 +202,13 @@ project(":appsugar-archetypes-web"){
 		doLast{
 			ant.delete() {
 		        fileset(dir: "${processResources.destinationDir}") {
-		            include(name: '**/ApplicationResources*.properties')
+		            include(name: "**/ApplicationResources*.properties")
 		        }
 	    	}
-		    ant.native2ascii(src: 'src/main/resources',
+		    ant.native2ascii(src: "src/main/resources",
 		            dest: "${processResources.destinationDir}",
-		            includes: '**/ApplicationResources*.properties',
-		            encoding: 'UTF-8')
+		            includes: "**/ApplicationResources*.properties",
+		            encoding: "UTF-8")
 		}
 	}
 	springBoot {
@@ -220,7 +218,7 @@ project(":appsugar-archetypes-web"){
 }
 
 project(":appsugar-archetypes-api"){
-	apply plugin: 'war'
+	apply plugin: "war"
 	apply plugin: "org.springframework.boot"
 	
 	configurations {
@@ -250,22 +248,22 @@ project(":appsugar-archetypes-api"){
 	}
 	processResources {
 		from(sourceSets.main.resources.srcDirs) {
-			include '*.properties'
+			include "*.properties"
 			filter(org.apache.tools.ant.filters.ReplaceTokens,tokens: env)
 		}
 		doLast{
 			ant.delete() {
 		        fileset(dir: "${processResources.destinationDir}") {
-		            include(name: '**/ApplicationResources*.properties')
+		            include(name: "**/ApplicationResources*.properties")
 		        }
 	    	}
-		    ant.native2ascii(src: 'src/main/resources',
+		    ant.native2ascii(src: "src/main/resources",
 		            dest: "${processResources.destinationDir}",
-		            includes: '**/ApplicationResources*.properties',
-		            encoding: 'UTF-8')
+		            includes: "**/ApplicationResources*.properties",
+		            encoding: "UTF-8")
 		}
 	}
-	test.dependsOn  ':appsugar-archetypes-core:test'
+	test.dependsOn  ":appsugar-archetypes-core:test"
 	springBoot {
     	executable = true
 	}
