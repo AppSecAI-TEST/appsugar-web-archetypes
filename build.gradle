@@ -11,7 +11,6 @@ buildscript {
 		return profileObject
 	}
 	ext{
-		springBootVersion = "1.5.2.RELEASE"
 		springLoadedVersion = "1.2.6.RELEASE"
 		env = loadGroovyConfig("base")
 		env.putAll(loadGroovyConfig(System.getProperty("profile")))
@@ -36,14 +35,15 @@ buildscript {
 plugins {
 	//gradle release -Prelease.useAutomaticVersion=true -Prelease.releaseVersion=1.0.0-release -Prelease.newVersion=1.0.1-SNAPSHOT
     id "net.researchgate.release" version "2.6.0"
-    id "org.springframework.boot" version "1.5.2.RELEASE" apply  false
-    id "com.ewerk.gradle.plugins.querydsl" version "1.0.8" apply  false
+    id "org.hidetake.ssh" version "2.9.0"
+    id "org.springframework.boot" version "1.5.3.RELEASE" apply  false
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.9" apply  false
 }
 apply plugin: 'java'
 
 configure(subprojects) { project ->
 	apply plugin: "java"
-	
+	apply plugin: "org.springframework.boot"
 	repositories {
 		maven{url "http://maven.aliyun.com/nexus/content/groups/public"}
 		mavenCentral()
@@ -65,7 +65,6 @@ configure(subprojects) { project ->
 		jqueryValidationVersion = "1.15.0"
 		jqueryVersion = "2.2.3"
 		bootstrapVersion = "3.3.6"
-		logbackVersion = "1.1.7"
 		queryDslVersion = "4.1.4"
 		modelMapperVersion = "0.7.7"
 	}
@@ -76,7 +75,7 @@ configure(subprojects) { project ->
 		testCompile ("junit:junit:${junitVersion}")
 		testCompile ("javax.el:javax.el-api:${elApiVersion}")
 		testCompile ("${env['test.jdbc.groupId']}:${env['test.jdbc.artifactId']}:${env['test.jdbc.version']}")
-		testCompile ("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+		testCompile ("org.springframework.boot:spring-boot-starter-test")
 		testCompile ("org.appsugar:appsugar-test:${appsugarVersion}")
 	}
 	processTestResources {
@@ -92,6 +91,7 @@ configure(subprojects) { project ->
 			showStandardStreams  = true
 		}
 	}
+	bootRepackage.enabled = false
 }
 
 
@@ -99,6 +99,7 @@ project(":appsugar-archetypes-core"){
 	apply plugin: "jpa-schema-generate"
 	apply plugin: "dbunit"
 	apply plugin: "com.ewerk.gradle.plugins.querydsl" 
+	
 	sourceSets {
 	    generated {
 	        java {
@@ -109,13 +110,13 @@ project(":appsugar-archetypes-core"){
 	
 	dependencies{
 		compile ("org.appsugar:appsugar-data-jpa:${appsugarVersion}")
-		compile ("ch.qos.logback:logback-classic:${logbackVersion}")
-		compile ("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
-		compile ("org.springframework.boot:spring-boot-starter-validation:${springBootVersion}")
+		compile ("ch.qos.logback:logback-classic")
 		compile ("org.appsugar:appsugar-service:${appsugarVersion}")
 		compile ("org.apache.shiro:shiro-spring:${shiroVersion}")
 		compile ("org.apache.shiro:shiro-ehcache:${shiroVersion}")
-		compile ("org.springframework.boot:spring-boot-starter-aop:${springBootVersion}")
+		compile ("org.springframework.boot:spring-boot-starter-data-jpa")
+		compile ("org.springframework.boot:spring-boot-starter-validation")
+		compile ("org.springframework.boot:spring-boot-starter-aop")
 		compile ("com.querydsl:querydsl-jpa:${queryDslVersion}")
 	}
 	
@@ -159,7 +160,6 @@ project(":appsugar-archetypes-core"){
 
 project(":appsugar-archetypes-web"){
 	apply plugin: "war"
-	apply plugin: "org.springframework.boot"
 	
 	configurations {
 		//spring repackager will pack it in executable jar or war but original not.
@@ -178,8 +178,8 @@ project(":appsugar-archetypes-web"){
 	dependencies{
 		compile project(":appsugar-archetypes-core")
 		compile ("org.apache.shiro:shiro-web:${shiroVersion}")
-		compile ("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
-		providedRuntime("org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}")
+		compile ("org.springframework.boot:spring-boot-starter-web")
+		providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 		providedRuntime ("org.apache.tomcat.embed:tomcat-embed-jasper")
 		compile ("org.webjars:bootstrap:${bootstrapVersion}")
 		compile ("org.webjars:jquery:${jqueryVersion}")
@@ -211,15 +211,15 @@ project(":appsugar-archetypes-web"){
 		            encoding: "UTF-8")
 		}
 	}
+	bootRepackage.enabled = true
 	springBoot {
+		//execute without java -jar  example  $  ./api.war
     	executable = true
 	}
-	
 }
 
 project(":appsugar-archetypes-api"){
 	apply plugin: "war"
-	apply plugin: "org.springframework.boot"
 	
 	configurations {
 		//spring repackager will pack it in executable jar or war but original not.
@@ -239,8 +239,8 @@ project(":appsugar-archetypes-api"){
 	dependencies{
 		compile project(":appsugar-archetypes-core")
 		compile ("org.apache.shiro:shiro-web:${shiroVersion}")
-		compile ("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
-		providedRuntime("org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}")
+		compile ("org.springframework.boot:spring-boot-starter-web")
+		providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 		compile ("${env['jdbc.groupId']}:${env['jdbc.artifactId']}:${env['jdbc.version']}")
 		compile ("org.hibernate:hibernate-ehcache")
 		compile ("org.modelmapper:modelmapper:${modelMapperVersion}")
@@ -264,7 +264,11 @@ project(":appsugar-archetypes-api"){
 		}
 	}
 	test.dependsOn  ":appsugar-archetypes-core:test"
+	bootRepackage.enabled = true
 	springBoot {
     	executable = true
+	}
+	ssh.settings {
+	  knownHosts = allowAnyHosts
 	}
 }
