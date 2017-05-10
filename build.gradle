@@ -216,7 +216,6 @@ project(":appsugar-archetypes-web"){
 
 project(":appsugar-archetypes-api"){
 	apply plugin: "war"
-	
 	configurations {
 		//spring repackager will pack it in executable jar or war but original not.
     	providedRuntime
