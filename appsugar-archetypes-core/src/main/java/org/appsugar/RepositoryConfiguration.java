@@ -23,7 +23,7 @@ public class RepositoryConfiguration {
 	 * repository 增强
 	 */
 	@Bean
-	public JpaQueryDslSpecificationPostProcessor reposiotryAdvance() {
+	public static JpaQueryDslSpecificationPostProcessor reposiotryAdvance() {
 		return new JpaQueryDslSpecificationPostProcessor();
 	}
 
