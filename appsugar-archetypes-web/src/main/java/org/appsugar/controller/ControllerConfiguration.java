@@ -13,11 +13,9 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.appsugar.controller.shiro.Pac4jRealm;
 import org.sitemesh.config.ConfigurableSiteMeshFilter;
-import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -89,17 +87,6 @@ public class ControllerConfiguration extends WebMvcConfigurerAdapter {
 		resolver.setPrefix(viewPrefix);
 		resolver.setSuffix(viewSuffix);
 		return resolver;
-	}
-
-	/**
-	 * 保证shiro验证
-	 */
-	@DependsOn("lifecycleBeanPostProcessor")
-	@Bean
-	public DefaultAdvisorAutoProxyCreator autoProxyCreator() {
-		DefaultAdvisorAutoProxyCreator creator = new DefaultAdvisorAutoProxyCreator();
-		creator.setProxyTargetClass(true);
-		return creator;
 	}
 
 	/**
