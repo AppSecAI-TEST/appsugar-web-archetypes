@@ -106,7 +106,6 @@ project(":appsugar-archetypes-core"){
 	
 	dependencies{
 		compile ("org.appsugar:appsugar-data-jpa:${appsugarVersion}")
-		compile ("ch.qos.logback:logback-classic")
 		compile ("org.appsugar:appsugar-service:${appsugarVersion}")
 		compile ("org.apache.shiro:shiro-spring:${shiroVersion}")
 		compile ("org.apache.shiro:shiro-ehcache:${shiroVersion}")
@@ -120,7 +119,7 @@ project(":appsugar-archetypes-core"){
 		vendor = "hibernate"
 		databaseAction = "drop-and-create"
 		scriptAction = "drop-and-create"
-		packageToScan = ["org.appsugar"]
+		packageToScan = [project.group]
 		jdbcDriver = env["test.jdbc.driverClassName"]
 		jdbcUrl = env["test.jdbc.url"]
 		jdbcUser = env["test.jdbc.username"]
