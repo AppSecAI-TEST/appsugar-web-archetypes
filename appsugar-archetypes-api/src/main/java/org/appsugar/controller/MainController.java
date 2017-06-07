@@ -9,6 +9,7 @@ import org.appsugar.controller.domain.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +24,7 @@ import com.google.common.base.Throwables;
  */
 @Controller
 @RequestMapping
+@ControllerAdvice
 public class MainController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
@@ -32,7 +34,7 @@ public class MainController {
 	 */
 	@RequestMapping(value = "login")
 	@ResponseBody
-	public Response login(@RequestParam("username") String username, @RequestParam("password") String password,
+	public Response<Void> login(@RequestParam("username") String username, @RequestParam("password") String password,
 			@RequestParam(defaultValue = "false", required = false) Boolean rememberMe) throws AuthenticationException {
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);
@@ -49,7 +51,7 @@ public class MainController {
 	 */
 	@RequestMapping(value = "loginout")
 	@ResponseBody
-	public Response loginout() {
+	public Response<Void> loginout() {
 		Subject subject = SecurityUtils.getSubject();
 		subject.logout();
 		return Response.SUCCESS;
@@ -60,7 +62,7 @@ public class MainController {
 	 */
 	@ExceptionHandler(AuthorizationException.class)
 	@ResponseBody
-	public Response onAuthorization() {
+	public Response<Void> onAuthorization() {
 		return Response.UN_AUTHORIZATION;
 	}
 
@@ -69,8 +71,8 @@ public class MainController {
 	 */
 	@ExceptionHandler(Exception.class)
 	@ResponseBody
-	public Response onException(Exception ex) {
-		logger.error("internal exceptioin ", ex);
+	public Response<Void> onException(Exception ex) {
+		logger.error("internal exception ", ex);
 		return Response.error(Throwables.getRootCause(ex).getMessage());
 	}
 }

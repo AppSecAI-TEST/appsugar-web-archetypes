@@ -35,7 +35,7 @@ public class UserController extends BaseController {
 	 */
 	@RequestMapping("list")
 	@ResponseBody
-	public Response list(UserCondition condition, Pageable pageable) {
+	public Response<Page<SimpleUserDto>> list(UserCondition condition, Pageable pageable) {
 		Page<User> page = userService.getByCondition(condition, pageable);
 		List<SimpleUserDto> content = page.getContent().stream().map(e -> mapper.map(e, SimpleUserDto.class))
 				.collect(Collectors.toList());
