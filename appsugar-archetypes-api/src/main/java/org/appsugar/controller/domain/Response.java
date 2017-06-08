@@ -26,7 +26,7 @@ public class Response<T> {
 	//操作成功
 	public static final Response<Void> SUCCESS = new Response<>(SUCCESS_CODE, SUCCESS_MSG);
 	//操作失败
-	public static final Response<Void> ERROR = new Response<>(ERROR_CODE, ERROR_MSG);
+	public static final Response<?> ERROR = new Response<>(ERROR_CODE, ERROR_MSG);
 	//用户未认证
 	public static final Response<Void> UN_AUTHENTICATION = new Response<>(UN_AUTHENTICATION_CODE,
 			UN_AUTHENTICATION_MSG);
@@ -61,14 +61,14 @@ public class Response<T> {
 	/**
 	 * 构建一个通用失败响应
 	 */
-	public static Response<Void> error(String msg) {
+	public static <T> Response<T> error(String msg) {
 		return new Response<>(ERROR_CODE, msg);
 	}
 
 	/**
 	 * 构建一个失败响应
 	 */
-	public static Response<Void> error(int code, String msg) {
+	public static <T> Response<T> error(int code, String msg) {
 		return new Response<>(code, msg);
 	}
 
