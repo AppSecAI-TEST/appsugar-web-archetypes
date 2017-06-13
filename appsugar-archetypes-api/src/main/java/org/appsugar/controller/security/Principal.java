@@ -33,8 +33,9 @@ public class Principal implements Serializable {
 		attributes.put(name, value);
 	}
 
-	public <T> T getAttribute(String name) {
-		return (T) attributes.get(name);
+	@SuppressWarnings("unchecked")
+	public <T> T getAttribute(String key) {
+		return (T) attributes.get(key);
 
 	}
 

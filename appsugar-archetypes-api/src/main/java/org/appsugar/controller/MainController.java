@@ -3,19 +3,13 @@ package org.appsugar.controller;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.subject.Subject;
 import org.appsugar.controller.domain.Response;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.google.common.base.Throwables;
 
 /**
  * 登录控制器
@@ -26,8 +20,6 @@ import com.google.common.base.Throwables;
 @RequestMapping
 @ControllerAdvice
 public class MainController {
-
-	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
 	/**
 	 * 用户登录
@@ -55,24 +47,5 @@ public class MainController {
 		Subject subject = SecurityUtils.getSubject();
 		subject.logout();
 		return Response.SUCCESS;
-	}
-
-	/**
-	 * 用户未授权
-	 */
-	@ExceptionHandler(AuthorizationException.class)
-	@ResponseBody
-	public Response<Void> onAuthorization() {
-		return Response.UN_AUTHORIZATION;
-	}
-
-	/**
-	 * 服务器内异常
-	 */
-	@ExceptionHandler(Exception.class)
-	@ResponseBody
-	public Response<Void> onException(Exception ex) {
-		logger.error("internal exception ", ex);
-		return Response.error(Throwables.getRootCause(ex).getMessage());
 	}
 }

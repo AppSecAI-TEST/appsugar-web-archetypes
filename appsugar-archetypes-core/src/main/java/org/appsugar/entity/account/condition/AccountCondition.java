@@ -9,6 +9,7 @@ import org.appsugar.entity.account.AccountType;
  * 2016年12月27日上午11:10:03
  */
 public class AccountCondition extends LongIdEntityCondition {
+	private static final long serialVersionUID = -1703091422137097882L;
 	/**键 eq**/
 	private String key;
 	/**秘钥 eq**/

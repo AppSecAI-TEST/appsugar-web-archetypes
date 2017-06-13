@@ -9,6 +9,7 @@ import org.appsugar.entity.account.Gender;
  * 2016年2月23日下午2:27:30
  */
 public class UserCondition extends LongIdEntityCondition {
+	private static final long serialVersionUID = 347137554444347578L;
 	/**手机号 start like**/
 	private String phone;
 	/**邮件 start like**/

@@ -3,6 +3,7 @@ package org.appsugar.entity.account.condition;
 import org.appsugar.bean.condition.LongIdEntityCondition;
 
 public class RoleCondition extends LongIdEntityCondition {
+	private static final long serialVersionUID = -98901716610363930L;
 	//角色名 start like
 	private String name;
 	//角色标题 start like

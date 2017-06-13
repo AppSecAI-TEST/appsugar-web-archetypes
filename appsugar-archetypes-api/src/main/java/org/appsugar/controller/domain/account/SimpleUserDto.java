@@ -8,6 +8,7 @@ import org.appsugar.controller.domain.BaseEntityDto;
  * 2016年11月30日下午4:15:21
  */
 public class SimpleUserDto extends BaseEntityDto {
+	private static final long serialVersionUID = 6876841031879577862L;
 	private String name;
 	private String phone;
 	private String email;
