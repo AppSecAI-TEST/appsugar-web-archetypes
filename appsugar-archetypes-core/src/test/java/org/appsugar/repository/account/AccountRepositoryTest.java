@@ -41,4 +41,13 @@ public class AccountRepositoryTest extends BaseJpaDaoTestCase {
 		logger.debug("testFindByTypeAndKey  type is {} key is {} result is {}", type, key, account);
 		Assert.assertNotNull(account);
 	}
+
+	@Test
+	public void testUpdateSecretConcatWith() {
+		String suffix = "iloveu";
+		Long id = -1L;
+		repository.updateSecretConcatWith(id, suffix);
+		Account account = repository.findOne(id);
+		Assert.assertTrue(account.getSecret().endsWith(suffix));
+	}
 }

@@ -4,6 +4,8 @@ import org.appsugar.data.jpa.repository.JpaIdEntityRepository;
 import org.appsugar.entity.account.Account;
 import org.appsugar.entity.account.AccountType;
 import org.appsugar.entity.account.condition.AccountCondition;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  * 用户账户数据访问接口
@@ -17,4 +19,13 @@ public interface AccountRepository extends JpaIdEntityRepository<Account, Accoun
 	 * 2016年12月27日下午12:52:42
 	 */
 	public Account findByTypeAndKey(AccountType type, String key);
+
+	/**
+	 * 密钥添加后缀
+	 * @author NewYoung
+	 * 2017年6月22日下午5:05:12
+	 */
+	@Modifying
+	@Query("update Account a set a.secret=concat(a.secret,?2) where id = ?1")
+	public void updateSecretConcatWith(Long id, String suffix);
 }

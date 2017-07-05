@@ -50,7 +50,7 @@ configure(subprojects) { project ->
 		maven{url "http://nexus.ggxueche.cn/nexus/content/groups/public/"}
 	}
 	ext{
-		appsugarVersion = "2.2.8.RELEASE"
+		appsugarVersion = "2.4.0-SNAPSHOT"
 		appsugarSecurityVersion = "1.0.0.RELEASE"
 		junitVersion = "4.12"
 		elApiVersion = "3.0.0"
