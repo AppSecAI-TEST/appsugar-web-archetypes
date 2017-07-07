@@ -2,9 +2,7 @@ package org.appsugar.controller.shiro;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import org.appsugar.bean.entity.LongIdEntity;
 import org.appsugar.entity.account.Account;
 
 /**
@@ -29,13 +27,4 @@ public class Principal implements Serializable {
 	public void setAccountList(List<Account> accountList) {
 		this.accountList = accountList;
 	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Principal [accountList=")
-				.append(accountList.stream().map(LongIdEntity::getId).collect(Collectors.toList())).append("]");
-		return builder.toString();
-	}
-
 }

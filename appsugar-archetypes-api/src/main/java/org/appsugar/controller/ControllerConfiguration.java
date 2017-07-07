@@ -11,9 +11,10 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.appsugar.controller.security.ShiroRealm;
 import org.modelmapper.ModelMapper;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
@@ -29,7 +30,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @author NewYoung
  * 2016年6月25日上午10:23:54
  */
-@SpringBootApplication
+@EnableAutoConfiguration
+@ComponentScan
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableWebMvc
 public class ControllerConfiguration extends WebMvcConfigurerAdapter {

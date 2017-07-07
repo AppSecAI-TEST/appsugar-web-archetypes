@@ -55,7 +55,8 @@ public class Pac4jRealm extends AuthorizingRealm {
 			throws AuthenticationException {
 		final Pac4jToken token = (Pac4jToken) authenticationToken;
 		final LinkedHashMap<String, CommonProfile> profiles = token.getProfiles();
-		List<Account> accountList = profiles.values().stream().map(this::makeSureProfile).collect(Collectors.toList());
+		List<Account> accountList = profiles.values().stream().map(this::makeSureProfile)
+				.filter(java.util.Objects::nonNull).collect(Collectors.toList());
 		final Principal principal = new Principal(accountList);
 		final PrincipalCollection principalCollection = new SimplePrincipalCollection(principal, getName());
 		return new SimpleAuthenticationInfo(principalCollection, profiles.hashCode());
@@ -66,7 +67,8 @@ public class Pac4jRealm extends AuthorizingRealm {
 		final SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
 		Principal principal = principals.oneByType(Principal.class);
 		List<Account> accountList = principal.getAccountList();
-		Optional<User> matchedUser = accountList.stream().map(Account::getUser).findFirst();
+		Optional<User> matchedUser = accountList.stream().filter(java.util.Objects::nonNull).map(Account::getUser)
+				.findFirst();
 		if (!matchedUser.isPresent()) {
 			logger.warn("User not found in account {}", accountList);
 			return simpleAuthorizationInfo;

@@ -13,12 +13,13 @@ import org.appsugar.entity.account.condition.UserCondition;
 import org.appsugar.service.account.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/account/user")
+@ResponseBody
 public class UserController extends BaseController {
 
 	@Autowired
@@ -34,7 +35,6 @@ public class UserController extends BaseController {
 	 * 2016年11月30日下午4:21:04
 	 */
 	@RequestMapping("list")
-	@ResponseBody
 	public Response<Page<SimpleUserDto>> list(UserCondition condition, Pageable pageable) {
 		Page<User> page = userService.getByCondition(condition, pageable);
 		List<SimpleUserDto> content = page.getContent().stream().map(e -> mapper.map(e, SimpleUserDto.class))

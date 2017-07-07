@@ -1,8 +1,8 @@
 package org.appsugar;
 
 import org.appsugar.controller.ControllerConfiguration;
-import org.appsugar.controller.ResourceConfiguration;
-import org.appsugar.controller.SecurityConfiguration;
+import org.appsugar.repository.RepositoryConfiguration;
+import org.appsugar.service.ServiceConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
@@ -24,7 +24,7 @@ public class Application extends SpringBootServletInitializer {
 	}
 
 	public static Object[] getResources() {
-		return new Object[] { ControllerConfiguration.class, SecurityConfiguration.class, ResourceConfiguration.class,
-				ServiceConfiguration.class, RepositoryConfiguration.class };
+		return new Object[] { ControllerConfiguration.class, ServiceConfiguration.class,
+				RepositoryConfiguration.class };
 	}
 }

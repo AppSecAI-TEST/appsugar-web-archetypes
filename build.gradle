@@ -266,3 +266,10 @@ project(":appsugar-archetypes-api"){
 	  knownHosts = allowAnyHosts
 	}
 }
+
+project(":appsugar-archetypes-api-faster"){
+	dependencies{
+		compile ("org.springframework.boot:spring-boot-starter-data-jpa")
+		compile("org.springframework.boot:spring-boot-starter-web")
+	}
+}

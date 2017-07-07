@@ -5,27 +5,25 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.appsugar.controller.domain.Response;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 登录控制器
  * @author NewYoung
  * 2016年3月2日下午12:02:37
  */
-@Controller
+@RestController
+@ResponseBody
 @RequestMapping
-@ControllerAdvice
 public class MainController {
 
 	/**
 	 * 用户登录
 	 */
 	@RequestMapping(value = "login")
-	@ResponseBody
 	public Response<Void> login(@RequestParam("username") String username, @RequestParam("password") String password,
 			@RequestParam(defaultValue = "false", required = false) Boolean rememberMe) throws AuthenticationException {
 		Subject subject = SecurityUtils.getSubject();
@@ -42,7 +40,6 @@ public class MainController {
 	 * 用户登出
 	 */
 	@RequestMapping(value = "loginout")
-	@ResponseBody
 	public Response<Void> loginout() {
 		Subject subject = SecurityUtils.getSubject();
 		subject.logout();

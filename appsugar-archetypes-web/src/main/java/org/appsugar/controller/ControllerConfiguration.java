@@ -13,9 +13,10 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.appsugar.controller.shiro.Pac4jRealm;
 import org.sitemesh.config.ConfigurableSiteMeshFilter;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -36,7 +37,8 @@ import ro.isdc.wro.http.WroFilter;
  * @author NewYoung
  * 2016年6月25日上午10:23:54
  */
-@SpringBootApplication
+@EnableAutoConfiguration
+@ComponentScan
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableWebMvc
 public class ControllerConfiguration extends WebMvcConfigurerAdapter {
