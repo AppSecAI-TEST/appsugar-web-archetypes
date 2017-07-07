@@ -1,12 +1,14 @@
 package org.appsugar.controller;
 
 import java.util.Arrays;
+import java.util.Base64;
 
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.appsugar.controller.security.ShiroRealm;
 import org.modelmapper.ModelMapper;
@@ -146,6 +148,10 @@ public class ControllerConfiguration extends WebMvcConfigurerAdapter {
 		DefaultWebSecurityManager stm = new DefaultWebSecurityManager();
 		stm.setRealms(Arrays.asList(shiroRealm));
 		stm.setCacheManager(shiroCacheManager);
+		String cipherKey = "kPH+bIxk5D2deZiIxcaaaA==";
+		CookieRememberMeManager crmm = new CookieRememberMeManager();
+		crmm.setCipherKey(Base64.getDecoder().decode(cipherKey));
+		stm.setRememberMeManager(crmm);
 		return stm;
 	}
 }

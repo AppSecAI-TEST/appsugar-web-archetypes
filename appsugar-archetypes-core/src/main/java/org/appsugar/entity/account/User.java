@@ -13,7 +13,6 @@ import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.appsugar.bean.entity.LongIdEntity;
@@ -42,8 +41,6 @@ public class User extends LongIdEntity {
 	private String email;
 	/**性别**/
 	private Gender gender = Gender.UNSPECIFIED;
-	/**账户登录信息**/
-	private List<Account> accountList;
 	/**角色**/
 	private List<Role> roleList;
 	/**权限**/
@@ -101,15 +98,6 @@ public class User extends LongIdEntity {
 
 	public void setPermissionList(List<String> permissionList) {
 		this.permissionList = permissionList;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = Account._user)
-	public List<Account> getAccountList() {
-		return accountList;
-	}
-
-	public void setAccountList(List<Account> accountList) {
-		this.accountList = accountList;
 	}
 
 	@Override

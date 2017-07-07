@@ -2,7 +2,6 @@ package org.appsugar.controller.shiro;
 
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.shiro.authc.AuthenticationException;
@@ -55,9 +54,8 @@ public class Pac4jRealm extends AuthorizingRealm {
 			throws AuthenticationException {
 		final Pac4jToken token = (Pac4jToken) authenticationToken;
 		final LinkedHashMap<String, CommonProfile> profiles = token.getProfiles();
-		List<Account> accountList = profiles.values().stream().map(this::makeSureProfile)
-				.filter(java.util.Objects::nonNull).collect(Collectors.toList());
-		final Principal principal = new Principal(accountList);
+		List<Account> accountList = profiles.values().stream().map(this::makeSureProfile).collect(Collectors.toList());
+		final Principal principal = new Principal(accountList.get(0).getUser().getId());
 		final PrincipalCollection principalCollection = new SimplePrincipalCollection(principal, getName());
 		return new SimpleAuthenticationInfo(principalCollection, profiles.hashCode());
 	}
@@ -66,14 +64,7 @@ public class Pac4jRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(final PrincipalCollection principals) {
 		final SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
 		Principal principal = principals.oneByType(Principal.class);
-		List<Account> accountList = principal.getAccountList();
-		Optional<User> matchedUser = accountList.stream().filter(java.util.Objects::nonNull).map(Account::getUser)
-				.findFirst();
-		if (!matchedUser.isPresent()) {
-			logger.warn("User not found in account {}", accountList);
-			return simpleAuthorizationInfo;
-		}
-		User user = userService.get(matchedUser.get().getId());
+		User user = userService.get(principal.getId());
 		simpleAuthorizationInfo.addStringPermissions(user.getPermissionList());
 		user.getRoleList().forEach(e -> {
 			simpleAuthorizationInfo.addRole(e.getName());

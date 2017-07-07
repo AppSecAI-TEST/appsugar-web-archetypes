@@ -15,10 +15,14 @@ public class Principal implements Serializable {
 	public static final String PERMISSION_ATTRIBUTE_KEY = "permissions";
 	public static final String ROLE_ATTRIBUTE_KEY = "roles";
 
-	public final Long id;
-	public final String name;
+	public Long id;
+	public String name;
 
 	private Map<String, Object> attributes = Maps.newHashMap();
+
+	public Principal() {
+		super();
+	}
 
 	public Principal(Long id, String name) {
 		this.id = id;
@@ -45,6 +49,18 @@ public class Principal implements Serializable {
 
 	public String getName() {
 		return name;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setAttributes(Map<String, Object> attributes) {
+		this.attributes = attributes;
 	}
 
 	@Override

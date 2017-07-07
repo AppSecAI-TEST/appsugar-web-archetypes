@@ -1,9 +1,6 @@
 package org.appsugar.controller.shiro;
 
 import java.io.Serializable;
-import java.util.List;
-
-import org.appsugar.entity.account.Account;
 
 /**
  * 自定义principal
@@ -13,18 +10,28 @@ import org.appsugar.entity.account.Account;
 public class Principal implements Serializable {
 	private static final long serialVersionUID = -8422899369911795302L;
 
-	private List<Account> accountList;
+	private Long id;
 
-	public Principal(List<Account> accountList) {
+	public Principal() {
 		super();
-		this.accountList = accountList;
 	}
 
-	public List<Account> getAccountList() {
-		return accountList;
+	public Principal(Long id) {
+		super();
+		this.id = id;
 	}
 
-	public void setAccountList(List<Account> accountList) {
-		this.accountList = accountList;
+	public Long getId() {
+		return id;
 	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "Principal [id=" + id + "]";
+	}
+
 }
