@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.appsugar.BaseJpaDaoTestCase;
+import org.appsugar.bean.condition.LongIdEntityCondition;
 import org.appsugar.entity.account.Account;
 import org.appsugar.entity.account.AccountType;
 import org.appsugar.entity.account.condition.AccountCondition;
+import org.appsugar.repository.account.jpa.AccountNormalRepository;
 import org.appsugar.repository.account.jpa.AccountRepository;
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,6 +23,17 @@ public class AccountRepositoryTest extends BaseJpaDaoTestCase {
 
 	@Autowired
 	private AccountRepository repository;
+	@Autowired
+	private AccountNormalRepository r;
+
+	@Test
+	public void testNormalFindBySpecification() {
+		LongIdEntityCondition condition = new LongIdEntityCondition();
+		condition.setId(-1l);
+		List<Account> accounts = r.findByCondition(condition);
+		logger.debug("testNormalFindBySpecification accounts is {}", accounts);
+		Assert.assertTrue(CollectionUtils.isNotEmpty(accounts));
+	}
 
 	@Test
 	public void testFindBySpecification() {
