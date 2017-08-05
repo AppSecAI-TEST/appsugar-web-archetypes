@@ -35,7 +35,7 @@ plugins {
 	//gradle release -Prelease.useAutomaticVersion=true -Prelease.releaseVersion=1.0.0-release -Prelease.newVersion=1.0.1-SNAPSHOT
     id "net.researchgate.release" version "2.6.0"
     id "org.hidetake.ssh" version "2.9.0"
-    id "org.springframework.boot" version "1.5.4.RELEASE" apply  false
+    id "org.springframework.boot" version "1.5.6.RELEASE" apply  false
     id "com.ewerk.gradle.plugins.querydsl" version "1.0.9" apply  false
 }
 apply plugin: "java"
@@ -264,12 +264,5 @@ project(":appsugar-archetypes-api"){
 	}
 	ssh.settings {
 	  knownHosts = allowAnyHosts
-	}
-}
-
-project(":appsugar-archetypes-api-faster"){
-	dependencies{
-		compile ("org.springframework.boot:spring-boot-starter-data-jpa")
-		compile("org.springframework.boot:spring-boot-starter-web")
 	}
 }

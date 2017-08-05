@@ -3,4 +3,3 @@ rootProject.name = "appsugar-web-archetypes";
 include("appsugar-archetypes-core")
 include("appsugar-archetypes-web")
 include("appsugar-archetypes-api")
-include("appsugar-archetypes-api-faster")
