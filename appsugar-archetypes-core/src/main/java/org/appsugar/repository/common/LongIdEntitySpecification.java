@@ -6,7 +6,7 @@ import org.appsugar.data.jpa.repository.querdsl.JpaQueryDslSpecification;
 import org.springframework.stereotype.Component;
 
 /**
- * 
+ * 默认查询条件实现
  * @author NewYoung
  * 2017年7月10日上午10:32:52
  */

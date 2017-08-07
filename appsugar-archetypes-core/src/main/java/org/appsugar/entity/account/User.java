@@ -2,9 +2,8 @@ package org.appsugar.entity.account;
 
 import java.util.List;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -15,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.appsugar.bean.convert.StringListConverter;
 import org.appsugar.bean.entity.LongIdEntity;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -91,9 +91,8 @@ public class User extends LongIdEntity {
 		this.roleList = roleList;
 	}
 
-	@ElementCollection(fetch = FetchType.LAZY)
-	@CollectionTable(name = "as_user_permission", joinColumns = @JoinColumn(name = "user_id"))
-	@Column(name = "permission")
+	@Convert(converter = StringListConverter.class)
+	@Column(name = "permission", length = 2500)
 	public List<String> getPermissionList() {
 		return permissionList;
 	}

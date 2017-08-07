@@ -1,5 +1,6 @@
 package org.appsugar.security;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,6 +15,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.appsugar.entity.account.Account;
 import org.appsugar.entity.account.AccountType;
+import org.appsugar.entity.account.Permissions;
 import org.appsugar.entity.account.Role;
 import org.appsugar.entity.account.User;
 import org.appsugar.service.account.AccountService;
@@ -65,10 +67,10 @@ public class ShiroRealm extends AuthorizingRealm {
 		User user = userService.get(principal.id);
 		List<String> permissionList = Lists.newArrayList();
 		List<String> roleList = Lists.newArrayList();
-		permissionList.addAll(user.getPermissionList());
+		permissionList.addAll(getPermissionWithDependencies(user.getPermissionList()));
 		for (Role role : user.getRoleList()) {
 			roleList.add(role.getName());
-			permissionList.addAll(role.getPermissionList());
+			permissionList.addAll(getPermissionWithDependencies(role.getPermissionList()));
 		}
 		info.addRoles(roleList);
 		info.addStringPermissions(permissionList);
@@ -84,4 +86,23 @@ public class ShiroRealm extends AuthorizingRealm {
 		return prin;
 	}
 
+	protected List<String> getPermissionWithDependencies(List<String> permissions) {
+		List<String> result = new ArrayList<>(permissions.size());
+		for (String permission : permissions) {
+			Permissions p = Permissions.getByPermissionString(permission);
+			if (p == null) {
+				result.add(permission);
+				continue;
+			}
+			getDependencies(p, result);
+		}
+		return result;
+	}
+
+	void getDependencies(Permissions p, List<String> permissions) {
+		permissions.add(p.permission);
+		for (Permissions dependency : p.dependencies) {
+			getDependencies(dependency, permissions);
+		}
+	}
 }
