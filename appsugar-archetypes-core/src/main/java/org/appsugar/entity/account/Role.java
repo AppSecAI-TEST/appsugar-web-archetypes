@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 import org.appsugar.bean.entity.LongIdEntity;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
@@ -20,6 +21,7 @@ import org.hibernate.validator.constraints.NotBlank;
  */
 @Entity
 @Table(name = "as_role")
+@DynamicUpdate
 public class Role extends LongIdEntity {
 	private static final long serialVersionUID = 8151602082162251470L;
 	//permission

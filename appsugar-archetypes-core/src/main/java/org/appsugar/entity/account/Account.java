@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import org.appsugar.bean.entity.LongIdEntity;
+import org.hibernate.annotations.DynamicUpdate;
 
 /**
  * 用户账号
@@ -19,6 +20,7 @@ import org.appsugar.bean.entity.LongIdEntity;
  */
 @Entity
 @Table(name = "as_account", uniqueConstraints = @UniqueConstraint(columnNames = { "key", "secret" }))
+@DynamicUpdate
 public class Account extends LongIdEntity {
 	private static final long serialVersionUID = -7658886817003402072L;
 

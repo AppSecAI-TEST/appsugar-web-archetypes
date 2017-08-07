@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.appsugar.bean.entity.LongIdEntity;
+import org.hibernate.annotations.DynamicUpdate;
 
 /**
  * 用户
@@ -24,6 +25,7 @@ import org.appsugar.bean.entity.LongIdEntity;
  */
 @Entity
 @Table(name = "as_user", indexes = { @Index(columnList = "phone"), @Index(columnList = "email") })
+@DynamicUpdate
 public class User extends LongIdEntity {
 
 	private static final long serialVersionUID = 1250833677334835146L;
