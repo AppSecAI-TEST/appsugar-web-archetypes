@@ -24,7 +24,7 @@ buildscript {
 		maven{url "http://nexus.ggxueche.cn/nexus/content/groups/public/"}
 	}
 	dependencies {
-		classpath ("io.github.divinespear:jpa-schema-gradle-plugin:0.2.3-ext")
+		classpath ("io.github.divinespear:jpa-schema-gradle-plugin:0.2.4.3-SNAPSHOT")
 		classpath ("com.ferigma:dbunit-gradle-plugin:0.1.0")
 		classpath ("${env['test.jdbc.groupId']}:${env['test.jdbc.artifactId']}:${env['test.jdbc.version']}")
 		classpath ("org.springframework:springloaded:1.2.6.RELEASE")
@@ -50,7 +50,7 @@ configure(subprojects) { project ->
 		maven{url "http://nexus.ggxueche.cn/nexus/content/groups/public/"}
 	}
 	ext{
-		appsugarVersion = "2.4.1-SNAPSHOT"
+		appsugarVersion = "2.4.2-SNAPSHOT"
 		appsugarSecurityVersion = "1.0.0.RELEASE"
 		junitVersion = "4.12"
 		elApiVersion = "3.0.0"
