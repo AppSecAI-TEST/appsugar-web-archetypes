@@ -1,5 +1,7 @@
 package org.appsugar.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,12 @@ public class LoginController {
 		if (SecurityUtils.getSubject().isAuthenticated()) {
 			return loginAny();
 		}
+		return "/account/login";
+	}
+
+	@RequestMapping(method = RequestMethod.POST)
+	public String loginFailed(HttpServletRequest req) {
+		req.setAttribute("msg", "username or password error");
 		return "/account/login";
 	}
 

@@ -1,4 +1,4 @@
-package org.appsugar.controller.security;
+package org.appsugar.security;
 
 import java.io.Serializable;
 import java.util.Map;

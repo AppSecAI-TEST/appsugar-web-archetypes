@@ -1,4 +1,4 @@
-package org.appsugar.controller.security;
+package org.appsugar.security;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +19,6 @@ import org.appsugar.entity.account.User;
 import org.appsugar.service.account.AccountService;
 import org.appsugar.service.account.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
@@ -29,7 +28,6 @@ import com.google.common.collect.Lists;
  * @author NewYoung
  * 2016年3月2日上午10:40:57
  */
-@Component
 public class ShiroRealm extends AuthorizingRealm {
 
 	@Autowired
@@ -50,7 +48,8 @@ public class ShiroRealm extends AuthorizingRealm {
 		if (account == null || !Objects.equal(account.getSecret(), password)) {
 			return null;
 		}
-		return new SimpleAuthenticationInfo(getUserPrincipal(account.getUser()), password, getName());
+		User user = userService.get(account.getUser().getId());
+		return new SimpleAuthenticationInfo(getUserPrincipal(user), password, getName());
 	}
 
 	/**

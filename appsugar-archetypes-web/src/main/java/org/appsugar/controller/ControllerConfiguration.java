@@ -13,7 +13,7 @@ import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.appsugar.controller.shiro.Pac4jRealm;
+import org.appsugar.security.ShiroRealm;
 import org.sitemesh.config.ConfigurableSiteMeshFilter;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -197,14 +197,19 @@ public class ControllerConfiguration extends WebMvcConfigurerAdapter {
 	 * shiro 安全管理
 	 */
 	@Bean
-	public DefaultWebSecurityManager securityManager(Pac4jRealm shiroRealm, CacheManager shiroCacheManager) {
+	public DefaultWebSecurityManager securityManager(ShiroRealm shiroReaml, CacheManager shiroCacheManager) {
 		DefaultWebSecurityManager stm = new DefaultWebSecurityManager();
-		stm.setRealms(Arrays.asList(shiroRealm));
+		stm.setRealms(Arrays.asList(shiroReaml));
 		stm.setCacheManager(shiroCacheManager);
 		String cipherKey = "kPH+bIxk5D2deZiIxcaaaA==";
 		CookieRememberMeManager crmm = new CookieRememberMeManager();
 		crmm.setCipherKey(Base64.getDecoder().decode(cipherKey));
 		stm.setRememberMeManager(crmm);
 		return stm;
+	}
+
+	@Bean
+	public ShiroRealm shiroRealm() {
+		return new ShiroRealm();
 	}
 }

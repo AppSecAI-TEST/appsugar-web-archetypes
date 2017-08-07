@@ -12,14 +12,13 @@
 
 <body>
 	<div class="center">
-		<form id="loginForm" action="${ctx}/login_callback" method="post" class="form-signin" autocomplete="off">
-			<input type="hidden" name="client_name" value="FormClient"/>
+		<form id="loginForm" action="${ctx}/login" method="post" class="form-signin" autocomplete="off">
 			<input type="hidden"
 				id="rememberMe" name="rememberMe" value="rememberMe" tabindex="3" />
 			<h2 class="form-signin-heading">
 				<spring:message code="login"/>
 			</h2>
-			<c:if test="${param.error != null}">
+			<c:if test="${msg != null}">
 				<div class="alert alert-danger fade in">
 					<button class="close" data-dismiss="alert">×</button>
 					<spring:message code="login.fail.message"/>
@@ -29,9 +28,6 @@
 				tabindex="1" /> 
 			<input type="password" id="password" name="password" class="form-control" required placeholder="<spring:message code="password"/>"
 				tabindex="2" /> 
-			<label class="text">
-				<a href="${ctx}/login/cas">CAS</a>----<a href="${ctx}/login/oauth2">OAUTH2</a>
-			</label> 
 			<input id="submit_btn" class="btn btn-lg btn-primary btn-block" type="submit" value="<spring:message code="login"/>" tabindex="4" /> 
 		</form>
 	</div>
