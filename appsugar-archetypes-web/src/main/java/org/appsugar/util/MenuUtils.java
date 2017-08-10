@@ -31,7 +31,7 @@ public class MenuUtils {
 
 	public static List<MenuGroup> getCachedMenuGroup() {
 		if (Objects.isNull(cache)) {
-			synchronized (MenuUtils.cache) {
+			synchronized (MenuUtils.class) {
 				if (Objects.isNull(cache)) {
 					cache = readMenuGroup();
 				}
