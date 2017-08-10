@@ -12,11 +12,10 @@ import org.appsugar.domain.MenuGroup;
 import org.appsugar.domain.Response;
 import org.appsugar.security.ShiroUtils;
 import org.appsugar.util.MenuUtils;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Throwables;
@@ -26,14 +25,13 @@ import com.google.common.base.Throwables;
  * @author NewYoung
  * 2016年3月1日下午5:20:19
  */
-@Controller
+@RestController
 public class MainController {
 
 	/**
 	 * 查看我的菜单
 	 */
 	@GetMapping("/menu")
-	@ResponseBody
 	public List<MenuGroup> menu() {
 		Subject self = ShiroUtils.getSubject();
 		List<MenuGroup> result = new ArrayList<>();

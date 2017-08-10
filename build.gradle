@@ -27,7 +27,7 @@ buildscript {
 		classpath ("io.github.divinespear:jpa-schema-gradle-plugin:0.2.4.3-SNAPSHOT")
 		classpath ("com.ferigma:dbunit-gradle-plugin:0.1.0")
 		classpath ("${env['test.jdbc.groupId']}:${env['test.jdbc.artifactId']}:${env['test.jdbc.version']}")
-		classpath ("org.springframework:springloaded:1.2.6.RELEASE")
+		classpath ("org.springframework:springloaded:1.2.7.RELEASE")
 	}
 }
 
@@ -52,17 +52,15 @@ configure(subprojects) { project ->
 	ext{
 		appsugarVersion = "2.4.3-SNAPSHOT"
 		junitVersion = "4.12"
-		elApiVersion = "3.0.0"
 		shiroVersion = "1.4.0"
-		ehcacheVersion = "2.10.2"
+		ehcacheVersion = "2.10.4"
 		queryDslVersion = "4.1.4"
-		modelMapperVersion = "0.7.8"
+		modelMapperVersion = "1.1.0"
 	}
 	compileJava.options.encoding = env["encoding"]
 	compileTestJava.options.encoding = env["encoding"]
 	dependencies{
 		testCompile ("junit:junit:${junitVersion}")
-		testCompile ("javax.el:javax.el-api:${elApiVersion}")
 		testCompile ("${env['test.jdbc.groupId']}:${env['test.jdbc.artifactId']}:${env['test.jdbc.version']}")
 		testCompile ("org.springframework.boot:spring-boot-starter-test")
 		testCompile ("org.appsugar:appsugar-test:${appsugarVersion}")
@@ -106,6 +104,8 @@ project(":appsugar-archetypes-core"){
 		compile ("org.springframework.boot:spring-boot-starter-validation")
 		compile ("org.springframework.boot:spring-boot-starter-aop")
 		compile ("com.querydsl:querydsl-jpa:${queryDslVersion}")
+		compile ("org.modelmapper:modelmapper:${modelMapperVersion}")
+		
 	}
 	
 	generateSchema {
