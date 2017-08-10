@@ -6,16 +6,16 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
-import org.appsugar.controller.domain.Response;
+import org.appsugar.domain.Response;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * 用户认证拦截器
+ * 用户认证拦截器 
  * @author NewYoung
  * 2016年11月17日下午4:53:34
  */
-public class FormAuthenticationFilterExt extends FormAuthenticationFilter {
+public class FormAuthenticationFilterExtension extends FormAuthenticationFilter {
 
 	private byte[] content;
 

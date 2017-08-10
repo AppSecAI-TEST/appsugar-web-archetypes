@@ -23,10 +23,4 @@ public class RoleControllerTest extends BaseControllerTestCase {
 		mockMvc.perform(MockMvcRequestBuilders.get("/account/role/form?id=-1"))
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
-
-	@Test
-	public void testRole() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.post("/account/role/save").param("name", "xx").param("title", "22")
-				.param("id", "-1").param("permissionList", "1")).andExpect(MockMvcResultMatchers.status().is(302));
-	}
 }

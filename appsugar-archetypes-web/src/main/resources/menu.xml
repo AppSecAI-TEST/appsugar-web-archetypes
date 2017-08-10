@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ArrayList>
+	<item name="系统管理" code="system.management">
+		<menu name="角色管理" code="role.management" permissions="role:view"/>
+		<menu name="用户管理" code="user.management" permissions="user:view"/>
+	</item>
+</ArrayList>

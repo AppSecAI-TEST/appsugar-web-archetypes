@@ -5,6 +5,8 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.Filter;
+
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
@@ -13,9 +15,12 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.appsugar.controller.filter.FormAuthenticationFilterExtension;
 import org.appsugar.security.ShiroRealm;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import com.google.common.collect.Maps;
 
 /**
  * shiro安全配置
@@ -25,25 +30,29 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SecurityConfiguration {
 
+	public static final String EXT_AUTHC_FILTER_NAME = "extAuthcFilter";
+
 	@Bean
 	public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
 		ShiroFilterFactoryBean filter = new ShiroFilterFactoryBean();
 		filter.setSecurityManager(securityManager);
-		filter.setLoginUrl("/login");
-		filter.setSuccessUrl("/main");
 		filter.setFilterChainDefinitionMap(filterChainDefinitionMap());
+		Map<String, Filter> filters = Maps.newHashMap();
+		filters.put(EXT_AUTHC_FILTER_NAME, new FormAuthenticationFilterExtension());
+		filter.setFilters(filters);
 		return filter;
 	}
 
+	/**
+	 * 路径映射权限配置 
+	 */
 	public Map<String, String> filterChainDefinitionMap() {
 		Map<String, String> map = new HashMap<>();
-		map.put("/favicon.ico", "anon");
+		map.put("/", "anon");
 		map.put("/static/**", "anon");
-		map.put("/assets/**", "anon");
-		map.put("/webjars/**", "anon");
+		map.put("/login", "anon");
 		map.put("/logout", "logout");
-		map.put("/login", "authc");
-		map.put("/**", "user");
+		map.put("/**", EXT_AUTHC_FILTER_NAME);
 		return map;
 	}
 

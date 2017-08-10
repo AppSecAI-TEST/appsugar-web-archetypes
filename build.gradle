@@ -55,12 +55,6 @@ configure(subprojects) { project ->
 		elApiVersion = "3.0.0"
 		shiroVersion = "1.4.0"
 		ehcacheVersion = "2.10.2"
-		jstlVersion = "1.2"
-		wro4jVersion = "1.8.0"
-		sitemeshVersion = "3.0.1"
-		jqueryValidationVersion = "1.16.0"
-		jqueryVersion = "3.2.1"
-		bootstrapVersion = "3.3.7-1"
 		queryDslVersion = "4.1.4"
 		modelMapperVersion = "0.7.8"
 	}
@@ -174,15 +168,9 @@ project(":appsugar-archetypes-web"){
 		compile ("org.apache.shiro:shiro-web:${shiroVersion}")
 		compile ("org.springframework.boot:spring-boot-starter-web")
 		providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
-		providedRuntime ("org.apache.tomcat.embed:tomcat-embed-jasper")
-		compile ("org.webjars:bootstrap:${bootstrapVersion}")
-		compile ("org.webjars:jquery:${jqueryVersion}")
-		compile ("org.webjars:jquery-validation:${jqueryValidationVersion}")
-		compile ("org.sitemesh:sitemesh:${sitemeshVersion}")
-		compile ("ro.isdc.wro4j:wro4j-core:${wro4jVersion}")
-		compile ("javax.servlet:jstl:${jstlVersion}")
 		compile ("${env['jdbc.groupId']}:${env['jdbc.artifactId']}:${env['jdbc.version']}")
 		compile ("org.hibernate:hibernate-ehcache")
+		compile ("com.fasterxml.jackson.dataformat:jackson-dataformat-xml")
 		
 	}
 	processResources {
@@ -206,59 +194,5 @@ project(":appsugar-archetypes-web"){
 	springBoot {
 		//execute without java -jar  example  $  ./api.war
     	executable = true
-	}
-}
-
-project(":appsugar-archetypes-api"){
-	apply plugin: "war"
-	configurations {
-		//spring repackager will pack it in executable jar or war but original not.
-    	providedRuntime
-	}	
-	
-	sourceSets {
-	    test {
-	        resources {
-	        	srcDir  "src/main/webapp"
-	            exclude "WEB-INF"
-	            exclude "static"
-	        }
-	    }
-	}
-	
-	dependencies{
-		compile project(":appsugar-archetypes-core")
-		compile ("org.apache.shiro:shiro-web:${shiroVersion}")
-		compile ("org.springframework.boot:spring-boot-starter-web")
-		providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
-		compile ("${env['jdbc.groupId']}:${env['jdbc.artifactId']}:${env['jdbc.version']}")
-		compile ("org.hibernate:hibernate-ehcache")
-		compile ("org.modelmapper:modelmapper:${modelMapperVersion}")
-		
-	}
-	processResources {
-		from(sourceSets.main.resources.srcDirs) {
-			include "*.properties"
-			filter(org.apache.tools.ant.filters.ReplaceTokens,tokens: env)
-		}
-		doLast{
-			ant.delete() {
-		        fileset(dir: "${processResources.destinationDir}") {
-		            include(name: "**/ApplicationResources*.properties")
-		        }
-	    	}
-		    ant.native2ascii(src: "src/main/resources",
-		            dest: "${processResources.destinationDir}",
-		            includes: "**/ApplicationResources*.properties",
-		            encoding: "UTF-8")
-		}
-	}
-	test.dependsOn  ":appsugar-archetypes-core:test"
-	bootRepackage.enabled = true
-	springBoot {
-    	executable = true
-	}
-	ssh.settings {
-	  knownHosts = allowAnyHosts
 	}
 }

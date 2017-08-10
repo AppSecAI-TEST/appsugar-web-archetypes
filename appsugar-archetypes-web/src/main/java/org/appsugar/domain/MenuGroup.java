@@ -1,61 +1,75 @@
 package org.appsugar.domain;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import com.google.common.collect.Lists;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 /**
- * 
+ * 菜单组
  * @author NewYoung
- * 2016年3月1日下午4:42:29
+ *
  */
-public class MenuGroup extends MenuConfig {
+public class MenuGroup implements Serializable {
+
+	private static final long serialVersionUID = -2213683716071710583L;
+	@JacksonXmlProperty(isAttribute = true)
+	private String name;
+	@JacksonXmlProperty(isAttribute = true)
+	private String code;
+
+	@JacksonXmlProperty(localName = "menu")
+	@JacksonXmlElementWrapper(useWrapping = false)
+	private List<Menu> menus;
 
 	public MenuGroup() {
 		super();
 	}
 
-	public MenuGroup(String url, String name, String code) {
-		super(url, name, code);
+	public MenuGroup(String name, String code, Menu... menus) {
+		super();
+		this.name = name;
+		this.code = code;
+		this.menus = new ArrayList<>(Arrays.asList(menus));
 	}
 
-	public MenuGroup(String url, String name, String code, String role, String permission) {
-		super(url, name, code, role, permission);
+	public MenuGroup(String name, String code, List<Menu> menus) {
+		super();
+		this.name = name;
+		this.code = code;
+		this.menus = menus;
 	}
 
-	//子菜单
-	private List<MenuConfig> menuList = Lists.newArrayList();
-
-	public List<MenuConfig> getMenuList() {
-		return menuList;
+	public String getName() {
+		return name;
 	}
 
-	public void setMenuList(List<MenuConfig> menuList) {
-		this.menuList = menuList;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void addChild(MenuConfig menu) {
-		menuList.add(menu);
+	public String getCode() {
+		return code;
 	}
 
-	/**
-	 * 判断当前用户是否能够查看这个菜单组
-	 */
-	@Override
-	public boolean isShow() {
-		for (MenuConfig menuConfig : menuList) {
-			if (menuConfig.isShow()) {
-				return true;
-			}
-		}
-		return false;
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public List<Menu> getMenus() {
+		return menus;
+	}
+
+	public void setMenus(List<Menu> menus) {
+		this.menus = menus;
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("MenuGroup [menuList=").append(menuList).append("]");
-		return builder.toString();
+		return "MenuGroup [name=" + name + ", code=" + code + ", menus=" + menus + "]";
 	}
 
 }

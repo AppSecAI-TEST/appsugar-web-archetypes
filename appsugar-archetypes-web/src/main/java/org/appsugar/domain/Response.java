@@ -1,4 +1,4 @@
-package org.appsugar.controller.domain;
+package org.appsugar.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
