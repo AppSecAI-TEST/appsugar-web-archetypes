@@ -77,8 +77,9 @@ public class Account extends LongIdEntity {
 		return secret;
 	}
 
-	public void setSecret(String secret) {
+	public Account setSecret(String secret) {
 		this.secret = secret;
+		return this;
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package org.appsugar.repository.account.jpa;
 
+import java.util.List;
+
 import org.appsugar.data.jpa.repository.JpaIdEntityRepository;
 import org.appsugar.entity.account.Account;
 import org.appsugar.entity.account.AccountType;
@@ -28,4 +30,9 @@ public interface AccountRepository extends JpaIdEntityRepository<Account, Accoun
 	@Modifying
 	@Query("update Account a set a.secret=concat(a.secret,?2) where id = ?1")
 	public void updateSecretConcatWith(Long id, String suffix);
+
+	/**
+	 * 根据用户id查询
+	 */
+	public List<Account> findByUserId(Long id);
 }

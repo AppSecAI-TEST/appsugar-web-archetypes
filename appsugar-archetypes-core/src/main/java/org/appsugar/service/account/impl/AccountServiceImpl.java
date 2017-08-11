@@ -1,5 +1,6 @@
 package org.appsugar.service.account.impl;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.appsugar.entity.account.Account;
@@ -51,6 +52,11 @@ public class AccountServiceImpl extends GenericServiceImpl<Account, AccountCondi
 			oldAccount.setProfile(account.getProfile());
 		}
 		return accountRepository.save(oldAccount);
+	}
+
+	@Override
+	public List<Account> getByUserId(Long id) {
+		return accountRepository.findByUserId(id);
 	}
 
 }

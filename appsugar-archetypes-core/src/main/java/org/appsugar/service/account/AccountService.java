@@ -1,5 +1,7 @@
 package org.appsugar.service.account;
 
+import java.util.List;
+
 import org.appsugar.entity.account.Account;
 import org.appsugar.entity.account.AccountType;
 import org.appsugar.entity.account.condition.AccountCondition;
@@ -25,4 +27,9 @@ public interface AccountService extends GenericService<Account, AccountCondition
 	 * 2016年12月27日下午1:07:46
 	 */
 	public Account saveAccountIfNecessary(Account account);
+
+	/**
+	 * 根据用户id查询账号
+	 */
+	public List<Account> getByUserId(Long id);
 }

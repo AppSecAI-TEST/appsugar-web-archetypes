@@ -1,4 +1,4 @@
-package org.appsugar.controller.account;
+package org.appsugar.controller.system;
 
 import java.util.Objects;
 
@@ -16,11 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/account/role")
+@RequestMapping("/system/role")
 public class RoleController extends BaseController {
 
 	@Autowired
@@ -39,9 +40,9 @@ public class RoleController extends BaseController {
 	}
 
 	@RequiresPermissions(Role.permission_view)
-	@GetMapping("form")
-	public Response<Role> form(@ModelAttribute Role role) {
-		return Response.success(role);
+	@GetMapping("form/{id}")
+	public Response<Role> form(@PathVariable Long id) {
+		return Response.success(roleService.get(id));
 	}
 
 	@RequiresPermissions(Role.permission_edit)

@@ -63,4 +63,12 @@ public class AccountRepositoryTest extends BaseJpaDaoTestCase {
 		Account account = repository.findOne(id);
 		Assert.assertTrue(account.getSecret().endsWith(suffix));
 	}
+
+	@Test
+	public void testFindByUserId() {
+		Long userId = -1l;
+		List<Account> accounts = repository.findByUserId(userId);
+		logger.debug("testFindByUserId id is {} result is {}", userId, accounts);
+		Assert.assertTrue(CollectionUtils.isNotEmpty(accounts));
+	}
 }
